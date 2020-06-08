@@ -35,12 +35,12 @@ Further information will be added soon
 <table>
   <thead>
     <tr>
-      <td>
+      <th>
         project
-      </td>
-      <td>
+      </th>
+      <th>
         path
-      </td>
+      </th>
     </tr>
   </thead>
   <tbody>
