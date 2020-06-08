@@ -1,18 +1,33 @@
 {
   "name": "dashboard",
   "version": "0.0.0",
+  "license": "GPL-3.0",
+  "contributors": [
+    {
+      "name": "Alexander Hodes",
+      "email": "alexander.hodes@live.com"
+    },
+    {
+      "name": "Benedikt Bleuel"
+    },
+    {
+      "name": "Benji Miethke"
+    }
+  ],
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "npm run start:dashboard",
+    "build": "npm run build:dashboard",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start:dashboard": "ng serve admin-dashboard --port 4200",
-    "start:style": "ng serve style-lib --port 4201",
+    "start:app": "ng serve --port 4200",
     "build:dashboard": "ng build admin-dashboard --prod",
+    "build:app": "ng build --prod",
+    "build:style": "ng build style-lib",
     "liteserver:dashboard": "lite-server --baseDir=\"dist/admin-dashboard\"",
-    "build:style": "ng build style-lib"
+    "liteserver:app": "lite-server --baseDir=\"dist/dashboard\""
   },
   "private": true,
   "dependencies": {
