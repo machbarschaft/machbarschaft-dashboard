@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import "normalize";
+@import "variables";
+@import "mixins";
+@import "global";
+
+// generate css classes
+@each $prefix, $class in $classes {
+  @include generate-spaces($prefix, $class, $directions, $spacers);
+}
+@include generate-colors($colors);
+@include generate-font-sizes($font-sizes);
+@include generate-font-weights($font-weights);
+@include generate-display($displays);
+@include generate-text-aligns($text-aligns);
+@include generate-positions($positions);
+@include generate-heights-widths();

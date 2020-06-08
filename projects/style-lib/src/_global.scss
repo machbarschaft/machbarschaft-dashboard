@@ -1,0 +1,71 @@
+@import "variables";
+
+body {
+  font-family: $font-family;
+}
+
+a {
+  color: $gray-600;
+  font-size: $font-size-s;
+  text-decoration: none;
+}
+
+a:hover, a:active {
+  border-bottom: $gray-600 1px solid;
+}
+
+button {
+  background-color: $white;
+  border: 1px solid $gray-600;
+  border-radius: $spacer-1;
+  cursor: pointer;
+  font-size: $font-size-m;
+  padding: $spacer-1 $spacer-2;
+}
+
+button:focus, button:hover {
+  background-color: $gray-600;
+  color: $white;
+  transition: .3s;
+}
+
+input {
+  border: 1px solid $gray-600;
+  border-radius: $spacer-1;
+  color: $gray-800;
+  font-size: $font-size-m;
+  font-weight: $font-weight-normal;
+  padding: $spacer-1 $spacer-2;
+}
+
+input:focus, input:active {
+  border-color: $gray-800;
+}
+
+p {
+
+}
+
+.button-primary {
+  background-color: $color-1;
+  border: 1px solid $color-1;
+  color: $white;
+}
+
+.button-primary:focus, .button-primary:hover {
+  background-color: darken($color-1, 10%);
+  border: 1px solid $color-1;
+  color: $white;
+}
+
+.button-secondary {
+  background-color: darken($color-2, 10%);
+  border: 1px solid darken($color-2, 10%);
+  color: $white;
+}
+
+.button-secondary:focus, .button-secondary:hover {
+  background-color: darken($color-2, 30%);
+  border: 1px solid darken($color-2, 30%);
+  color: $white;
+}

@@ -1,0 +1,135 @@
+// variables
+
+// colors
+$blue:    #0d6efd !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #d63384 !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+$white:    #fff !default;
+$gray-600: #6c757d !default;
+$gray-800: #343a40 !default;
+$color-1:    #f4b3a3 !default;
+$color-2:    #d2e9da !default;
+
+// colors
+$colors: (
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800,
+  "color-1":    $color-1,
+  "color-2":    $color-2
+) !default;
+
+// spacers for margin and padding
+$spacer: 1rem !default;
+$spacer-0: 0;
+$spacer-1: $spacer / 4;
+$spacer-2: $spacer / 2;
+$spacer-3: $spacer;
+$spacer-4: $spacer * 1.5;
+$spacer-5: $spacer * 2;
+
+$spacers: (
+  0: $spacer-0,
+  1: $spacer-1,
+  2: $spacer-2,
+  3: $spacer-3,
+  4: $spacer-4,
+  5: $spacer-5,
+) !default;
+
+$directions: (
+  "t": "top",
+  "b": "bottom",
+  "r": "right",
+  "l": "left",
+  "x": "",
+  "y": "",
+  "": ""
+) !default;
+
+$classes: (
+  "m": "margin",
+  "p": "padding"
+) !default;
+
+// font sizes
+$font-size-base: 1rem !default;
+$font-size-xs: $font-size-base * 0.875 !default;
+$font-size-s: $font-size-base !default;
+$font-size-m: $font-size-base * 1.125 !default;
+$font-size-l: $font-size-base * 1.5 !default;
+$font-size-xl: $font-size-base * 2 !default;
+
+$font-sizes: (
+  xs: $font-size-xs,
+  s: $font-size-s,
+  m: $font-size-m,
+  l: $font-size-l,
+  xl: $font-size-xl
+) !default;
+
+// font-weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+$font-weights: (
+  light: $font-weight-light,
+  normal: $font-weight-normal,
+  bold: $font-weight-bold
+) !default;
+
+// font familiy
+$font-family: 'Lato,Catamaran,Helvetica,Arial,sans-serif';
+
+// display
+$displays: (
+  inline,
+  block,
+  flex,
+  grid,
+  inline-block,
+  inline-flex,
+  table,
+  none,
+  initial,
+  inherit
+) !default;
+
+// text-align
+$text-aligns: (
+  left,
+  right,
+  center,
+  justify,
+  initial,
+  inherit
+) !default;
+
+// position
+$positions: (
+  static,
+  absolute,
+  fixed,
+  relative,
+  sticky,
+  initial,
+  inherit
+) !default;

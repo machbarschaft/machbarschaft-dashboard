@@ -1,0 +1,81 @@
+
+@mixin generate-spaces($prefix, $property, $directions, $spacers) {
+  @each $direction-prefix, $direction in $directions {
+    @each $space-prefix, $spacer-size in $spacers {
+      $prop: if($direction-prefix == '', #{$property}, if($direction-prefix == 'x', #{$property}, if($direction-prefix == 'y', #{$property}, #{$property}-#{$direction})));
+      $prop-value: if($direction-prefix == 'x', 0 #{$spacer-size}, if($direction-prefix == 'y', #{$spacer-size} 0, $spacer-size));
+
+      .#{$prefix}#{$direction-prefix}-#{$space-prefix} {
+        #{$prop}: $prop-value !important;
+      }
+    }
+  }
+}
+
+@mixin generate-colors($colors) {
+  // text-color
+  @each $color-name, $color in $colors {
+    .text-#{$color-name} {
+      color: $color !important;
+    }
+  }
+  // background-color
+  @each $color-name, $color in $colors {
+    .bg-#{$color-name} {
+      background-color: $color !important;
+    }
+  }
+}
+
+@mixin generate-font-sizes($font-sizes) {
+  @each $pre, $font-size in $font-sizes {
+    .font-size-#{$pre} {
+      font-size: $font-size !important;
+    }
+  }
+}
+
+@mixin generate-font-weights($font-weights) {
+  @each $pre, $font-weight in $font-weights {
+    .font-weight-#{$pre} {
+      font-weight: $font-weight !important;
+    }
+  }
+}
+
+@mixin generate-display($displays) {
+  @each $display in $displays {
+    .d-#{$display} {
+      display: $display !important;
+    }
+  }
+}
+
+@mixin generate-text-aligns($text-aligns) {
+  @each $text-align in $text-aligns {
+    .text-#{$text-align} {
+      text-align: $text-align !important;
+    }
+  }
+}
+
+@mixin generate-positions($positions) {
+  @each $position in $positions {
+    .position-#{$position} {
+      position: $position !important;
+    }
+  }
+}
+
+@mixin generate-heights-widths() {
+  @for $i from 0 to 11 {
+    .h-#{$i*10} {
+      height: $i * 10% !important;
+    }
+  }
+  @for $i from 0 to 11 {
+    .w-#{$i*10} {
+      width: $i * 10% !important;
+    }
+  }
+}
