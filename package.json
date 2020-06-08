@@ -23,14 +23,18 @@
     "e2e": "ng e2e",
     "start:dashboard": "ng serve admin-dashboard --port 4200",
     "start:app": "ng serve --port 4200",
-    "build:dashboard": "ng build admin-dashboard --prod",
-    "build:app": "ng build --prod",
+    "build:dashboard": "ng build admin-dashboard --prod --aot",
+    "build:app": "ng build --prod --aot",
     "build:style": "ng build style-lib",
     "liteserver:dashboard": "lite-server --baseDir=\"dist/admin-dashboard\"",
     "liteserver:app": "lite-server --baseDir=\"dist/dashboard\""
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "~0.901.7",
+    "@angular-devkit/build-ng-packagr": "~0.901.7",
+    "@angular/cli": "~9.1.7",
+    "@angular/compiler-cli": "~9.1.9",
     "@angular/animations": "~9.1.9",
     "@angular/common": "~9.1.9",
     "@angular/compiler": "~9.1.9",
@@ -41,6 +45,7 @@
     "@angular/router": "~9.1.9",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
+    "typescript": "~3.8.3",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
