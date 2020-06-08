@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "ng": "ng",
-    "start": "npm run start:dashboard",
+    "start": "ng serve admin-dashboard",
     "build": "npm run build:dashboard",
     "test": "ng test",
     "lint": "ng lint",
