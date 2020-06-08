@@ -30,5 +30,46 @@ Build style-lib
 
 Further information will be added soon
 
+### Project structure
+
+<table>
+  <thead>
+    <tr>
+      <td>
+        project
+      </td>
+      <td>
+        path
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        default angular project
+      </td>
+      <td>
+        src
+      </td>
+    </tr>
+    <tr>
+      <td>
+        admin-dashboard
+      </td>
+      <td>
+        projects/admin-dashboard
+      </td>
+    </tr>
+    <tr>
+      <td>
+        style lib and component library
+      </td>
+      <td>
+        projects/style-lib
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 made with ❤ by us (machbarschaft).
 
