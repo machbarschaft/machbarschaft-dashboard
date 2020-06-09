@@ -6,10 +6,10 @@
       <button button-secondary class="mx-3">Button secondary</button>
     </div>
     <div>
-      <a [routerLink]="['request']" class="mr-3">Request</a>
+      <a [routerLink]="['order']" class="mr-3">Order</a>
+      <a [routerLink]="['order', '12']" class="mr-3">Order Detail</a>
       <a [routerLink]="['login']" class="mx-3">Login</a>
     </div>
-    <lib-style-lib></lib-style-lib>
     <router-outlet></router-outlet>
   </div>
 </div>

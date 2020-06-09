@@ -1,0 +1,25 @@
+<div>
+  <p>All Orders</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Update</th>
+        <th>Benutzer</th>
+        <th>Quelle</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td><a [routerLink]="order.id">{{ order.id }}</a></td>
+        <td>{{ order.updatedAt | date }}</td>
+        <td>{{ order.userId }}</td>
+        <td>{{ order.source }}</td>
+        <td>{{ order.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
