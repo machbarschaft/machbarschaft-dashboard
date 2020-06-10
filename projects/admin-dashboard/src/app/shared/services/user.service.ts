@@ -19,25 +19,7 @@ export class UserService {
     })
   };
 
-
-  /*
-  {
-  "firstName": "string",
-  "lastName": "string",
-  "street": "string",
-  "streetNo": "string",
-  "zipCode": "string",
-  "city": "string",
-  "email": "string",
-  "location": {
-    "longitude": 0,
-    "latitude": 0
-  },
-  "phone": "string",
-  "source": "HOTLINE"
-}
-*/
   createUser(user: User) {
-    return this.http.post(this.url, user, {});
+    return this.http.post(this.url, user, this.httpOptions);
   }
 }
