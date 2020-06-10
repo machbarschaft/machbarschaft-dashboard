@@ -1,3 +1,4 @@
+import { SodiumCryptoService } from './../../shared/services/sodium-crypto.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,18 +9,19 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firest
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private firebasAuth: AngularFireAuth, private router: Router) { }
+  constructor(private firebasAuth: AngularFireAuth, private router: Router, private sodium: SodiumCryptoService) { }
 
   login(email: string, password: string) {
-    // passwort mus gehashed werden
     this.firebasAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
 
+        this.sodium.hash(password);
         this.router.navigate(['order']);
         console.log(result);
 
@@ -29,11 +31,4 @@ export class AuthService {
   }
 
 
-
-/* sodium nötig: (npm install sodium)
-  hash(token: string, length: number = 64) {
-    const hash = sodium.crypto_generichash(length, sodium.from_string(token));
-    return sodium.to_hex(hash);
-}
-*/
 }

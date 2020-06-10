@@ -2,16 +2,16 @@
   <form class="mb-5">
     <div class="form-group mb-3">
       <label class="d-block pb-2 font-weight-light">Benutzername</label>
-      <input class="form-control" type="email" name="user" placeholder="E-Mail Adresse" required>
+      <input class="form-control" type="email" [(ngModel)]="email" name="user" placeholder="E-Mail Adresse" required>
     </div>
     <div class="form-group mb-3">
       <label class="d-block pb-2 font-weight-light">Passwort</label>
-      <input class="form-control" type="password" name="password" placeholder="Passwort" required>
+      <input class="form-control" type="password"  [(ngModel)]="password" name="password" placeholder="Passwort" required>
     </div>
     <div class="my-3">
       <a>Passwort vergessen</a>
     </div>
-    <button button-primary [routerLink]="['/order']">Anmelden</button>
+    <button button-primary (click) = "login()">Anmelden</button> <!-- [routerLink]="['/order']" -->
   </form>
   <div class="my-3">
     <span class="d-block mb-2">Ich habe noch keinen Account und möchte mich gerne registrieren</span>

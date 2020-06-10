@@ -11,8 +11,8 @@ export const environment = {
     projectId: 'colivery-app',
     storageBucket: 'colivery-app.appspot.com',
     messagingSenderId: '645242671020',
-    appId: '1:645242671020:web:aa157f56f1ab2cb3597409',
-    measurementId: 'G-3P5K1Y9WPK'
+    appId: '1:645242671020:web:2764a5d651592e6f597409',
+    measurementId: 'G-XRNJT36EYT'
   }
 };
 
