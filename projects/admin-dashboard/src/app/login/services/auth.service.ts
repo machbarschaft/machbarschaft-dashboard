@@ -29,5 +29,20 @@ export class AuthService {
       });
   }
 
+  logout(): void {
+    this.firebasAuth.signOut()
+      .then((result) => {
+        this.router.navigate(['login']);
+      }).catch((error) => {
+        console.log(error);
+      });
+  }
+
+  register(email: string, password: string): void {
+    this.firebasAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password))
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
 }
