@@ -26,7 +26,11 @@ Start lite-server for admin-dashboard project (located at dist/admin-dashboard)
 
 Build style-lib
  
- `npm run build:style`
+`npm run build:style`
+
+Firebase Deployment (Only for windows currently)
+
+`npm run firebase:deploy:dashboard:windows`
 
 Further information will be added soon
 

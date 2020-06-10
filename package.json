@@ -28,7 +28,8 @@
     "build:app": "ng build --prod --aot",
     "build:style": "ng build style-lib",
     "liteserver:dashboard": "lite-server --baseDir=\"dist/admin-dashboard\"",
-    "liteserver:app": "lite-server --baseDir=\"dist/dashboard\""
+    "liteserver:app": "lite-server --baseDir=\"dist/dashboard\"",
+    "firebase:deploy:dashboard:windows": "xcopy dist\\admin-dashboard\\** public /s /e && firebase deploy"
   },
   "private": true,
   "browser": {
