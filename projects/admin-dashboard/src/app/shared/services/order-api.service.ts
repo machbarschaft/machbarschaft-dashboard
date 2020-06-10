@@ -32,6 +32,17 @@ export class OrderApiService {
       status: 'TO_BE_DELIVERED',
       updatedAt: '2020-09-06 08:00:00'
     });
+    orders.push({
+      createdAt: '2020-09-05 07:30:00',
+      hint: 'Hint',
+      id: '27818312-db48-4b1d-a305-6f43bb1e9b6a',
+      maxPrice: 4.78,
+      userId: 2,
+      items: [{description: 'Müsli'}, {description: 'Äpfel'}, {description: 'Pflanzendrink'}],
+      source: 'HOTLINE',
+      status: 'ACCEPTED',
+      updatedAt: '2020-09-06 10:30:00'
+    });
 
     return orders;
   }

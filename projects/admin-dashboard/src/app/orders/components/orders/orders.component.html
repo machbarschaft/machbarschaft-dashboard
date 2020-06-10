@@ -16,8 +16,8 @@
         <td><a [routerLink]="order.id">{{ order.id }}</a></td>
         <td>{{ order.updatedAt | date }}</td>
         <td>{{ order.userId }}</td>
-        <td>{{ order.source }}</td>
-        <td>{{ order.status }}</td>
+        <td>{{ order.source | constantsTranslator }}</td>
+        <td>{{ order.status | constantsTranslator }}</td>
       </tr>
     </tbody>
   </table>

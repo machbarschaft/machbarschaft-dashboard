@@ -43,7 +43,21 @@ input:focus, input:active {
 }
 
 p {
+  font-size: $font-size-s;
+}
 
+table {
+  font-size: $font-size-s !important;
+}
+
+td, th {
+  text-align: $text-align-left !important;
+  padding: $spacer-2 !important;
+  border-bottom: 1px solid $black !important;
+}
+
+tr {
+  border-bottom: 1px solid $black !important;
 }
 
 .button-primary {

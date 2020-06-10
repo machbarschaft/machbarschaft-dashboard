@@ -16,6 +16,7 @@ $gray-600: #6c757d !default;
 $gray-800: #343a40 !default;
 $color-1:    #f4b3a3 !default;
 $color-2:    #d2e9da !default;
+$black:     #000 !default;
 
 // colors
 $colors: (
@@ -33,7 +34,8 @@ $colors: (
   "gray":       $gray-600,
   "gray-dark":  $gray-800,
   "color-1":    $color-1,
-  "color-2":    $color-2
+  "color-2":    $color-2,
+  "black":      $black
 ) !default;
 
 // spacers for margin and padding
@@ -113,14 +115,22 @@ $displays: (
   inherit
 ) !default;
 
+$text-align-left: left;
+$text-align-left: left;
+$text-align-right: right;
+$text-align-center: center;
+$text-align-justify: justify;
+$text-align-initial: initial;
+$text-align-inherit: inherit;
+
 // text-align
 $text-aligns: (
-  left,
-  right,
-  center,
-  justify,
-  initial,
-  inherit
+  $text-align-left,
+  $text-align-right,
+  $text-align-center,
+  $text-align-justify,
+  $text-align-initial,
+  $text-align-inherit
 ) !default;
 
 // position

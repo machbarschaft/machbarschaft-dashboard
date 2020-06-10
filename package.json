@@ -15,6 +15,7 @@
     }
   ],
   "scripts": {
+    "postinstall": "node patch-webpack.js",
     "ng": "ng",
     "start": "ng serve admin-dashboard",
     "build": "npm run build:dashboard",
@@ -30,6 +31,10 @@
     "liteserver:app": "lite-server --baseDir=\"dist/dashboard\""
   },
   "private": true,
+  "browser": {
+    "path": false,
+    "fs": false
+  },
   "dependencies": {
     "@angular-devkit/build-angular": "~0.901.7",
     "@angular-devkit/build-ng-packagr": "~0.901.7",
@@ -44,8 +49,11 @@
     "@angular/platform-browser": "~9.1.9",
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
-    "libsodium-wrappers": "^0.7.6",
     "firebase": "^7.15.0",
+    "install": "^0.13.0",
+    "libsodium": "^0.7.6",
+    "libsodium-wrappers": "^0.7.6",
+    "path": "^0.12.7",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "typescript": "~3.8.3",
