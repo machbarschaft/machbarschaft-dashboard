@@ -37,6 +37,7 @@
     "fs": false
   },
   "dependencies": {
+    "@agm/core": "^1.1.0",
     "@angular-devkit/build-angular": "~0.901.7",
     "@angular-devkit/build-ng-packagr": "~0.901.7",
     "@angular/animations": "~9.1.9",
