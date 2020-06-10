@@ -7,6 +7,8 @@ import {StyleLibModule} from '../../../style-lib/src/lib/style-lib.module';
 import {LoginModule} from './login/login.module';
 import {OrdersModule} from './orders/orders.module';
 import {HeaderModule} from './header/header.module';
+import { HttpClientModule } from '@angular/common/http';
+
 
 
 @NgModule({
@@ -19,7 +21,8 @@ import {HeaderModule} from './header/header.module';
     LoginModule,
     OrdersModule,
     StyleLibModule,
-    HeaderModule
+    HeaderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

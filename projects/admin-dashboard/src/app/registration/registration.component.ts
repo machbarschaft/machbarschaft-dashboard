@@ -1,3 +1,4 @@
+import { MapsService } from './../shared/services/maps.service';
 import { AuthService } from '../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../shared/public-api';
@@ -9,7 +10,7 @@ import { User } from '../shared/public-api';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private mapsService: MapsService) { }
 
   email = '';
   firstname = '';
@@ -22,6 +23,9 @@ export class RegistrationComponent implements OnInit {
   city = '';
   password = '';
   repeatPassword = '';
+
+
+  address = '';
 
 
 
@@ -47,15 +51,17 @@ export class RegistrationComponent implements OnInit {
   updatedAt: string;
   zipCode: string;
   */
-  resolveAdress() {
 
+
+  checkAdress() {
+    this.mapsService.getAdress(this.address);
   }
 
   registration() {
     if (this.password === this.repeatPassword) {
       this.authService.register(this.email, this.password)
       .then((response) => {
-        const user: User = {city: this.city, };
+        // const user: User = {city: this.city, };
 
       }).catch(
         (error) => {
