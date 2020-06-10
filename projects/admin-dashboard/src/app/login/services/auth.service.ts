@@ -18,10 +18,9 @@ export class AuthService {
   constructor(private firebasAuth: AngularFireAuth, private router: Router, private sodium: SodiumCryptoService) { }
 
   login(email: string, password: string) {
-    this.firebasAuth.signInWithEmailAndPassword(email, password)
+    this.firebasAuth.signInWithEmailAndPassword(email, this.sodium.hash(password))
       .then((result) => {
 
-        this.sodium.hash(password);
         this.router.navigate(['order']);
         console.log(result);
 
