@@ -36,7 +36,8 @@ input {
   color: $gray-800;
   font-size: $font-size-m;
   font-weight: $font-weight-normal;
-  padding: $spacer-1 $spacer-2;
+  min-width: 180px;
+  padding: .75rem $spacer-2;
 }
 
 input:focus, input:active {
