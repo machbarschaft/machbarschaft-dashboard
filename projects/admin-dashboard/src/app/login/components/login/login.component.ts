@@ -24,7 +24,7 @@ export class LoginComponent {
     if(this.loginForm.valid) {
       console.debug("Login at Firebase with E-Mail: ", this.loginForm.get('email'))
       // TODO login feedback
-      this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+      this.authService.login$(this.loginForm.value.email, this.loginForm.value.password);
       // Reset error indicator
       this.emailError = false;
       this.passwordError = false;
