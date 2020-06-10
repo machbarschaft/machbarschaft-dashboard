@@ -1,13 +1,10 @@
-import { SodiumCryptoService } from './sodium-crypto.service';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import {SodiumCryptoService} from './sodium-crypto.service';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AuthenticationGuardService} from './authentication-guard.service';
+import {Observable, ReplaySubject} from 'rxjs';
+import {AuthResponse} from '../models/common.interface';
 
 
 @Injectable({
@@ -15,31 +12,42 @@ import { switchMap } from 'rxjs/operators';
 })
 export class AuthService {
 
-  constructor(private firebasAuth: AngularFireAuth, private router: Router, private sodium: SodiumCryptoService) { }
+  constructor(private firebaseAuth: AngularFireAuth,
+              private router: Router,
+              private sodium: SodiumCryptoService,
+              private authenticationGuardService: AuthenticationGuardService) {
+  }
 
-  login(email: string, password: string) {
-    this.firebasAuth.signInWithEmailAndPassword(email, this.sodium.hash(password))
+  login$(email: string, password: string): Observable<AuthResponse> {
+    const subject$ = new ReplaySubject<AuthResponse>(1);
+    this.firebaseAuth.signInWithEmailAndPassword(email, this.sodium.hash(password))
       .then((result) => {
-
         this.router.navigate(['order']);
         console.log(result);
-
+        this.authenticationGuardService.changeAuthenticated(true);
+        subject$.next({message: 'success', successful: true});
+        subject$.complete();
       }).catch((error) => {
-        window.alert(error.message);
-      });
+      window.alert(error.message);
+      this.authenticationGuardService.changeAuthenticated(false);
+      subject$.next({message: error, successful: false});
+      subject$.complete();
+    });
+    return subject$.asObservable();
   }
 
   logout(): void {
-    this.firebasAuth.signOut()
+    this.firebaseAuth.signOut()
       .then((result) => {
         this.router.navigate(['login']);
+        this.authenticationGuardService.changeAuthenticated(false);
       }).catch((error) => {
-        console.log(error);
-      });
+      console.log(error);
+    });
   }
 
   async register(email: string, password: string): Promise<any> {
-    return this.firebasAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password));
+    return this.firebaseAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password));
   }
 
 }

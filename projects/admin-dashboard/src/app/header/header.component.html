@@ -6,6 +6,8 @@
         <a [routerLink]="['order']" class="mr-3 text-white">Hilfegesuche</a>
         <a [routerLink]="['order', '12']" class="mr-3 text-white">Hilfegesuche Detail</a>
         <a [routerLink]="['login']" class="text-white">Anmeldung</a>
+        <button button-secondary *ngIf="isAuthenticated" (click)="logout()" class="ml-3">Abmelden</button>
+        <span class="ml-3">Eingeloggt: {{ isAuthenticated }}</span>
       </div>
     </div>
   </div>
