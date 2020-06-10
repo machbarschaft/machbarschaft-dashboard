@@ -6,6 +6,7 @@ import {AppComponent} from './app.component';
 import {StyleLibModule} from '../../../style-lib/src/lib/style-lib.module';
 import {LoginModule} from './login/login.module';
 import {OrdersModule} from './orders/orders.module';
+import {HeaderModule} from './header/header.module';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {OrdersModule} from './orders/orders.module';
     AppRoutingModule,
     LoginModule,
     OrdersModule,
-    StyleLibModule
+    StyleLibModule,
+    HeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
