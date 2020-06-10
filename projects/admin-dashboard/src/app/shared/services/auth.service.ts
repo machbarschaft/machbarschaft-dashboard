@@ -1,4 +1,4 @@
-import { SodiumCryptoService } from './../../shared/services/sodium-crypto.service';
+import { SodiumCryptoService } from './sodium-crypto.service';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 

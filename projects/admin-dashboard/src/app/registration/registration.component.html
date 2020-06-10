@@ -7,14 +7,16 @@
     <div class="form-group mb-3">
       <label class="d-block pb-2 font-weight-light">Passwort</label>
       <input class="form-control" type="password"  [(ngModel)]="password" name="password" placeholder="Passwort" required>
+      <input class="form-control" type="password"  [(ngModel)]="repeatPassword" name="repeatPassword" placeholder="Passwort wiederholen" required>
+
     </div>
     <div class="my-3">
       <a>Passwort vergessen</a>
     </div>
-    <button button-primary (click) = "login()">Anmelden</button> <!-- [routerLink]="['/order']" -->
+    <button button-primary (click) = "registration()">Anmelden</button> <!-- [routerLink]="['/order']" -->
   </form>
   <div class="my-3">
     <span class="d-block mb-2">Ich habe noch keinen Account und möchte mich gerne registrieren</span>
-    <button [routerLink]="['/registration']" button-primary>Registrieren</button>
+    <button button-primary>Registrieren</button>
   </div>
 </div>
