@@ -54,20 +54,46 @@ export class RegistrationComponent implements OnInit {
 
 
   checkAdress() {
-    this.mapsService.getAdress(this.address);
+    this.mapsService.getAdress(this.address)
+      .subscribe((response) => {
+        if (response.status !== 'OK' || response.results.length === 0) {
+          // handling worng adress
+        } else {
+          console.log(response);
+          console.log(response.results[0].formatted_address);
+          this.splitAdress(response.results[0].formatted_address);
+        }
+
+      }, (error) => {
+        // handling wrong adress
+        console.log(error);
+      });
   }
 
   registration() {
     if (this.password === this.repeatPassword) {
       this.authService.register(this.email, this.password)
-      .then((response) => {
-        // const user: User = {city: this.city, };
+        .then((response) => {
+          // const user: User = {city: this.city, };
 
-      }).catch(
-        (error) => {
+        }).catch(
+          (error) => {
 
-      });
+          });
     }
+  }
+
+  // format: "street streetNo, zipCode city, Deutschland"
+  splitAdress(formattedAddress: string) {
+    const splitted = formattedAddress.split(' ', 5);
+
+    for (let i = 0; i < splitted.length; i++) {
+      splitted[i] = splitted[i].replace(',', '');
+    }
+    this.street = splitted[0];
+    this.streetNo = splitted[1];
+    this.zipCode = splitted[2];
+    this.city = splitted[3];
   }
 
 }

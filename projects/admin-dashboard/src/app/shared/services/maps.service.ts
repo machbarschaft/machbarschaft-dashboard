@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -12,7 +13,7 @@ export class MapsService {
   url = 'https://maps.googleapis.com/maps/api/geocode/json';
   key = 'AIzaSyAxdml0SDGrLHMNW024k1KUG8SvVuaOuVg';
 
-  getAdress(adressString: string) {
+  getAdress(adressString: string): Observable<any> {
     return this.http.get(`${this.url}?address=${adressString}&key=${this.key}`);
   }
 
