@@ -38,11 +38,8 @@ export class AuthService {
       });
   }
 
-  register(email: string, password: string): void {
-    this.firebasAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password))
-      .catch((error) => {
-        console.log(error);
-      });
+  async register(email: string, password: string): Promise<any> {
+    return this.firebasAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password));
   }
 
 }
