@@ -9,7 +9,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  url = 'service-api-ng.nightly.staging.colivery.app/v1/user';
+  url = 'https://service-api-ng.nightly.staging.colivery.app/v1/user';
 
   httpOptions = {
     headers: new HttpHeaders({

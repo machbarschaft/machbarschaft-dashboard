@@ -93,7 +93,7 @@ export class RegistrationComponent implements OnInit {
       // registration in firebase
       this.authService.register(this.email, this.password)
         .then((response) => {
-          console.log('registration in firebase successful');
+          console.log('registration in firebase successful', response);
           // if the registration in firebase was sucessful: register in backend
 
           const user: User = {

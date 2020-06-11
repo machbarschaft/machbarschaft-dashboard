@@ -5,6 +5,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthenticationGuardService} from './authentication-guard.service';
 import {Observable, ReplaySubject} from 'rxjs';
 import {AuthResponse} from '../models/common.interface';
+import {FIREBASE_LOGIN_ERROR_ENUM, LOGIN_ERROR_ENUM} from '../models/constants.interface';
 
 
 @Injectable({
@@ -28,9 +29,11 @@ export class AuthService {
         subject$.next({message: 'success', successful: true});
         subject$.complete();
       }).catch((error) => {
+      console.log('error', error);
       window.alert(error.message);
       this.authenticationGuardService.changeAuthenticated(false);
-      subject$.next({message: error, successful: false});
+      const authResponse = this.getAuthResponseForError(error ? error.code : error);
+      subject$.next(authResponse);
       subject$.complete();
     });
     return subject$.asObservable();
@@ -48,6 +51,19 @@ export class AuthService {
 
   async register(email: string, password: string): Promise<any> {
     return this.firebaseAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password));
+  }
+
+  private getAuthResponseForError(message: string): AuthResponse {
+    console.log('message', message);
+    let errorMessage = '';
+
+    if (message === FIREBASE_LOGIN_ERROR_ENUM.EMAIL_NOT_FOUND || message === FIREBASE_LOGIN_ERROR_ENUM.INVALID_PASSWORD) {
+      errorMessage = LOGIN_ERROR_ENUM.EMAIL_OR_PASSWORD_INVALID;
+    } else {
+      errorMessage = LOGIN_ERROR_ENUM.OTHER;
+    }
+
+    return {successful: false, message: errorMessage};
   }
 
 }
