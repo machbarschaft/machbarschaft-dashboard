@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { UserService } from './../shared/services/user.service';
 import { MapsService } from './../shared/services/maps.service';
 import { AuthService } from '../shared/services/auth.service';
@@ -13,6 +14,12 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private authService: AuthService, private mapsService: MapsService, private userService: UserService) { }
 
+
+  // for map
+  showMap = false;
+  mapCenter: google.maps.LatLngLiteral;
+  markerTitle = 'Ihre Adresse?';
+  // creating a user
   email = '';
   firstname = '';
   lastName = '';
@@ -55,20 +62,23 @@ export class RegistrationComponent implements OnInit {
   */
 
 
-  checkAdress() {
+  checkAdress(onRegistration?: boolean) {
     this.mapsService.getAdress(this.address)
       .subscribe((response) => {
         if (response.status !== 'OK' || response.results.length === 0) {
-          // handling worng adress
+          // handling wrong address
         } else {
           this.splitAdress(response.results[0].formatted_address);
           this.location = {
             latitude: response.results[0].geometry.location.lat,
             longitude: response.results[0].geometry.location.lng
           };
+          if (onRegistration === undefined || onRegistration === false) {
+            this.initalizeMap();
+          }
         }
       }, (error) => {
-        // handling wrong adress
+        // handling wrong address
         console.log(error);
       });
   }
@@ -77,8 +87,8 @@ export class RegistrationComponent implements OnInit {
     console.log('registration called');
 
     if (this.password === this.repeatPassword) {
-      if (this.location === null) {
-        this.checkAdress();
+      if (this.location === undefined || this.location === null) {
+        this.checkAdress(true);
       }
       // registration in firebase
       this.authService.register(this.email, this.password)
@@ -97,9 +107,15 @@ export class RegistrationComponent implements OnInit {
 
         }).catch(
           (error) => {
-              console.log(error);
+            console.log(error);
           });
     }
+  }
+
+
+  initalizeMap() {
+    this.mapCenter = {lat: this.location.latitude, lng: this.location.longitude};
+    this.showMap = true;
   }
 
   // format: "street streetNo, zipCode city, Deutschland"

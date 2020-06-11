@@ -22,4 +22,5 @@ export class UserService {
   createUser(user: User) {
     return this.http.post(this.url, user, this.httpOptions);
   }
+
 }

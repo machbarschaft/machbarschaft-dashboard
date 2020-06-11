@@ -10,20 +10,28 @@
       <label class="d-block pb-2 font-weight-light">Nachname</label>
       <input class="form-control" type="text" [(ngModel)]="lastName" name="lastName" placeholder="Nachname" required>
       <label class="d-block pb-2 font-weight-light">Telefonnummer</label>
-      <input class="form-control" type="text" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="Nummer" required>
+      <input class="form-control" type="text" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="Nummer"
+        required>
     </div>
     <div class="form-group mb-3">
       <label class="d-block pb-2 font-weight-light">Passwort</label>
-      <input class="form-control" type="password"  [(ngModel)]="password" name="password" placeholder="Passwort" required>
-      <input class="form-control" type="password"  [(ngModel)]="repeatPassword" name="repeatPassword" placeholder="Passwort wiederholen" required>
+      <input class="form-control" type="password" [(ngModel)]="password" name="password" placeholder="Passwort"
+        required>
+      <input class="form-control" type="password" [(ngModel)]="repeatPassword" name="repeatPassword"
+        placeholder="Passwort wiederholen" required>
     </div>
     <div class="form-group mb-3">
       <label class="d-block pb-2 font-weight-light">Wohn- /Lieferadresse</label>
       <textarea class="form-control" name="address" [(ngModel)]="address" placeholder="Address" required></textarea>
-      <button button-primary (click) = "checkAdress()">Adresse Überprüfen</button>
-
+      <button button-primary (click)="checkAdress()">Adresse Überprüfen</button>
+      <div id="mapdiv" *ngIf="showMap" class = "form-group mb-3">
+        <google-map [center] = "mapCenter" [zoom] = 15 ><map-marker [position] = "mapCenter" [title] ="markerTitle"></map-marker></google-map>
+      </div>
     </div>
-  <div class="my-3">
-    <span class="d-block mb-2">Ich habe noch keinen Account und möchte mich gerne registrieren</span>
-    <button button-primary (click) = "registration()">Registrieren</button>
-  </div>
+    <!-- <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script> -->
+    <div class="my-3">
+      <span class="d-block mb-2">Ich habe noch keinen Account und möchte mich gerne registrieren</span>
+      <button button-primary (click)="registration()">Registrieren</button>
+    </div>
