@@ -1,7 +1,8 @@
-<div>
-  <h1>Alle Hilfegesuche</h1>
-  <table>
-    <thead>
+<div class="row">
+  <div class="col-12">
+    <h1>Alle Hilfegesuche</h1>
+    <table>
+      <thead>
       <tr>
         <th>ID</th>
         <th>Update</th>
@@ -9,8 +10,8 @@
         <th>Quelle</th>
         <th>Status</th>
       </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
       <tr *ngFor="let order of orders">
         <td><a [routerLink]="order.id">{{ order.id }}</a></td>
         <td>{{ order.updatedAt | date }}</td>
@@ -18,7 +19,9 @@
         <td>{{ order.source | constantsTranslator }}</td>
         <td>{{ order.status | constantsTranslator }}</td>
       </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+
+  </div>
 </div>
 

@@ -1,12 +1,20 @@
 <div class="header bg-color-1">
-  <div class="mx-3 py-3">
-    <span class="font-size-l text-white font-weight-bold">Machbarschaft</span>
-    <div class="d-inline-block ml-5">
-      <div>
-        <a *ngIf="isAuthenticated" [routerLink]="['order']" class="mr-3 text-white">Hilfegesuche</a>
-        <a *ngIf="isAuthenticated" [routerLink]="['order', '12']" class="mr-3 text-white">Hilfegesuche Detail</a>
-        <a *ngIf="!isAuthenticated" [routerLink]="['login']" class="text-white">Anmeldung</a>
-        <button button-secondary *ngIf="isAuthenticated" (click)="logout()" class="ml-3">Abmelden</button>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="mx-3 py-3">
+        <div class="row">
+          <div class="col-auto">
+            <span class="font-size-l text-white font-weight-bold mr-5">Machbarschaft</span>
+          </div>
+          <div class="col-auto">
+            <div>
+              <a *ngIf="isAuthenticated" [routerLink]="['order']" class="mr-3 text-white">Hilfegesuche</a>
+              <a *ngIf="isAuthenticated" [routerLink]="['order', '12']" class="mr-3 text-white">Hilfegesuche Detail</a>
+              <a *ngIf="!isAuthenticated" [routerLink]="['login']" class="text-white">Anmeldung</a>
+              <button button-secondary *ngIf="isAuthenticated" (click)="logout()" class="ml-3">Abmelden</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
