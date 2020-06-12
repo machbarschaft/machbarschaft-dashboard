@@ -25,8 +25,6 @@ export class AuthService {
     this.firebaseAuth.signInWithEmailAndPassword(email, this.sodium.hash(password))
       .then((result) => {
         this.router.navigate(['order']);
-        console.log('credential', result.credential);
-
         const refreshToken = result.user.refreshToken;
         const authToken = result.user['xa'];
         localStorage.setItem('token', authToken);

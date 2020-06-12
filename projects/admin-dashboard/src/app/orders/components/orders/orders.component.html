@@ -2,26 +2,47 @@
   <div class="col-12">
     <h1>Alle Hilfegesuche</h1>
     <ng-container *ngIf="breakPointObserverService.isMobile$ | async; else mobileView">
-      mobile to be implemented
+      <ng-container *ngFor="let order of orders">
+        <div class="order-card p-2">
+          <div class="row">
+            <div class="col-12">
+              <div class="font-weight-bold">Zuletzt geändert</div>
+              <div class="font-weight-normal">{{ order.updatedAt | date }}</div>
+            </div>
+            <div class="col-12">
+              <div class="font-weight-bold">Benutzer</div>
+              <div class="font-weight-normal">{{ order.userId }}</div>
+            </div>
+            <div class="col-12">
+              <div class="font-weight-bold">Herkunft</div>
+              <div class="font-weight-normal">{{ order.source | constantsTranslator }}</div>
+            </div>
+            <div class="col-12">
+              <div class="font-weight-bold">Status</div>
+              <div class="font-weight-normal">{{ order.status | constantsTranslator }}</div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </ng-container>
     <ng-template #mobileView>
       <table>
         <thead>
         <tr>
-          <th>ID</th>
-          <th>Update</th>
+          <th>Zuletzt geändert</th>
           <th>Benutzer</th>
-          <th>Quelle</th>
+          <th>Herkunft</th>
           <th>Status</th>
+          <th>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let order of orders">
-          <td><a [routerLink]="order.id">{{ order.id }}</a></td>
           <td>{{ order.updatedAt | date }}</td>
           <td>{{ order.userId }}</td>
           <td>{{ order.source | constantsTranslator }}</td>
           <td>{{ order.status | constantsTranslator }}</td>
+          <td><a [routerLink]="order.id">zur Detailansicht</a></td>
         </tr>
         </tbody>
       </table>
