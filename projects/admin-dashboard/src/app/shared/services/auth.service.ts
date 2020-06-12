@@ -6,6 +6,7 @@ import {AuthenticationGuardService} from './authentication-guard.service';
 import {Observable, ReplaySubject} from 'rxjs';
 import {AuthResponse} from '../models/common.interface';
 import {FIREBASE_LOGIN_ERROR_ENUM, LOGIN_ERROR_ENUM} from '../models/constants.interface';
+import UserCredential = firebase.auth.UserCredential;
 
 
 @Injectable({
@@ -24,7 +25,13 @@ export class AuthService {
     this.firebaseAuth.signInWithEmailAndPassword(email, this.sodium.hash(password))
       .then((result) => {
         this.router.navigate(['order']);
-        console.log(result);
+        console.log('credential', result.credential);
+
+        const refreshToken = result.user.refreshToken;
+        const authToken = result.user['xa'];
+        localStorage.setItem('token', authToken);
+        localStorage.setItem('refreshToken', refreshToken);
+
         this.authenticationGuardService.changeAuthenticated(true);
         subject$.next({message: 'success', successful: true});
         subject$.complete();
@@ -43,6 +50,7 @@ export class AuthService {
     this.firebaseAuth.signOut()
       .then((result) => {
         this.router.navigate(['login']);
+        localStorage.clear();
         this.authenticationGuardService.changeAuthenticated(false);
       }).catch((error) => {
       console.log(error);

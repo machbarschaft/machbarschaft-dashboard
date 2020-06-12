@@ -8,7 +8,13 @@ export class AuthenticationGuardService {
 
   constructor() {
     this.#isAuthenticated = new ReplaySubject<boolean>(1);
-    this.#isAuthenticated.next(false);
+
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (refreshToken) {
+      this.#isAuthenticated.next(true);
+    } else {
+      this.#isAuthenticated.next(false);
+    }
   }
 
   changeAuthenticated(isAuthenticated: boolean): void {

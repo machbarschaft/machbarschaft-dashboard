@@ -8,7 +8,6 @@ export class SodiumCryptoService {
 
   constructor() {
     this.#sodium = sodium;
-    console.log('libsodium', sodium, this.#sodium);
   }
 
   hash(token: string, length: number = 64) {
