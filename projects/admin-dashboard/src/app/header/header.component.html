@@ -18,6 +18,7 @@
             <div class="col-auto">
               <div>
                 <a *ngIf="isAuthenticated" [routerLink]="['order']" class="mr-3 text-white">Hilfegesuche</a>
+                <a *ngIf="isAuthenticated" [routerLink]="['order/create']" class="mr-3 text-white">Hilfegesuch anlegen</a>
                 <a *ngIf="!isAuthenticated" [routerLink]="['login']" class="text-white">Anmeldung</a>
                 <button button-secondary *ngIf="isAuthenticated" (click)="logout()" class="ml-3">Abmelden</button>
               </div>
@@ -31,6 +32,7 @@
 <ng-container *ngIf="menuOpen">
   <div class="position-absolute h-100 w-100 bg-color-1 p-3 header-nav-drawer">
     <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order')">Hilfegesuche</button>
+    <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order/create')">Hilfegesuche anlegen</button>
     <button *ngIf="!isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('login')">Anmeldung</button>
     <button *ngIf="isAuthenticated" button-secondary class="w-100" (click)="logout()">Abmelden</button>
   </div>

@@ -27,6 +27,10 @@ export class OrderApiService extends ApiService {
     return this.#orders.find(order => order.id === id);
   }
 
+  createOrder(order: Order): void {
+    this.#orders.push(order);
+  }
+
   private initOrders(): Order[] {
     const orders: Order[] = [];
 
