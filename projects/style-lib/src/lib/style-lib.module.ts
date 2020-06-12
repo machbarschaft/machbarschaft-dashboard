@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {StyleLibComponent} from './style-lib.component';
 import {ButtonPrimaryDirective, ButtonSecondaryDirective} from './public-api';
+import {LayoutModule} from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -8,7 +9,9 @@ import {ButtonPrimaryDirective, ButtonSecondaryDirective} from './public-api';
     ButtonPrimaryDirective,
     ButtonSecondaryDirective
   ],
-  imports: [],
+  imports: [
+    LayoutModule
+  ],
   exports: [
     StyleLibComponent,
     ButtonPrimaryDirective,

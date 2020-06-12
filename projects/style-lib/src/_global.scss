@@ -11,9 +11,7 @@ a {
   text-decoration: none;
 }
 
-a:hover, a:active {
-  border-bottom: $gray-600 1px solid;
-}
+a:hover, a:active {}
 
 button {
   background-color: $white;
