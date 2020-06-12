@@ -23,13 +23,16 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start:dashboard": "scripts\\admin-dashboard\\admin-dashboard.cmd admin-dashboard-start",
+    "start:dashboard:linux": "scripts/admin-dashboard/admin-dashboard.sh admin-dashboard-start",
     "start:app": "ng serve --port 4200",
     "build:dashboard": "scripts\\admin-dashboard\\admin-dashboard.cmd admin-dashboard-build",
+    "build:dashboard:linux": "scripts/admin-dashboard/admin-dashboard.sh admin-dashboard-build",
     "build:app": "ng build --prod --aot",
     "build:style": "ng build style-lib",
     "liteserver:dashboard": "lite-server --baseDir=\"dist/admin-dashboard\"",
     "liteserver:app": "lite-server --baseDir=\"dist/dashboard\"",
-    "firebase:deploy:dashboard:windows": "scripts\\admin-dashboard\\admin-dashboard.cmd admin-dashboard-firebase-deploy"
+    "firebase:deploy:dashboard:windows": "scripts\\admin-dashboard\\admin-dashboard.cmd admin-dashboard-firebase-deploy",
+    "firebase:deploy:dashboard:linux": "scripts/admin-dashboard/admin-dashboard.sh admin-dashboard-firebase-deploy"
   },
   "private": true,
   "browser": {
