@@ -30,7 +30,6 @@ export class HeaderComponent implements OnInit {
       .pipe()
       .subscribe(authenticated => {
         this.isAuthenticated = authenticated;
-        console.log('isAuthenticated', this.isAuthenticated);
         this.changeDetectorRef.detectChanges();
       });
   }
