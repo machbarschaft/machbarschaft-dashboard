@@ -1,6 +1,6 @@
 import {BreakpointObserver, Breakpoints, BreakpointState} from '@angular/cdk/layout';
 import {Injectable, OnDestroy} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class BreakPointObserverService implements OnDestroy {
@@ -31,6 +31,10 @@ export class BreakPointObserverService implements OnDestroy {
           }
         });
       });
+  }
+
+  getIsMobile$(): Observable<boolean> {
+    return this.isMobile$.asObservable();
   }
 
   ngOnDestroy(): void {

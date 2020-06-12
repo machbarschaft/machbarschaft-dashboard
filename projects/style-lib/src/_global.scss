@@ -83,3 +83,15 @@ tr {
   border: 1px solid darken($color-2, 30%);
   color: $white;
 }
+
+.button-light {
+  background-color: transparent;
+  border: 1px solid $white;
+  color: $white;
+}
+
+.button-light:focus, .button-light:hover {
+  background-color: $white;
+  border: 1px solid $white;
+  color: $color-1;
+}
