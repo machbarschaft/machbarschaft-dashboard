@@ -1,6 +1,4 @@
 #!/bin/bash
-echo $1
-
 if [ "$1" == "admin-dashboard-start" ]; then
 	cp environments/admin-dashboard/** projects/admin-dashboard/src/environments && ng serve admin-dashboard --port 4200
 elif [ "$1" == "admin-dashboard-build" ]; then

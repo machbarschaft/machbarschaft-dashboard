@@ -28,9 +28,23 @@ Build style-lib
  
 `npm run build:style`
 
-Firebase Deployment (Only for windows currently)
+Firebase deployment
 
-`npm run firebase:deploy:dashboard:windows`
+`npm run firebase:deploy:dashboard`
+
+**Some commands are special for linux**
+
+Start admin-dashboard (linux)
+
+`npm run start:dashboard:linux`
+
+Build admin-dashboard (linux)
+
+`npm run build:dashboard:linux`
+
+Firebase deployment (linux)
+
+`npm run firebase:deploy:dashboard:linux`
 
 Further information will be added soon
 
