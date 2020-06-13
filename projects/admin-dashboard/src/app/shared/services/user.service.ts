@@ -9,8 +9,8 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  url = 'service-api-ng.nightly.staging.colivery.app/v1/user';
-
+  //url = 'http://service-api-ng.nightly.staging.colivery.app/v1/user';
+  url = 'http://localhost:8080/v1/user'
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -20,6 +20,7 @@ export class UserService {
   };
 
   createUser(user: User) {
+    console.log("user:" + user);
     return this.http.post(this.url, user, this.httpOptions);
   }
 

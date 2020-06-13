@@ -4,6 +4,7 @@ import { MapsService } from './../shared/services/maps.service';
 import { AuthService } from '../shared/services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User, GeoPoint } from '../shared/public-api';
+import { ResourceLoader } from '@angular/compiler';
 
 @Component({
   selector: 'app-registration',
@@ -94,17 +95,20 @@ export class RegistrationComponent implements OnInit {
       this.authService.register(this.email, this.password)
         .then((response) => {
           console.log('registration in firebase successful');
-          // if the registration in firebase was sucessful: register in backend
+          this.authService.getToken().subscribe(
+            (result) => {
+              localStorage.setItem('token', result);
 
-          const user: User = {
-            email: this.email, firstName: this.firstname, lastName: this.lastName, phone: this.phoneNumber,
-            location: this.location, city: this.city, zipCode: this.zipCode, street: this.street, streetNo: this.streetNo, source: 'APP'
-          };
-          this.userService.createUser(user)
-            .subscribe((result => {
-              console.log(result);
-            }));
-
+              // if the registration in firebase was sucessful: register in backend
+              const user: User = {
+                email: this.email, firstName: this.firstname, lastName: this.lastName, phone: this.phoneNumber,
+                location: this.location, city: this.city, zipCode: this.zipCode, street: this.street, streetNo: this.streetNo, source: 'APP'
+              };
+              this.userService.createUser(user)
+                .subscribe((result2) => {
+                  console.log(result2);
+                });
+            });
         }).catch(
           (error) => {
             console.log(error);
@@ -112,9 +116,14 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  saveToken() {
+
+  }
+
 
   initalizeMap() {
-    this.mapCenter = {lat: this.location.latitude, lng: this.location.longitude};
+    console.log("lat" + this.location.latitude);
+    this.mapCenter = { lat: this.location.latitude, lng: this.location.longitude };
     this.showMap = true;
   }
 

@@ -44,10 +44,16 @@ export class AuthService {
       }).catch((error) => {
       console.log(error);
     });
+
   }
 
   async register(email: string, password: string): Promise<any> {
     return this.firebaseAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password));
   }
+
+
+  getToken(): Observable<string> {
+    return this.firebaseAuth.idToken;
+    }
 
 }
