@@ -1,14 +1,39 @@
 <div class="header bg-color-1">
-  <div class="mx-3 py-3">
-    <span class="font-size-l text-white font-weight-bold">Machbarschaft</span>
-    <div class="d-inline-block ml-5">
-      <div>
-        <a [routerLink]="['order']" class="mr-3 text-white">Hilfegesuche</a>
-        <a [routerLink]="['order', '12']" class="mr-3 text-white">Hilfegesuche Detail</a>
-        <a [routerLink]="['login']" class="text-white">Anmeldung</a>
-        <button button-secondary *ngIf="isAuthenticated" (click)="logout()" class="ml-3">Abmelden</button>
-        <span class="ml-3">Eingeloggt: {{ isAuthenticated }}</span>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="py-3">
+        <div class="row">
+          <ng-container *ngIf="breakpointObserver.isMobile$ | async; else desktopHeader">
+            <div class="col-12">
+              <i class="material-icons font-size-l text-white" (click)="toggleMenu()">
+                {{ menuOpen ? 'close' : 'menu' }}
+              </i>
+              <span class="font-size-l text-white font-weight-bold ml-1">Machbarschaft</span>
+            </div>
+          </ng-container>
+          <ng-template #desktopHeader>
+            <div class="col-auto">
+              <span class="font-size-l text-white font-weight-bold mr-5">Machbarschaft</span>
+            </div>
+            <div class="col-auto">
+              <div>
+                <a *ngIf="isAuthenticated" [routerLink]="['order']" class="mr-3 text-white">Hilfegesuche</a>
+                <a *ngIf="isAuthenticated" [routerLink]="['order/create']" class="mr-3 text-white">Hilfegesuch anlegen</a>
+                <a *ngIf="!isAuthenticated" [routerLink]="['login']" class="text-white">Anmeldung</a>
+                <button button-secondary *ngIf="isAuthenticated" (click)="logout()" class="ml-3">Abmelden</button>
+              </div>
+            </div>
+          </ng-template>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<ng-container *ngIf="menuOpen">
+  <div class="position-absolute h-100 w-100 bg-color-1 p-3 header-nav-drawer">
+    <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order')">Hilfegesuche</button>
+    <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order/create')">Hilfegesuche anlegen</button>
+    <button *ngIf="!isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('login')">Anmeldung</button>
+    <button *ngIf="isAuthenticated" button-secondary class="w-100" (click)="logout()">Abmelden</button>
+  </div>
+</ng-container>

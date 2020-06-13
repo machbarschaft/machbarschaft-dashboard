@@ -1,13 +1,22 @@
 import {Injectable} from '@angular/core';
 import {Order, OrderItem, SOURCE, STATUS} from '../models/public-api';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../environments/environment';
+import {Observable} from 'rxjs';
+import {ApiService} from './api.service';
 
-@Injectable({ providedIn: 'root' })
-export class OrderApiService {
+@Injectable({providedIn: 'root'})
+export class OrderApiService extends ApiService {
 
-  #orders: Order[];
+  readonly #orders: Order[];
 
-  constructor() {
+  constructor(private httpClient: HttpClient) {
+    super();
     this.#orders = this.initOrders();
+  }
+
+  getAllColiveryOrders(): Observable<any> {
+    return this.httpClient.get(`${environment.apiUrl}order/own`, { headers: super.createApiHeader() });
   }
 
   getAllOrders(): Order[] {
@@ -16,6 +25,10 @@ export class OrderApiService {
 
   getOrder(id: string): Order | null {
     return this.#orders.find(order => order.id === id);
+  }
+
+  createOrder(order: Order): void {
+    this.#orders.push(order);
   }
 
   private initOrders(): Order[] {
@@ -27,7 +40,7 @@ export class OrderApiService {
       id: '6862bdaa-e16c-477a-ba8b-900676be7939',
       maxPrice: 15.99,
       userId: 1,
-      items: [{description: 'Brot'}, {description: 'Bananen' }],
+      items: [{description: 'Brot'}, {description: 'Bananen'}],
       source: 'APP',
       status: 'TO_BE_DELIVERED',
       updatedAt: '2020-09-06 08:00:00'

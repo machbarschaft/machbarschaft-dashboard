@@ -1,22 +1,32 @@
-<div class="text-center">
-  <form class="mb-5" [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
-    <div class="form-group mb-3">
-      <label class="d-block pb-2 font-weight-light">Benutzername</label>
-      <input class="form-control" type="email" formControlName="email" name="user" placeholder="E-Mail Adresse" required>
-      <small class="form-text text-muted invalid-feedback" *ngIf="emailError">Dies ist keine E-Mail Adresse</small>
-    </div>
-    <div class="form-group mb-3">
-      <label class="d-block pb-2 font-weight-light">Passwort</label>
-      <input class="form-control" type="password"  formControlName="password" name="password" placeholder="Passwort" required>
-      <small class="form-text text-muted invalid-feedback" *ngIf="passwordError">mindestens 8 Zeichen verwenden</small>
-    </div>
+<div class="row">
+  <div class="col-lg-4 col-sm-12 col-md-12 mx-lg-auto">
+    <form class="mb-5" [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-group mb-3">
+        <label class="d-block pb-2 font-weight-light">Benutzername</label>
+        <input class="form-control" type="email" formControlName="email" name="user" placeholder="E-Mail Adresse"
+               required>
+        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="emailError">Dies ist
+          keine E-Mail Adresse</small>
+      </div>
+      <div class="form-group mb-3">
+        <label class="d-block pb-2 font-weight-light">Passwort</label>
+        <input class="form-control" type="password" formControlName="password" name="password" placeholder="Passwort"
+               required>
+        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="passwordError">mindestens
+          8 Zeichen verwenden</small>
+      </div>
+      <div class="my-3 text-center">
+        <a>Passwort vergessen</a>
+      </div>
+      <div class="text-center">
+        <button button-primary type="submit">Anmelden</button> <!-- [routerLink]="['/order']" -->
+      </div>
+    </form>
     <div class="my-3">
-      <a>Passwort vergessen</a>
+      <span class="d-block mb-2 text-center">Ich habe noch keinen Account und möchte mich gerne registrieren</span>
+      <div class="text-center">
+        <button [routerLink]="['/registration']" button-primary>Registrieren</button>
+      </div>
     </div>
-    <button button-primary type="submit">Anmelden</button> <!-- [routerLink]="['/order']" -->
-  </form>
-  <div class="my-3">
-    <span class="d-block mb-2">Ich habe noch keinen Account und möchte mich gerne registrieren</span>
-    <button [routerLink]="['/registration']" button-primary>Registrieren</button>
   </div>
 </div>

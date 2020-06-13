@@ -1,24 +1,55 @@
-<div>
-  <h1>Alle Hilfegesuche</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Update</th>
-        <th>Benutzer</th>
-        <th>Quelle</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let order of orders">
-        <td><a [routerLink]="order.id">{{ order.id }}</a></td>
-        <td>{{ order.updatedAt | date }}</td>
-        <td>{{ order.userId }}</td>
-        <td>{{ order.source | constantsTranslator }}</td>
-        <td>{{ order.status | constantsTranslator }}</td>
-      </tr>
-    </tbody>
-  </table>
+<div class="row">
+  <div class="col-12">
+    <h1>Alle Hilfegesuche</h1>
+    <ng-container *ngIf="breakPointObserverService.isMobile$ | async; else mobileView">
+      <ng-container *ngFor="let order of orders">
+        <div class="order-card p-2 mb-3">
+          <div class="row">
+            <div class="col-6">
+              <div class="font-weight-bold">Zuletzt geändert</div>
+              <div class="font-weight-normal">{{ order.updatedAt | date }}</div>
+            </div>
+            <div class="col-6">
+              <div class="font-weight-bold">Benutzer</div>
+              <div class="font-weight-normal">{{ order.userId }}</div>
+            </div>
+            <div class="col-6">
+              <div class="font-weight-bold">Herkunft</div>
+              <div class="font-weight-normal">{{ order.source | constantsTranslator }}</div>
+            </div>
+            <div class="col-6">
+              <div class="font-weight-bold">Status</div>
+              <div class="font-weight-normal">{{ order.status | constantsTranslator }}</div>
+            </div>
+            <div class="col-12 mt-3">
+              <a [routerLink]="order.id">zur Detailansicht</a>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-template #mobileView>
+      <table>
+        <thead>
+        <tr>
+          <th>Zuletzt geändert</th>
+          <th>Benutzer</th>
+          <th>Herkunft</th>
+          <th>Status</th>
+          <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order.updatedAt | date }}</td>
+          <td>{{ order.userId }}</td>
+          <td>{{ order.source | constantsTranslator }}</td>
+          <td>{{ order.status | constantsTranslator }}</td>
+          <td><a [routerLink]="order.id">zur Detailansicht</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-template>
+  </div>
 </div>
 

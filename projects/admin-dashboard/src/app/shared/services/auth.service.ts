@@ -5,6 +5,8 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AuthenticationGuardService} from './authentication-guard.service';
 import {Observable, ReplaySubject} from 'rxjs';
 import {AuthResponse} from '../models/common.interface';
+import {FIREBASE_LOGIN_ERROR_ENUM, LOGIN_ERROR_ENUM} from '../models/constants.interface';
+import UserCredential = firebase.auth.UserCredential;
 
 
 @Injectable({
@@ -23,14 +25,20 @@ export class AuthService {
     this.firebaseAuth.signInWithEmailAndPassword(email, this.sodium.hash(password))
       .then((result) => {
         this.router.navigate(['order']);
-        console.log(result);
+        const refreshToken = result.user.refreshToken;
+        const authToken = result.user['xa'];
+        localStorage.setItem('token', authToken);
+        localStorage.setItem('refreshToken', refreshToken);
+
         this.authenticationGuardService.changeAuthenticated(true);
         subject$.next({message: 'success', successful: true});
         subject$.complete();
       }).catch((error) => {
+      console.log('error', error);
       window.alert(error.message);
       this.authenticationGuardService.changeAuthenticated(false);
-      subject$.next({message: error, successful: false});
+      const authResponse = this.getAuthResponseForError(error ? error.code : error);
+      subject$.next(authResponse);
       subject$.complete();
     });
     return subject$.asObservable();
@@ -40,6 +48,7 @@ export class AuthService {
     this.firebaseAuth.signOut()
       .then((result) => {
         this.router.navigate(['login']);
+        localStorage.clear();
         this.authenticationGuardService.changeAuthenticated(false);
       }).catch((error) => {
       console.log(error);
@@ -51,9 +60,25 @@ export class AuthService {
     return this.firebaseAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password));
   }
 
+<<<<<<< HEAD
 
   getToken(): Observable<string> {
     return this.firebaseAuth.idToken;
     }
 
+=======
+  private getAuthResponseForError(message: string): AuthResponse {
+    console.log('message', message);
+    let errorMessage = '';
+
+    if (message === FIREBASE_LOGIN_ERROR_ENUM.EMAIL_NOT_FOUND || message === FIREBASE_LOGIN_ERROR_ENUM.INVALID_PASSWORD) {
+      errorMessage = LOGIN_ERROR_ENUM.EMAIL_OR_PASSWORD_INVALID;
+    } else {
+      errorMessage = LOGIN_ERROR_ENUM.OTHER;
+    }
+
+    return {successful: false, message: errorMessage};
+  }
+
+>>>>>>> 659019202e959e607479cf11cc18238bfe786fa4
 }

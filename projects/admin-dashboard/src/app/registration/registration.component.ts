@@ -94,6 +94,7 @@ export class RegistrationComponent implements OnInit {
       // registration in firebase
       this.authService.register(this.email, this.password)
         .then((response) => {
+<<<<<<< HEAD
           console.log('registration in firebase successful');
           this.authService.getToken().subscribe(
             (result) => {
@@ -109,6 +110,20 @@ export class RegistrationComponent implements OnInit {
                   console.log(result2);
                 });
             });
+=======
+          console.log('registration in firebase successful', response);
+          // if the registration in firebase was sucessful: register in backend
+
+          const user: User = {
+            email: this.email, firstName: this.firstname, lastName: this.lastName, phone: this.phoneNumber,
+            location: this.location, city: this.city, zipCode: this.zipCode, street: this.street, streetNo: this.streetNo, source: 'APP'
+          };
+          this.userService.createUser(user)
+            .subscribe((result => {
+              console.log(result);
+            }));
+
+>>>>>>> 659019202e959e607479cf11cc18238bfe786fa4
         }).catch(
           (error) => {
             console.log(error);
