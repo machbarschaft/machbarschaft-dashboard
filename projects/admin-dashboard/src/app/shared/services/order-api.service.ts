@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core';
-import {Order, OrderItem, SOURCE, STATUS} from '../models/public-api';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
-import {Observable} from 'rxjs';
-import {ApiService} from './api.service';
+import { Injectable } from '@angular/core';
+import { Order, OrderItem, SOURCE, STATUS } from '../models/public-api';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'rxjs';
+import { ApiService } from './api.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class OrderApiService extends ApiService {
 
   readonly #orders: Order[];
@@ -21,6 +21,24 @@ export class OrderApiService extends ApiService {
 
   getAllOrders(): Order[] {
     return this.#orders;
+  }
+
+  abortOrder(orderId: string): Observable<any> {
+    return this.editOrder(orderId, 'abort');
+  }
+  acceptOrder(orderId: string): Observable<any> {
+    return this.editOrder(orderId, 'accept');
+  }
+  cancelOrder(orderId: string): Observable<any> {
+    return this.editOrder(orderId, 'cancel');
+  }
+  deliverOrder(orderId: string): Observable<any> {
+    return this.editOrder(orderId, 'deliver');
+  }
+
+
+  editOrder(orderId: string, type: string): Observable<any> {
+    return this.httpClient.patch(`${environment.apiUrl}v1/order/${orderId}/${type}`, { headers: super.createApiHeader() });
   }
 
   getOrder(id: string): Order | null {
@@ -40,7 +58,7 @@ export class OrderApiService extends ApiService {
       id: '6862bdaa-e16c-477a-ba8b-900676be7939',
       maxPrice: 15.99,
       userId: 1,
-      items: [{description: 'Brot'}, {description: 'Bananen'}],
+      items: [{ description: 'Brot' }, { description: 'Bananen' }],
       source: 'APP',
       status: 'TO_BE_DELIVERED',
       updatedAt: '2020-09-06 08:00:00'
@@ -51,7 +69,7 @@ export class OrderApiService extends ApiService {
       id: '27818312-db48-4b1d-a305-6f43bb1e9b6a',
       maxPrice: 4.78,
       userId: 2,
-      items: [{description: 'Müsli'}, {description: 'Äpfel'}, {description: 'Pflanzendrink'}],
+      items: [{ description: 'Müsli' }, { description: 'Äpfel' }, { description: 'Pflanzendrink' }],
       source: 'HOTLINE',
       status: 'ACCEPTED',
       updatedAt: '2020-09-06 10:30:00'

@@ -1,27 +1,22 @@
 import { Injectable } from '@angular/core';
 import { User } from '../public-api';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService extends ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   //url = 'http://service-api-ng.nightly.staging.colivery.app/v1/user';
-  url = 'http://localhost:8080/v1/user'
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      responseType: 'json',
-      Authorization: 'Bearer: ' + localStorage.getItem('token')
-    })
-  };
+  url = 'http://localhost:8080/v1/user';
 
   createUser(user: User) {
-    console.log("user:" + user);
-    return this.http.post(this.url, user, this.httpOptions);
+    return this.http.post(this.url, user, { headers: super.createApiHeader() });
   }
 
 }
