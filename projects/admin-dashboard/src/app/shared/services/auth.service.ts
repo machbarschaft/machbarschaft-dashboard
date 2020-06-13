@@ -60,13 +60,11 @@ export class AuthService {
     return this.firebaseAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password));
   }
 
-<<<<<<< HEAD
 
   getToken(): Observable<string> {
     return this.firebaseAuth.idToken;
     }
 
-=======
   private getAuthResponseForError(message: string): AuthResponse {
     console.log('message', message);
     let errorMessage = '';
@@ -80,5 +78,4 @@ export class AuthService {
     return {successful: false, message: errorMessage};
   }
 
->>>>>>> 659019202e959e607479cf11cc18238bfe786fa4
 }

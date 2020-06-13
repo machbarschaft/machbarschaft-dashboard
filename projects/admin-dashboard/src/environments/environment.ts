@@ -1,6 +1,5 @@
 export const environment = {
   production: false,
-<<<<<<< HEAD
   firebaseConfig : {
     apiKey: 'AIzaSyB_N6h4AgXYARY_Clmf7DZrmfsQ0yjobYI',
     authDomain: 'colivery-app.firebaseapp.com',
@@ -12,10 +11,5 @@ export const environment = {
     measurementId: 'G-XRNJT36EYT'
   },
   mapsKey: 'AIzaSyDU2yAmHe4wAgIWhjWEyJcJBJqdjLKO8R0'
-=======
-  firebaseConfig : {},
-  mapsKey: '',
-  apiUrl: ''
->>>>>>> 659019202e959e607479cf11cc18238bfe786fa4
 };
 
