@@ -1,8 +1,8 @@
 export const environment = {
   production: false,
   firebaseConfig : {},
-  mapsUrl: '',
+  mapsUrl: 'https://maps.googleapis.com/maps/api/geocode/json',
   mapsKey: '',
-  apiUrl: ''
+  apiUrl: 'http://localhost:8080/'
 };
 

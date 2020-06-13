@@ -23,9 +23,9 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.orders = this.orderApiService.getAllOrders();
-    // this.orderApiService.getAllColiveryOrders()
-    //   .pipe()
-    //   .subscribe(response => console.log('response from colivery', response));
+    this.orderApiService.getAllColiveryOrders()
+      .pipe()
+      .subscribe(response => console.log('response from colivery', response));
   }
 
 }

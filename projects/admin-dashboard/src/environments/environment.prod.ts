@@ -1,6 +1,7 @@
 export const environment = {
-  production: false,
+  production: true,
   firebaseConfig : {},
+  mapsUrl: 'https://maps.googleapis.com/maps/api/geocode/json',
   mapsKey: '',
   apiUrl: ''
 };

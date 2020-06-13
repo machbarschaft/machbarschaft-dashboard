@@ -10,7 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
-  constructor(private authService: AuthService) { }
+
+  constructor(private authService: AuthService) {}
 
   emailError: boolean = false;
   passwordError: boolean = false;
@@ -18,7 +19,7 @@ export class LoginComponent {
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
-  })
+  });
 
   onFormSubmit(): void {
     if(this.loginForm.valid) {

@@ -125,46 +125,6 @@
         }
       }
     },
-    "style": {
-      "projectType": "library",
-      "root": "projects/style",
-      "sourceRoot": "projects/style/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/style/tsconfig.lib.json",
-            "project": "projects/style/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/style/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/style/src/test.ts",
-            "tsConfig": "projects/style/tsconfig.spec.json",
-            "karmaConfig": "projects/style/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/style/tsconfig.lib.json",
-              "projects/style/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
-    },
     "admin-dashboard": {
       "projectType": "application",
       "schematics": {
@@ -174,7 +134,7 @@
       },
       "root": "projects/admin-dashboard",
       "sourceRoot": "projects/admin-dashboard/src",
-      "prefix": "app",
+      "prefix": "mbs",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -222,6 +182,14 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/admin-dashboard/src/environments/environment.ts",
+                  "with": "projects/admin-dashboard/src/environments/environment.dev.ts"
+                }
+              ]
             }
           }
         },
@@ -233,6 +201,9 @@
           "configurations": {
             "production": {
               "browserTarget": "admin-dashboard:build:production"
+            },
+            "development": {
+              "browserTarget": "admin-dashboard:build:development"
             }
           }
         },
