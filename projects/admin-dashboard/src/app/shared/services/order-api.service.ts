@@ -16,7 +16,7 @@ export class OrderApiService extends ApiService {
   }
 
   getAllColiveryOrders(): Observable<any> {
-    return this.httpClient.get(`${environment.apiUrl}order/own`, { headers: super.createApiHeader() });
+    return this.httpClient.get(`${environment.apiUrl}v1/user/orders`, { headers: super.createApiHeader() });
   }
 
   getAllOrders(): Order[] {
