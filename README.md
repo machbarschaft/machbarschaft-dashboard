@@ -32,7 +32,9 @@ Firebase deployment
 
 `npm run firebase:deploy:dashboard`
 
-Note: before firebase deployment files from build have to be copied to directory public in root
+Note: before firebase deployment files from build have to be copied to directory public in root. If this directory is not existing, you have to create it with
+
+`mkdir public`
 
 Windows:
 
