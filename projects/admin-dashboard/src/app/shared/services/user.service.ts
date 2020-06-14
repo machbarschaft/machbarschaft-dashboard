@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { User } from '../public-api';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ApiService } from './api.service';
+import {Injectable} from '@angular/core';
+import {User} from '../public-api';
+import {HttpClient} from '@angular/common/http';
+import {ApiService} from './api.service';
 
 @Injectable({
   providedIn: 'root'

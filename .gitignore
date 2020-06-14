@@ -55,6 +55,4 @@ hooks
 
 # build
 environments
-projects/admin-dashboard/src/environments/environment.ts
 projects/admin-dashboard/src/environments/environment.dev.ts
-projects/admin-dashboard/src/environments/environment.prod.ts

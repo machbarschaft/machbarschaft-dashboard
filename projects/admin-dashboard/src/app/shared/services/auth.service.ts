@@ -6,8 +6,6 @@ import {AuthenticationGuardService} from './authentication-guard.service';
 import {Observable, ReplaySubject} from 'rxjs';
 import {AuthResponse} from '../models/common.interface';
 import {FIREBASE_LOGIN_ERROR_ENUM, LOGIN_ERROR_ENUM} from '../models/constants.interface';
-import UserCredential = firebase.auth.UserCredential;
-
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +22,7 @@ export class AuthService {
     const subject$ = new ReplaySubject<AuthResponse>(1);
     this.firebaseAuth.signInWithEmailAndPassword(email, this.sodium.hash(password))
       .then((result) => {
-        this.router.navigate(['order']);
+        this.router.navigate(['order']).then();
         const refreshToken = result.user.refreshToken;
         const authToken = result.user['xa'];
         localStorage.setItem('token', authToken);
@@ -46,28 +44,25 @@ export class AuthService {
 
   logout(): void {
     this.firebaseAuth.signOut()
-      .then((result) => {
-        this.router.navigate(['login']);
+      .then(() => {
+        this.router.navigate(['login']).then();
         localStorage.clear();
         this.authenticationGuardService.changeAuthenticated(false);
       }).catch((error) => {
       console.log(error);
     });
-
   }
 
   async register(email: string, password: string): Promise<any> {
     return this.firebaseAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password));
   }
 
-
   getToken(): Observable<string> {
     return this.firebaseAuth.idToken;
-    }
+  }
 
   private getAuthResponseForError(message: string): AuthResponse {
-    console.log('message', message);
-    let errorMessage = '';
+    let errorMessage;
 
     if (message === FIREBASE_LOGIN_ERROR_ENUM.EMAIL_NOT_FOUND || message === FIREBASE_LOGIN_ERROR_ENUM.INVALID_PASSWORD) {
       errorMessage = LOGIN_ERROR_ENUM.EMAIL_OR_PASSWORD_INVALID;
