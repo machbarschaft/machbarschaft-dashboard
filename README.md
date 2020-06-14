@@ -32,19 +32,15 @@ Firebase deployment
 
 `npm run firebase:deploy:dashboard`
 
-**Some commands are special for linux**
+Note: before firebase deployment files from build have to be copied to directory public in root
 
-Start admin-dashboard (linux)
+Windows:
 
-`npm run start:dashboard:linux`
+`xcopy dist\admin-dashboard\** public /s /e /Y`
 
-Build admin-dashboard (linux)
+Linux:
 
-`npm run build:dashboard:linux`
-
-Firebase deployment (linux)
-
-`npm run firebase:deploy:dashboard:linux`
+`cp dist/admin-dashboard/** public -r`
 
 Further information will be added soon
 
@@ -90,4 +86,3 @@ Further information will be added soon
 </table>
 
 made with ❤ by us (machbarschaft).
-
