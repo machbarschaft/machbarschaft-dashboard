@@ -10,8 +10,8 @@ export class MapsService {
 
   constructor(private http: HttpClient) { }
 
-  getAddress(adressString: string): Observable<any> {
-    return this.http.get(`${environment.mapsUrl}?address=${adressString}&key=${environment.mapsKey}`);
+  getAddress(addressString: string): Observable<any> {
+    return this.http.get(`${environment.mapsUrl}?address=${addressString}&key=${environment.mapsKey}`);
   }
 
 }

@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
 import { AuthService } from '../../../shared/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
 
 @Component({
   selector: 'mbs-ad-login',
@@ -11,8 +12,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class LoginComponent {
 
-  constructor(private authService: AuthService) {}
-
   emailError: boolean = false;
   passwordError: boolean = false;
 
@@ -20,6 +19,9 @@ export class LoginComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   });
+
+  constructor(private authService: AuthService,
+              public breakpointObserver: BreakPointObserverService) {}
 
   onFormSubmit(): void {
     if(this.loginForm.valid) {

@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/co
 import {OrderApiService} from '../../../shared/services/order-api.service';
 import {Order, OrderItem} from '../../../shared/models/order.interface';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
 
 @Component({
   selector: 'mbs-ad-create-order',
@@ -21,7 +22,8 @@ export class CreateOrderComponent {
     item: new FormControl('')
   });
 
-  constructor(private orderApiService: OrderApiService) {
+  constructor(private orderApiService: OrderApiService,
+              public breakpointObserver: BreakPointObserverService) {
     this.items = [];
     this.item = '';
   }

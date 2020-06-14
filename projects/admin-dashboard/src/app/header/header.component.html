@@ -1,4 +1,5 @@
-<div class="header bg-color-1">
+<div class="header bg-color-1"
+     [ngClass]="{'position-absolute h-100 w-100 header-nav-drawer': (breakpointObserver.isMobile$ | async) && menuOpen}">
   <div class="container-fluid">
     <div class="container">
       <div class="py-3">
@@ -26,14 +27,12 @@
           </ng-template>
         </div>
       </div>
+      <ng-container *ngIf="menuOpen">
+          <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order')">Hilfegesuche</button>
+          <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order/create')">Hilfegesuche anlegen</button>
+          <button *ngIf="!isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('login')">Anmeldung</button>
+          <button *ngIf="isAuthenticated" button-secondary class="w-100" (click)="logout()">Abmelden</button>
+      </ng-container>
     </div>
   </div>
 </div>
-<ng-container *ngIf="menuOpen">
-  <div class="position-absolute h-100 w-100 bg-color-1 p-3 header-nav-drawer">
-    <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order')">Hilfegesuche</button>
-    <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order/create')">Hilfegesuche anlegen</button>
-    <button *ngIf="!isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('login')">Anmeldung</button>
-    <button *ngIf="isAuthenticated" button-secondary class="w-100" (click)="logout()">Abmelden</button>
-  </div>
-</ng-container>

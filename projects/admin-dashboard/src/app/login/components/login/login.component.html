@@ -20,13 +20,18 @@
         <a>Passwort vergessen</a>
       </div>
       <div class="text-center">
-        <button button-primary type="submit">Anmelden</button> <!-- [routerLink]="['/order']" -->
+        <button button-primary type="submit" [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
+          Anmelden
+        </button>
       </div>
     </form>
     <div class="my-3">
       <span class="d-block mb-2 text-center">Ich habe noch keinen Account und möchte mich gerne registrieren</span>
       <div class="text-center">
-        <button [routerLink]="['/registration']" button-primary>Registrieren</button>
+        <button [routerLink]="['/registration']" button-primary
+                [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
+          Registrieren
+        </button>
       </div>
     </div>
   </div>

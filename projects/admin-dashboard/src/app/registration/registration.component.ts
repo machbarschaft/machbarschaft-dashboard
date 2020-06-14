@@ -33,7 +33,7 @@ export class RegistrationComponent implements OnInit {
   constructor(private authService: AuthService,
               private mapsService: MapsService,
               private userService: UserService,
-              private breakpointObserver: BreakPointObserverService,
+              public breakpointObserver: BreakPointObserverService,
               private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {

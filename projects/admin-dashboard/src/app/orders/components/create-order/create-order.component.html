@@ -3,29 +3,34 @@
     <h1>Hilfegesuch anlegen</h1>
     <form [formGroup]="orderGroupForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-auto pb-2">
+        <div class="col-lg-auto col-sm-12 pb-2">
           <label class="d-block pb-2 font-weight-light">Benutzer</label>
-          <input type="number" formControlName="user">
+          <input type="number" formControlName="user" class="w-100">
         </div>
-        <div class="col-auto pb-2">
+        <div class="col-lg-auto col-sm-12 pb-2">
           <label class="d-block pb-2 font-weight-light">Hinweis</label>
-          <input type="text" formControlName="hint">
+          <input type="text" formControlName="hint" class="w-100">
         </div>
-        <div class="col-auto pb-2">
+        <div class="col-lg-auto col-sm-12 pb-2">
           <label class="d-block pb-2 font-weight-light">Preis</label>
-          <input type="number" formControlName="maxPrice">
+          <input type="number" formControlName="maxPrice" class="w-100">
         </div>
         <div class="col-12">
-          <div>
+          <label class="d-block pb-2 font-weight-light">Artikel</label>
+          <div class="mb-3">
             <input type="string" formControlName="item">
-            <button button-primary class="ml-3" (click)="addItem()" type="button">hinzufügen</button>
+            <button button-primary class="ml-3" (click)="addItem()" type="button">
+              {{ (breakpointObserver.isMobile$ | async) ? '+' : 'hinzufügen' }}
+            </button>
           </div>
           <ng-container *ngFor="let item of items; index as i">
-            <span class="d-block" (click)="removeItem(i)">{{ i + 1 }}: {{ item.description }}</span>
+            <span class="d-block font-size-s" (click)="removeItem(i)">{{ i + 1 }}: {{ item.description }}</span>
           </ng-container>
         </div>
         <div class="col-12 mt-3">
-          <button button-primary type="submit">anlegen</button>
+          <button button-primary type="submit" [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
+            anlegen
+          </button>
         </div>
       </div>
     </form>
