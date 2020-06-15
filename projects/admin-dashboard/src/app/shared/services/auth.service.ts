@@ -22,7 +22,6 @@ export class AuthService {
     const subject$ = new ReplaySubject<AuthResponse>(1);
     this.firebaseAuth.signInWithEmailAndPassword(email, this.sodium.hash(password))
       .then((result) => {
-        this.router.navigate(['order']).then();
         const refreshToken = result.user.refreshToken;
         const authToken = result.user['xa'];
         localStorage.setItem('token', authToken);
@@ -32,12 +31,12 @@ export class AuthService {
         subject$.next({message: 'success', successful: true});
         subject$.complete();
       }).catch((error) => {
-      console.log('error', error);
-      window.alert(error.message);
-      this.authenticationGuardService.changeAuthenticated(false);
-      const authResponse = this.getAuthResponseForError(error ? error.code : error);
-      subject$.next(authResponse);
-      subject$.complete();
+        console.error('error', error);
+        // window.alert(error.message);
+        this.authenticationGuardService.changeAuthenticated(false);
+        const authResponse = this.getAuthResponseForError(error ? error.code : error);
+        subject$.next(authResponse);
+        subject$.complete();
     });
     return subject$.asObservable();
   }
