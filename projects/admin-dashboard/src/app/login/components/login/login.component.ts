@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import { AuthService } from '../../../shared/services/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
+import { AuthResponse } from '../../../shared/public-api';
 
 @Component({
   selector: 'mbs-ad-login',
@@ -24,26 +25,21 @@ export class LoginComponent {
 
   constructor(private authService: AuthService,
               private router: Router,
-              public breakpointObserver: BreakPointObserverService) {}
+              public breakpointObserver: BreakPointObserverService) {
+                this.loginError = null;
+              }
 
   onFormSubmit(): void {
     if(this.loginForm.valid) {
       // Form is valid and reset all errors
       this._reset_errors_();
       // Observer for login
-      let loginObser = this.authService.login$(this.loginForm.value.email, this.loginForm.value.password);
-      // Reset error indicator
-      loginObser.subscribe({
-        next(msg) { 
-          if (msg.successful) {
-            this.router.navigate(['order']).then();
-          } else {
-            super.loginError = msg.message;
-            console.error("Login.component: loginError", this.loginError);
-          }
-        },
-        complete() { 
-          console.log('Login.component: Observer complete'); 
+      this.authService.login$(this.loginForm.value.email, this.loginForm.value.password).subscribe((authResponse: AuthResponse)=> {
+        if (authResponse.successful) {
+          this.router.navigate(['order']).then();
+        } else {
+          this.loginError = authResponse.message;
+          console.error("Login.component: loginError", this.loginError);
         }
       })
     } else {
@@ -53,9 +49,7 @@ export class LoginComponent {
       if (this.loginForm.get('password').invalid) {
         this.passwordError = true;
       }
-      console.error("Form not Valid. Error performing login")
     }
-    console.log("Login.component: End", this.loginError);
   }
   
   _reset_errors_() {
