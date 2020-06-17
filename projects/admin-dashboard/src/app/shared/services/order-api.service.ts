@@ -1,6 +1,7 @@
+import { GeoPoint } from './../models/geo.interface';
 import { Injectable } from '@angular/core';
 import { Order, OrderItem, SOURCE, STATUS } from '../models/public-api';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
@@ -21,6 +22,30 @@ export class OrderApiService extends ApiService {
 
   getAllOrders(): Order[] {
     return this.#orders;
+  }
+
+  getOrdersInRange(geopoint: GeoPoint, range: number): Observable<any> {
+    const params = new HttpParams().set('latitude', geopoint.latitude.toString());
+    return this.httpClient.get(`${environment.apiUrl}v1/user/orders`,
+      {
+        params: new HttpParams()
+          .set('latitude', geopoint.latitude.toString())
+          .set('longitude', geopoint.longitude.toString())
+          .set('range', range.toString()),
+        headers: super.createApiHeader()
+      });
+
+  }
+
+  crerateColiveryOrder(order: Order, credentials: string, details: string, principal: string): Observable<any> {
+    return this.httpClient.post(`${environment.apiUrl}v1/user/orders`, order,
+      {
+        params: new HttpParams()
+          .set('credentials', credentials)
+          .set('details', details)
+          .set('principal', principal),
+        headers: super.createApiHeader()
+      });
   }
 
   abortOrder(orderId: string): Observable<any> {

@@ -44,7 +44,10 @@
           <td>{{ order.updatedAt | date }}</td>
           <td>{{ order.userId }}</td>
           <td>{{ order.source | constantsTranslator }}</td>
-          <td>{{ order.status | constantsTranslator }}</td>
+          <td *ngIf="order.status =='TO_BE_DELIVERED' || order.status == 'CONSUMER_CANCELLED'; else akzeptiertBlock" style="color:red;">{{ order.status | constantsTranslator }}</td>
+          <ng-template #akzeptiertBlock>
+            <td style="color:green;">{{ order.status | constantsTranslator }}</td>
+          </ng-template>
           <td><a [routerLink]="order.id">zur Detailansicht</a></td>
         </tr>
         </tbody>
