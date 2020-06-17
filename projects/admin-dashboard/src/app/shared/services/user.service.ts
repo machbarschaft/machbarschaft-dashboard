@@ -14,7 +14,7 @@ export class UserService extends ApiService {
     super();
   }
 
-  //url = 'http://service-api-ng.nightly.staging.colivery.app/v1/user';
+  // url = 'http://service-api-ng.nightly.staging.colivery.app/v1/user';
   url = 'http://localhost:8080/v1/user';
 
   createUser(user: User) {

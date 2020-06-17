@@ -8,6 +8,7 @@ import {LoginModule} from './login/login.module';
 import {OrdersModule} from './orders/orders.module';
 import {HeaderModule} from './header/header.module';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     OrdersModule,
     StyleLibModule,
     HeaderModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

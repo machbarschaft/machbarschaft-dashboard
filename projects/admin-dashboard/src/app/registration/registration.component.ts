@@ -32,11 +32,11 @@ export class RegistrationComponent implements OnInit {
   mapWidth: number;
 
   constructor(private authService: AuthService,
-    private mapsService: MapsService,
-    private userService: UserService,
-    public breakpointObserver: BreakPointObserverService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private router: Router) { }
+              private mapsService: MapsService,
+              private userService: UserService,
+              public breakpointObserver: BreakPointObserverService,
+              private changeDetectorRef: ChangeDetectorRef,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.breakpointObserver.getIsMobile$()

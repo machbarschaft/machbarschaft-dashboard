@@ -30,18 +30,18 @@ export class LoginComponent {
               }
 
   onFormSubmit(): void {
-    if(this.loginForm.valid) {
+    if (this.loginForm.valid) {
       // Form is valid and reset all errors
       this._reset_errors_();
       // Observer for login
-      this.authService.login$(this.loginForm.value.email, this.loginForm.value.password).subscribe((authResponse: AuthResponse)=> {
+      this.authService.login$(this.loginForm.value.email, this.loginForm.value.password).subscribe((authResponse: AuthResponse) => {
         if (authResponse.successful) {
           this.router.navigate(['order']).then();
         } else {
           this.loginError = authResponse.message;
-          console.error("Login.component: loginError", this.loginError);
+          console.error('Login.component: loginError', this.loginError);
         }
-      })
+      });
     } else {
       if (this.loginForm.get('email').invalid) {
         this.emailError = true;
@@ -51,7 +51,7 @@ export class LoginComponent {
       }
     }
   }
-  
+
   _reset_errors_() {
     this.loginError = null;
     this.emailError = false;
