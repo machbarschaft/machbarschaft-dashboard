@@ -31,7 +31,7 @@ export class OrdersComponent implements OnInit {
     updatedAt: string;
   }
 */
-  displayedColumns: string[] = ['updatedAt', 'userId', 'source', 'status'];
+  displayedColumns: string[] = ['updatedAt', 'userId', 'source', 'status', 'id'];
   dataSource: MatTableDataSource<Order>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
