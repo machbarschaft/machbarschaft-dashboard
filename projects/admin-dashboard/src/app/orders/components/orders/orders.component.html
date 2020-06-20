@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <h1>Alle Hilfegesuche</h1>
+    <h1>Übersicht</h1>
     <ng-container *ngIf="breakPointObserverService.isMobile$ | async; else mobileView">
       <ng-container *ngFor="let order of orders">
         <div class="order-card p-2 mb-3">
@@ -29,7 +29,7 @@
       </ng-container>
     </ng-container>
     <ng-template #mobileView>
-      <table>
+      <table class="w-100">
         <thead>
         <tr>
           <th>Zuletzt geändert</th>

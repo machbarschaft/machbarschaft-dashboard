@@ -19,7 +19,7 @@ button {
   border-radius: $spacer-1;
   cursor: pointer;
   font-size: $font-size-m;
-  padding: $spacer-1 $spacer-2;
+  padding: .75rem $spacer-4;
 }
 
 button:focus, button:hover {
@@ -73,14 +73,14 @@ tr {
 }
 
 .button-secondary {
-  background-color: darken($color-2, 10%);
-  border: 1px solid darken($color-2, 10%);
+  background-color: darken($accent, 10%);
+  border: 1px solid darken($accent, 10%);
   color: $white;
 }
 
 .button-secondary:focus, .button-secondary:hover {
-  background-color: darken($color-2, 30%);
-  border: 1px solid darken($color-2, 30%);
+  background-color: darken($accent, 30%);
+  border: 1px solid darken($accent, 30%);
   color: $white;
 }
 

@@ -1,35 +1,37 @@
 <div class="row">
-  <div class="col-12">
+  <div class="col-lg-6 mx-auto">
     <h1>Hilfegesuch anlegen</h1>
     <form [formGroup]="orderGroupForm" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-lg-auto col-sm-12 pb-2">
-          <label class="d-block pb-2 font-weight-light">Benutzer</label>
-          <input type="number" formControlName="user" class="w-100">
+        <div class="col-lg-12 col-sm-12 pb-2">
+          <label class="d-block pb-2 font-weight-bold">Hilfesuchender</label>
+          <input type="text" formControlName="user" placeholder="Vor- und Nachname" class="w-100">
         </div>
-        <div class="col-lg-auto col-sm-12 pb-2">
-          <label class="d-block pb-2 font-weight-light">Hinweis</label>
-          <input type="text" formControlName="hint" class="w-100">
+        <div class="col-lg-12 col-sm-12 pb-2">
+          <label class="d-block pb-2 font-weight-bold">Hinweis</label>
+          <input type="text" formControlName="hint" placeholder="Dringlichkeit, Rückruf erbeten" class="w-100">
         </div>
-        <div class="col-lg-auto col-sm-12 pb-2">
-          <label class="d-block pb-2 font-weight-light">Preis</label>
-          <input type="number" formControlName="maxPrice" class="w-100">
+        <div class="col-lg-12 col-sm-12 pb-2">
+          <label class="d-block pb-2 font-weight-bold">Preis</label>
+          <input type="number" formControlName="maxPrice" placeholder="10.99" class="w-100">
         </div>
         <div class="col-12">
-          <label class="d-block pb-2 font-weight-light">Artikel</label>
+          <label class="d-block pb-2 font-weight-bold">Artikel hinzufügen</label>
           <div class="mb-3">
-            <input type="string" formControlName="item">
+            <input type="string" formControlName="item" placeholder="Müsli">
             <button button-primary class="ml-3" (click)="addItem()" type="button">
               {{ (breakpointObserver.isMobile$ | async) ? '+' : 'hinzufügen' }}
             </button>
           </div>
+          <label class="d-block pb-2 font-weight-bold" *ngIf="items.length">Artikel Übersicht</label>
+          <label class="d-block pb-2 font-weight-light" *ngIf="items.length">durch Klicken eines Artikels kann dieser gelöscht werden</label>
           <ng-container *ngFor="let item of items; index as i">
             <span class="d-block font-size-s" (click)="removeItem(i)">{{ i + 1 }}: {{ item.description }}</span>
           </ng-container>
         </div>
-        <div class="col-12 mt-3">
-          <button button-primary type="submit" [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
-            anlegen
+        <div class="col-auto mt-3 mx-auto" [ngClass]="{'col-12': breakpointObserver.isMobile$ | async}">
+          <button button-primary type="submit" class="text-center" [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
+            speichern
           </button>
         </div>
       </div>
