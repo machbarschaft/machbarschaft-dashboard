@@ -25,6 +25,7 @@
     "start:dashboard": "ng serve admin-dashboard --configuration=development",
     "start:dashboard:production": "ng serve admin-dashboard --configuration=production",
     "start:app": "ng serve --port 4200",
+    "start:dashboard-mock": "cd projects/admin-dashboard-backend-mock && node index.js",
     "build:dashboard:production": "ng build admin-dashboard --prod --aot",
     "build:dashboard:develop": "ng build --development",
     "build:app": "ng build --prod --aot",
