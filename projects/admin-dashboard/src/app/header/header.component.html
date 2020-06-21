@@ -9,29 +9,49 @@
               <i class="material-icons font-size-l text-white" (click)="toggleMenu()">
                 {{ menuOpen ? 'close' : 'menu' }}
               </i>
-              <a class="font-size-l text-white font-weight-bold ml-1" [routerLink]="['/']">Home</a>
+              <a class="font-size-l text-white font-weight-bold ml-1" [routerLink]="['/']">
+                {{ 'menu.home' | translate }}
+              </a>
             </div>
           </ng-container>
           <ng-template #desktopHeader>
             <div class="col-auto">
-              <a class="font-size-l text-white font-weight-bold mr-5" [routerLink]="['/']">Home</a>
+              <a class="font-size-l text-white font-weight-bold mr-5" [routerLink]="['/']">
+                {{ 'menu.home' | translate }}
+              </a>
             </div>
             <div class="col-auto">
               <div>
-                <a *ngIf="isAuthenticated" [routerLink]="['order']" class="mr-5 text-white">Übersicht</a>
-                <a *ngIf="isAuthenticated" [routerLink]="['order/create']" class="mr-5 text-white">Hilfegesuch anlegen</a>
-                <a *ngIf="!isAuthenticated" [routerLink]="['login']" class="text-white">Anmeldung</a>
-                <button button-secondary *ngIf="isAuthenticated" (click)="logout()" class="ml-3">Abmelden</button>
+                <a *ngIf="isAuthenticated" [routerLink]="['order']" class="mr-5 text-white">
+                  {{ 'menu.overview' | translate }}
+                </a>
+                <a *ngIf="isAuthenticated" [routerLink]="['order/create']" class="mr-5 text-white">
+                  {{ 'menu.create-help-request' | translate }}
+                </a>
+                <a *ngIf="!isAuthenticated" [routerLink]="['login']" class="text-white">
+                  {{ 'menu.login' | translate }}
+                </a>
+                <button button-secondary *ngIf="isAuthenticated" (click)="logout()" class="ml-3">
+                  {{ 'menu.logout' | translate }}
+                </button>
               </div>
             </div>
           </ng-template>
         </div>
       </div>
       <ng-container *ngIf="menuOpen">
-          <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order')">Übersicht</button>
-          <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order/create')">Hilfegesuche anlegen</button>
-          <button *ngIf="!isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('login')">Anmeldung</button>
-          <button *ngIf="isAuthenticated" button-secondary class="w-100" (click)="logout()">Abmelden</button>
+          <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order')">
+            {{ 'menu.overview' | translate }}
+          </button>
+          <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order/create')">
+            {{ 'menu.create-help-request' | translate }}
+          </button>
+          <button *ngIf="!isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('login')">
+            {{ 'menu.login' | translate }}
+          </button>
+          <button *ngIf="isAuthenticated" button-secondary class="w-100" (click)="logout()">
+            {{ 'menu.logout' | translate }}
+          </button>
       </ng-container>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AuthenticationGuardService} from '../shared/services/authentication-guard.service';
 import {AuthService} from '../shared/services/auth.service';
 import {BreakPointObserverService} from '../../../../style-lib/src/lib/services/break-point-observer.service';

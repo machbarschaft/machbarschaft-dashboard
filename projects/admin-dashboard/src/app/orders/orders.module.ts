@@ -5,6 +5,7 @@ import {CreateOrderComponent, OrderDetailComponent, OrdersComponent} from './pub
 import {OrdersRoutingModule} from './orders-routing.module';
 import {SharedModule} from '../shared/shared.module';
 import {StyleLibModule} from '../../../../style-lib/src/lib/style-lib.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -12,14 +13,15 @@ import {StyleLibModule} from '../../../../style-lib/src/lib/style-lib.module';
     OrdersComponent,
     OrderDetailComponent
   ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    OrdersRoutingModule,
-    SharedModule,
-    StyleLibModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        OrdersRoutingModule,
+        SharedModule,
+        StyleLibModule,
+        TranslateModule
+    ],
   exports: [
     CreateOrderComponent,
     OrdersComponent,

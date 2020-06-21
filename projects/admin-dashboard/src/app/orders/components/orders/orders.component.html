@@ -1,28 +1,28 @@
 <div class="row">
   <div class="col-12">
-    <h1>Übersicht</h1>
+    <h1>{{ 'help-request.overview' | translate }}</h1>
     <ng-container *ngIf="breakPointObserverService.isMobile$ | async; else mobileView">
       <ng-container *ngFor="let order of orders">
         <div class="order-card p-2 mb-3">
           <div class="row">
             <div class="col-6">
-              <div class="font-weight-bold">Zuletzt geändert</div>
+              <div class="font-weight-bold">{{ 'help-request.last-changed' | translate }}</div>
               <div class="font-weight-normal">{{ order.updatedAt | date }}</div>
             </div>
             <div class="col-6">
-              <div class="font-weight-bold">Benutzer</div>
+              <div class="font-weight-bold">{{ 'help-request.help-seeker' | translate }}</div>
               <div class="font-weight-normal">{{ order.userId }}</div>
             </div>
             <div class="col-6">
-              <div class="font-weight-bold">Herkunft</div>
-              <div class="font-weight-normal">{{ order.source | constantsTranslator }}</div>
+              <div class="font-weight-bold">{{ 'help-request.source' | translate }}</div>
+              <div class="font-weight-normal">{{ 'common.'+order.source | translate }}</div>
             </div>
             <div class="col-6">
-              <div class="font-weight-bold">Status</div>
-              <div class="font-weight-normal">{{ order.status | constantsTranslator }}</div>
+              <div class="font-weight-bold">{{ 'help-request.status' | translate }}</div>
+              <div class="font-weight-normal">{{ 'common.'+order.status | translate }}</div>
             </div>
             <div class="col-12 mt-3">
-              <a [routerLink]="order.id">zur Detailansicht</a>
+              <a [routerLink]="order.id">{{ 'help-request.to-detail-view' | translate }}</a>
             </div>
           </div>
         </div>
@@ -32,10 +32,10 @@
       <table class="w-100">
         <thead>
         <tr>
-          <th>Zuletzt geändert</th>
-          <th>Benutzer</th>
-          <th>Herkunft</th>
-          <th>Status</th>
+          <th>{{ 'help-request.last-changed' | translate }}</th>
+          <th>{{ 'help-request.help-seeker' | translate }}</th>
+          <th>{{ 'help-request.source' | translate }}</th>
+          <th>{{ 'help-request.status' | translate }}</th>
           <th>&nbsp;</th>
         </tr>
         </thead>
@@ -43,12 +43,14 @@
         <tr *ngFor="let order of orders">
           <td>{{ order.updatedAt | date }}</td>
           <td>{{ order.userId }}</td>
-          <td>{{ order.source | constantsTranslator }}</td>
-          <td *ngIf="order.status =='TO_BE_DELIVERED' || order.status == 'CONSUMER_CANCELLED'; else akzeptiertBlock" style="color:red;">{{ order.status | constantsTranslator }}</td>
+          <td>{{ 'common.'+order.source | translate }}</td>
+          <ng-container *ngIf="order.status =='TO_BE_DELIVERED' || order.status == 'CONSUMER_CANCELLED'; else akzeptiertBlock">
+            <td class="text-red">{{ 'common.'+order.status | translate }}</td>
+          </ng-container>
           <ng-template #akzeptiertBlock>
-            <td style="color:green;">{{ order.status | constantsTranslator }}</td>
+            <td class="text-green">{{ 'common.'+order.status | translate }}</td>
           </ng-template>
-          <td><a [routerLink]="order.id">zur Detailansicht</a></td>
+          <td><a [routerLink]="order.id">{{ 'help-request.to-detail-view' | translate }}</a></td>
         </tr>
         </tbody>
       </table>
