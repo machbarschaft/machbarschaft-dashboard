@@ -1,5 +1,7 @@
 @import "projects/style-lib/src/variables";
 
 .order-card {
-  border-bottom: 1px solid $gray-600;
+  border: 1px solid $gray-600;
+  border-radius: $spacer-1;
+  padding: .75rem $spacer-2;
 }

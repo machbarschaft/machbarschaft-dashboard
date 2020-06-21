@@ -22,7 +22,9 @@
               <div class="font-weight-normal">{{ 'common.'+order.status | translate }}</div>
             </div>
             <div class="col-12 mt-3">
-              <a [routerLink]="order.id">{{ 'help-request.to-detail-view' | translate }}</a>
+              <a [routerLink]="order.id" class="text-accent text-center font-weight-bold d-block w-100">
+                {{ 'help-request.to-detail-view' | translate }}
+              </a>
             </div>
           </div>
         </div>
@@ -50,7 +52,11 @@
           <ng-template #akzeptiertBlock>
             <td class="text-green">{{ 'common.'+order.status | translate }}</td>
           </ng-template>
-          <td><a [routerLink]="order.id">{{ 'help-request.to-detail-view' | translate }}</a></td>
+          <td>
+            <a [routerLink]="order.id" class="text-primary">
+              {{ 'help-request.to-detail-view' | translate }}
+            </a>
+          </td>
         </tr>
         </tbody>
       </table>

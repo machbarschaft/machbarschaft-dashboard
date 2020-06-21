@@ -9,11 +9,7 @@
         </div>
         <div class="col-lg-12 col-sm-12 pb-2">
           <label class="d-block pb-2 font-weight-bold">{{ 'help-request.hint' | translate }}</label>
-          <input type="text" formControlName="hint" [placeholder]="'help-request.hint-placeholder' | translate" class="w-100">
-        </div>
-        <div class="col-lg-12 col-sm-12 pb-2">
-          <label class="d-block pb-2 font-weight-bold">{{ 'help-request.price' | translate }}</label>
-          <input type="number" formControlName="maxPrice" placeholder="10.99" class="w-100">
+          <textarea type="text" formControlName="hint" rows="4" [placeholder]="'help-request.hint-placeholder' | translate" class="w-100"></textarea>
         </div>
         <div class="col-12">
           <label class="d-block pb-2 font-weight-bold">{{ 'help-request.add-article-title' | translate }}</label>
