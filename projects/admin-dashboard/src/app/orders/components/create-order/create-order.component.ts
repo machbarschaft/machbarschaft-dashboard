@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import {OrderApiService} from '../../../shared/services/order-api.service';
+import { OrderApiService } from './../../../shared/services/backend/order-api.service';
+
 import {Order, OrderItem} from '../../../shared/models/order.interface';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
