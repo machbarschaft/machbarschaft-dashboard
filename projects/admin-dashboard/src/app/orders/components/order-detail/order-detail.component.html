@@ -1,36 +1,39 @@
 <ng-container *ngIf="order; else orderNotFound">
   <div class="row">
-    <div class="col-12">
-      <h1>{{ 'help-request.detail-view' | translate }}</h1>
-    </div>
-    <div class="col-lg-auto col-md-6 col-sm-12">
-      <span class="pb-2 font-weight-bold d-block">{{ 'help-request.status' | translate }}</span>
-      <span class="pb-2 font-weight-normal d-block">{{ 'common.'+order.status | translate }}</span>
-    </div>
-    <div class="col-lg-auto col-md-6 col-sm-12">
-      <span class="pb-2 font-weight-bold d-block">{{ 'help-request.last-changed' | translate }}</span>
-      <span class="pb-2 font-weight-normal d-block">{{ order.updatedAt | date }}</span>
-    </div>
-    <div class="col-lg-auto col-md-6 col-sm-12">
-      <span class="pb-2 font-weight-bold d-block">{{ 'help-request.change-status' | translate }}</span>
-      <span class="pb-2 font-weight-normal d-block">&nbsp;</span>
-    </div>
-    <div class="col-lg-auto col-md-6 col-sm-12">
-      <span class="pb-2 font-weight-bold d-block">{{ 'help-request.hint' | translate }}</span>
-      <span class="pb-2 font-weight-normal d-block">{{ order.hint }}</span>
-    </div>
-    <div class="col-lg-auto col-md-6 col-sm-12">
-      <span class="pb-2 font-weight-bold d-block">{{ 'help-request.help-seeker' | translate }}</span>
-      <span class="pb-2 font-weight-normal d-block">{{ order.userId }}</span>
-    </div>
-    <div class="col-lg-auto col-md-6 col-sm-12">
-      <span class="pb-2 font-weight-bold d-block">{{ 'help-request.source' | translate }}</span>
-      <span class="pb-2 font-weight-normal d-block">{{ 'common.'+order.source | translate }}</span>
-    </div>
-
-    <div class="col-lg-6 ml-0">
-      <span class="pb-2 font-weight-bold d-block">{{ 'help-request.articles' | translate }}</span>
-      <span *ngFor="let item of order.items; index as i" class="d-block">{{ i + 1 }}: {{ item.description }}</span>
+    <div class="col-lg-6 col-md-8 col-sm-12 mx-auto">
+      <div class="row">
+        <div class="col-12">
+          <h1>{{ 'help-request.detail-view' | translate }}</h1>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
+          <span class="pb-2 font-weight-bold d-block">{{ 'help-request.status' | translate }}</span>
+          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="'common.' + order.status | translate">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
+          <span class="pb-2 font-weight-bold d-block">{{ 'help-request.last-changed' | translate }}</span>
+          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="order.updatedAt | date">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
+          <span class="pb-2 font-weight-bold d-block">{{ 'help-request.change-status' | translate }}</span>
+          <span class="pb-2 font-weight-normal d-block w-100">&nbsp;</span>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
+          <span class="pb-2 font-weight-bold d-block">{{ 'help-request.hint' | translate }}</span>
+          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="order.hint">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
+          <span class="pb-2 font-weight-bold d-block">{{ 'help-request.help-seeker' | translate }}</span>
+          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="order.userId">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
+          <span class="pb-2 font-weight-bold d-block">{{ 'help-request.source' | translate }}</span>
+          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="'common.' + order.source | translate">
+        </div>
+        <div class="col-12 pb-2">
+          <span class="pb-2 font-weight-bold d-block">{{ 'help-request.articles' | translate }}</span>
+          <span *ngFor="let item of order.items; index as i" class="d-block">{{ i + 1 }}: {{ item.description }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </ng-container>
