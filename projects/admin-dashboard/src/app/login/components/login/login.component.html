@@ -19,8 +19,13 @@
           {{ 'login.error-password' | translate }}
         </small>
       </div>
+      <div class="text-center">
+        <button [routerLink]="['/reset-password']" button-primary class="w-100">
+          {{ 'login.reset-password' | translate }}
+        </button>
+      </div>
       <div class="my-3 text-center">
-        <a>{{ 'login.reset-password' | translate }}</a>
+        <!-- <a>{{ 'login.reset-password' | translate }}</a> -->
       </div>
       <div class="text-center">
         <button button-primary type="submit" class="w-100">

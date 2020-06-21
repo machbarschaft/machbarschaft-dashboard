@@ -57,4 +57,9 @@ export class LoginComponent {
     this.emailError = false;
     this.passwordError = false;
   }
+
+  forgotPassword() {
+    this.router.navigate(['reset-password']).then();
+
+  }
 }

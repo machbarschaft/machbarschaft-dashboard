@@ -17,6 +17,11 @@ const routes: Routes = [
     path: 'registration',
     pathMatch: 'full',
     loadChildren: () => import('./registration/registration.module').then(module => module.RegistrationModule)
+  },
+  {
+    path: 'reset-password',
+    pathMatch: 'full',
+    loadChildren: () => import('./reset-password/reset-password.module').then(module => module.ResetPasswordModule)
   }
 ];
 
