@@ -8,6 +8,7 @@ import {StyleLibModule} from '../../../../style-lib/src/lib/style-lib.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../../environments/environment';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { environment } from '../../environments/environment';
         LoginRoutingModule,
         StyleLibModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFireAuthModule
+        AngularFireAuthModule,
+        TranslateModule
     ],
   exports: [
     LoginComponent

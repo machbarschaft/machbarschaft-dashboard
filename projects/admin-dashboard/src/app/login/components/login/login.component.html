@@ -1,36 +1,40 @@
 <div class="row">
   <div class="col-lg-4 col-sm-12 col-md-12 mx-lg-auto">
-    <h1>Anmeldung</h1>
+    <h1>{{ 'login.login-header' | translate }}</h1>
     <form class="my-5" [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
-      <div *ngIf="loginError" class="alert alert-danger" role="alert">Fehler</div>
+      <div *ngIf="loginError" class="alert alert-danger" role="alert">{{ 'login.error' | translate }}</div>
       <div class="form-group mb-3">
-        <label class="d-block pb-2 font-weight-bold">Benutzername</label>
-        <input class="form-control" type="email" formControlName="email" name="user" placeholder="E-Mail Adresse"
-               required>
-        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="emailError">Dies ist
-          keine E-Mail Adresse</small>
+        <label class="d-block pb-2 font-weight-bold">{{ 'login.username' | translate }}</label>
+        <input class="form-control" type="email" formControlName="email" name="user"
+               [placeholder]="'login.email' | translate" required>
+        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="emailError">
+          {{ 'login.error-email' | translate }}
+        </small>
       </div>
       <div class="form-group mb-3">
-        <label class="d-block pb-2 font-weight-bold">Passwort</label>
-        <input class="form-control" type="password" formControlName="password" name="password" placeholder="Passwort"
-               required>
-        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="passwordError">mindestens
-          8 Zeichen verwenden</small>
+        <label class="d-block pb-2 font-weight-bold">{{ 'login.password' | translate }}</label>
+        <input class="form-control" type="password" formControlName="password" name="password"
+               [placeholder]="'login.password' | translate" required>
+        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="passwordError">
+          {{ 'login.error-password' | translate }}
+        </small>
       </div>
       <div class="my-3 text-center">
-        <a>Passwort vergessen</a>
+        <a>{{ 'login.reset-password' | translate }}</a>
       </div>
       <div class="text-center">
         <button button-primary type="submit" class="w-100">
-          Anmelden
+          {{ 'login.login' | translate }}
         </button>
       </div>
     </form>
     <div class="my-3">
-      <span class="d-block mb-2 text-center">Ich habe noch keinen Account und möchte mich gerne registrieren</span>
+      <span class="d-block mb-2 text-center">
+        {{ 'login.register-text' | translate }}
+      </span>
       <div class="text-center">
         <button [routerLink]="['/registration']" button-primary class="w-100">
-          Registrieren
+          {{ 'login.register' | translate }}
         </button>
       </div>
     </div>

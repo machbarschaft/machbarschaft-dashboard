@@ -3,6 +3,7 @@ import {HeaderComponent} from './public-api';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {StyleLibModule} from '../../../../style-lib/src/lib/style-lib.module';
+import {TranslateModule} from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -11,11 +12,12 @@ import {StyleLibModule} from '../../../../style-lib/src/lib/style-lib.module';
   exports: [
     HeaderComponent
   ],
-    imports: [
-        CommonModule,
-        RouterModule,
-        StyleLibModule
-    ]
+  imports: [
+    CommonModule,
+    RouterModule,
+    StyleLibModule,
+    TranslateModule
+  ]
 })
 export class HeaderModule {
 
