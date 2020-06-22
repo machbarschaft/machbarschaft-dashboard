@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { OrderApiService } from './../../../shared/services/backend/order-api.service';
+import { OrderApiService } from '../../../shared/services/backend/order-api.service';
 import {Order} from '../../../shared/models/order.interface';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
 

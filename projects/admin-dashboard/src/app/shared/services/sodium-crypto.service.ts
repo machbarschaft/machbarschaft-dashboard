@@ -13,8 +13,7 @@ export class SodiumCryptoService {
   hash(token: string, length: number = 64) {
     const text = this.#sodium.from_string(token);
     const hash = window['sodium'].crypto_generichash(length, text);
-    const hex = window['sodium'].to_hex(hash);
-    return hex;
+    return window['sodium'].to_hex(hash);
   }
 
 }

@@ -1,4 +1,4 @@
-import {SOURCE, STATUS} from './public-api';
+import {SOURCE} from './public-api';
 
 export interface HelpSeeker {
   fullName: string;
@@ -6,6 +6,3 @@ export interface HelpSeeker {
   source: SOURCE;
   enteredBy: string;
 }
-
-
-

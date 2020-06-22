@@ -37,10 +37,14 @@
     "help-request.to-detail-view": "zur Detailansicht",
     "common.HOTLINE": "Hotline",
     "common.APP": "App",
+    "common.ADMIN": "Admin",
     "common.TO_BE_DELIVERED": "in Bearbeitung",
     "common.DELIVERED": "ausgeliefert",
     "common.CONSUMER_CANCELLED": "storniert",
     "common.ACCEPTED": "akzeptiert",
+    "common.OPEN": "offen",
+    "common.WIP": "in Bearbeitung",
+    "common.CLOSED": "geschlossen",
     "registration.title": "Registrierung",
     "registration.mail": "E-Mail Adresse",
     "registration.phone": "Telefonnummer",
@@ -54,5 +58,4 @@
     "registration.address-validate": "Adresse überprüfen",
     "registration.register": "Registrieren",
     "reset.password.title": "reset Password"
-
 }

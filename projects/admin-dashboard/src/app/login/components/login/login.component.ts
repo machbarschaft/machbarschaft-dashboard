@@ -26,8 +26,8 @@ export class LoginComponent {
   constructor(private authService: AuthService,
               private router: Router,
               public breakpointObserver: BreakPointObserverService) {
-                this.loginError = null;
-              }
+    this.loginError = null;
+  }
 
   onFormSubmit(): void {
     if (this.loginForm.valid) {
@@ -60,6 +60,5 @@ export class LoginComponent {
 
   forgotPassword() {
     this.router.navigate(['reset-password']).then();
-
   }
 }

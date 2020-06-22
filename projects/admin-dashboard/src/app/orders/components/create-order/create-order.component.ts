@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import { OrderApiService } from './../../../shared/services/backend/order-api.service';
-
+import { OrderApiService } from '../../../shared/services/backend/order-api.service';
 import {Order, OrderItem} from '../../../shared/models/order.interface';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
@@ -77,7 +76,7 @@ export class CreateOrderComponent {
   private createUUID(): string {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
       const r = Math.random() * 16 | 0;
-      const v = c == 'x' ? r : (r & 0x3 | 0x8);
+      const v = c === 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
   }
