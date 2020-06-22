@@ -6,12 +6,12 @@ import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/ser
 
 @Component({
   selector: 'mbs-ad-create-order',
-  templateUrl: './create-order.component.html',
-  styleUrls: ['./create-order.component.scss'],
+  templateUrl: './create-help-request.component.html',
+  styleUrls: ['./create-help-request.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.Emulated
 })
-export class CreateOrderComponent {
+export class CreateHelpRequestComponent {
 
   items: OrderItem[];
   item: string;

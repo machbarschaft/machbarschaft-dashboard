@@ -4,7 +4,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {StyleLibModule} from '../../../style-lib/src/lib/style-lib.module';
 import {LoginModule} from './login/login.module';
-import {OrdersModule} from './orders/orders.module';
+import {HelpRequestModule} from './help-request/help-request.module';
 import {HeaderModule} from './header/header.module';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -22,7 +22,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     AppRoutingModule,
     LoginModule,
-    OrdersModule,
+    HelpRequestModule,
     StyleLibModule,
     HeaderModule,
     HttpClientModule,

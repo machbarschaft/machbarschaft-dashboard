@@ -4,13 +4,13 @@ import {ActivatedRoute} from '@angular/router';
 import {Order} from '../../../shared/models/order.interface';
 
 @Component({
-  selector: 'mbs-ad-order-detail',
-  templateUrl: './order-detail.component.html',
-  styleUrls: ['./order-detail.component.scss'],
+  selector: 'mbs-ad-help-request',
+  templateUrl: './help-request.component.html',
+  styleUrls: ['./help-request.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OrderDetailComponent implements OnInit {
+export class HelpRequestComponent implements OnInit {
 
   orderId: string;
   order: Order;

@@ -5,7 +5,7 @@ import {AuthenticationGuard} from './shared/guards/authentication-guard';
 const routes: Routes = [
   {
     path: 'order',
-    loadChildren: () => import('./orders/orders.module').then(module => module.OrdersModule),
+    loadChildren: () => import('./help-request/help-request.module').then(module => module.HelpRequestModule),
     canActivate: [ AuthenticationGuard ]
   },
   {

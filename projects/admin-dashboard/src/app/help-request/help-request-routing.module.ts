@@ -1,19 +1,19 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CreateOrderComponent, OrderDetailComponent, OrdersComponent} from './public-api';
+import {CreateHelpRequestComponent, HelpRequestComponent, HelpRequestListComponent} from './public-api';
 
 const routes: Routes = [
   {
     path: '',
-    component: OrdersComponent
+    component: HelpRequestListComponent
   },
   {
     path: 'create',
-    component: CreateOrderComponent
+    component: CreateHelpRequestComponent
   },
   {
     path: ':id',
-    component: OrderDetailComponent
+    component: HelpRequestComponent
   }
 ];
 
@@ -21,6 +21,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class OrdersRoutingModule {
+export class HelpRequestRoutingModule {
 
 }
