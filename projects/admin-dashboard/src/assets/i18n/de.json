@@ -52,5 +52,6 @@
     "registration.address": "Wohn- /Lieferadresse",
     "registration.address-title": "Adresse",
     "registration.address-validate": "Adresse überprüfen",
-    "registration.register": "Registrieren"
+    "registration.register": "Registrieren",
+    "reset.password.title": "Passwort zurücksetzten"
 }
