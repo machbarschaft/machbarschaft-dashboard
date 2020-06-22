@@ -1,11 +1,11 @@
-import { SodiumCryptoService } from './sodium-crypto.service';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AuthenticationGuardService } from './authentication-guard.service';
-import { Observable, ReplaySubject } from 'rxjs';
-import { AuthResponse } from '../models/common.interface';
-import { FIREBASE_LOGIN_ERROR_ENUM, LOGIN_ERROR_ENUM } from '../models/constants.interface';
+import {SodiumCryptoService} from './sodium-crypto.service';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AuthenticationGuardService} from './authentication-guard.service';
+import {Observable, ReplaySubject} from 'rxjs';
+import {AuthResponse} from '../models/common.interface';
+import {FIREBASE_LOGIN_ERROR_ENUM, LOGIN_ERROR_ENUM} from '../models/constants.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +13,9 @@ import { FIREBASE_LOGIN_ERROR_ENUM, LOGIN_ERROR_ENUM } from '../models/constants
 export class AuthService {
 
   constructor(private firebaseAuth: AngularFireAuth,
-    private router: Router,
-    private sodium: SodiumCryptoService,
-    private authenticationGuardService: AuthenticationGuardService) {
+              private router: Router,
+              private sodium: SodiumCryptoService,
+              private authenticationGuardService: AuthenticationGuardService) {
   }
 
   login$(email: string, password: string): Observable<AuthResponse> {
@@ -28,16 +28,16 @@ export class AuthService {
         localStorage.setItem('refreshToken', refreshToken);
 
         this.authenticationGuardService.changeAuthenticated(true);
-        subject$.next({ message: 'success', successful: true });
+        subject$.next({message: 'success', successful: true});
         subject$.complete();
       }).catch((error) => {
-        console.error('error', error);
-        // window.alert(error.message);
-        this.authenticationGuardService.changeAuthenticated(false);
-        const authResponse = this.getAuthResponseForError(error ? error.code : error);
-        subject$.next(authResponse);
-        subject$.complete();
-      });
+      console.error('error', error);
+      // window.alert(error.message);
+      this.authenticationGuardService.changeAuthenticated(false);
+      const authResponse = this.getAuthResponseForError(error ? error.code : error);
+      subject$.next(authResponse);
+      subject$.complete();
+    });
     return subject$.asObservable();
   }
 
@@ -48,8 +48,8 @@ export class AuthService {
         localStorage.clear();
         this.authenticationGuardService.changeAuthenticated(false);
       }).catch((error) => {
-        console.log(error);
-      });
+      console.log(error);
+    });
   }
 
   async register(email: string, password: string): Promise<any> {
@@ -69,7 +69,7 @@ export class AuthService {
       errorMessage = LOGIN_ERROR_ENUM.OTHER;
     }
 
-    return { successful: false, message: errorMessage };
+    return {successful: false, message: errorMessage};
   }
 
   private sendMailResetPassword(email: string): Promise<any> {

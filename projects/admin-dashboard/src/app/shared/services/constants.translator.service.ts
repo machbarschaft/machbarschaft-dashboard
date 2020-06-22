@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 @Injectable({providedIn: 'root'})
 export class ConstantsTranslatorService {
 
-  #values: { [key: string]: string };
+  readonly #values: { [key: string]: string };
 
   constructor() {
     this.#values = {

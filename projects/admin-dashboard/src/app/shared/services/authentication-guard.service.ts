@@ -4,7 +4,7 @@ import {ReplaySubject} from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class AuthenticationGuardService {
 
-  #isAuthenticated: ReplaySubject<boolean>;
+  readonly #isAuthenticated: ReplaySubject<boolean>;
 
   constructor() {
     this.#isAuthenticated = new ReplaySubject<boolean>(1);

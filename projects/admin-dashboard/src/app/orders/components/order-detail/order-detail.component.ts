@@ -1,4 +1,4 @@
-import { OrderApiService } from './../../../shared/services/backend/order-api.service';
+import { OrderApiService } from '../../../shared/services/backend/order-api.service';
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Order} from '../../../shared/models/order.interface';

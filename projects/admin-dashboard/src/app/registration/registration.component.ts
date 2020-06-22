@@ -1,8 +1,8 @@
-import { Router } from '@angular/router';
-import { AuthService, MapsService, UserService } from '../shared/services/public-api';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { GeoPoint, User } from '../shared/public-api';
-import { BreakPointObserverService } from '../../../../style-lib/src/lib/services/break-point-observer.service';
+import {Router} from '@angular/router';
+import {AuthService, MapsService, UserService} from '../shared/services/public-api';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {GeoPoint, User} from '../shared/public-api';
+import {BreakPointObserverService} from '../../../../style-lib/src/lib/services/break-point-observer.service';
 
 @Component({
   selector: 'app-registration',
@@ -32,15 +32,16 @@ export class RegistrationComponent implements OnInit {
   mapWidth: number;
 
   constructor(private authService: AuthService,
-    private mapsService: MapsService,
-    private userService: UserService,
-    public breakpointObserver: BreakPointObserverService,
-    private changeDetectorRef: ChangeDetectorRef,
-    private router: Router) { }
+              private mapsService: MapsService,
+              private userService: UserService,
+              public breakpointObserver: BreakPointObserverService,
+              private changeDetectorRef: ChangeDetectorRef,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.breakpointObserver.getIsMobile$()
-      .subscribe(mobile => {
+      .subscribe(() => {
         this.mapWidth = window.innerWidth > 760 ? null : window.innerWidth - 60;
         this.changeDetectorRef.detectChanges();
       });
@@ -76,7 +77,7 @@ export class RegistrationComponent implements OnInit {
       }
       // registration in firebase
       this.authService.register(this.email, this.password)
-        .then((response) => {
+        .then(() => {
           console.log('registration in firebase successful');
           this.authService.getToken().subscribe(
             (result) => {
@@ -96,15 +97,15 @@ export class RegistrationComponent implements OnInit {
                 });
             });
         }).catch(
-          (error) => {
-            console.log(error);
-          });
+        (error) => {
+          console.log(error);
+        });
     }
   }
 
   private initializeMap(): void {
     console.log('lat' + this.location.latitude);
-    this.mapCenter = { lat: this.location.latitude, lng: this.location.longitude };
+    this.mapCenter = {lat: this.location.latitude, lng: this.location.longitude};
     this.showMap = true;
   }
 

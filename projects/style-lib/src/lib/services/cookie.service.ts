@@ -12,7 +12,7 @@ export class CookieService {
 
   /**
    * creates a cookie specified by cookie as param
-   * @param cookie
+   * @param cookie - cookie
    */
   createCookie(cookie: Cookie): void {
     document.cookie = `${cookie.key}=${cookie.value}` + cookie.validity ? `expires=${new Date(cookie.validity).toUTCString()}` : '';
@@ -37,7 +37,7 @@ export class CookieService {
 
   /**
    * check if currently a cookie is already stored with this key
-   * @param key
+   * @param key - name for cookie
    */
   hasCookie(key: string): boolean {
     return !!this.getCookieForKey(key);
@@ -45,7 +45,7 @@ export class CookieService {
 
   /**
    * find cookie for key, if found this cookie will be returned otherwise null will be returned
-   * @param key
+   * @param key - name for cookie
    */
   getCookieForKey(key: string): Cookie | null {
     const cookies: Cookie[] = this.getAllCookies();
@@ -54,7 +54,7 @@ export class CookieService {
 
   /**
    * just delete a single cookie specified by the key as param
-   * @param key
+   * @param key - name for cookie
    */
   removeCookie(key: string): void {
     const cookie = this.getCookieForKey(key);
@@ -74,7 +74,7 @@ export class CookieService {
 
   /**
    * sets expired date to cookie so that it is marked as expired and will be deleted
-   * @param cookie
+   * @param cookie - cookie
    */
   private setCookieExpired(cookie: Cookie): void {
     if (cookie) {

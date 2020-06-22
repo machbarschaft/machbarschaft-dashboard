@@ -1,10 +1,8 @@
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ApiService} from './api.service';
-import { environment } from '../../../../environments/environment';
-import { Order } from '../../public-api';
-import { HelpRequest } from '../../models/helpRequest.interface';
+import {HelpRequest} from '../../models/helpRequest.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +23,11 @@ export class HelpRequestService extends ApiService {
   getHelpRequest(orderId: string): Observable<any>{
     // return this.httpClient.get(`${environment.apiUrl}v1/help-request/${orderId}`, { headers: super.createApiHeader() });
     return this.httpClient.get(`${this.baseUrl}v1/help-request/${orderId}`, { headers: super.createApiHeader() });
-
   }
 
   postHelpRequest(helpRequest: HelpRequest) {
     // return this.httpClient.post(`${environment.apiUrl}v1/help-request`, order, { headers: super.createApiHeader() });
     return this.httpClient.post(`${this.baseUrl}v1/help-request`, helpRequest, { headers: super.createApiHeader() });
-
   }
 
 }

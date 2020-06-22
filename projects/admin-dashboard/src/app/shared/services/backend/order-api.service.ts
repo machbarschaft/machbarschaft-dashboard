@@ -1,10 +1,10 @@
-import { GeoPoint } from '../../models/geo.interface';
-import { Injectable } from '@angular/core';
-import { Order, OrderItem, SOURCE, STATUS } from '../../models/public-api';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
-import { Observable } from 'rxjs';
-import { ApiService } from './api.service';
+import {GeoPoint} from '../../models/geo.interface';
+import {Injectable} from '@angular/core';
+import {Order} from '../../models/public-api';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {environment} from '../../../../environments/environment';
+import {Observable} from 'rxjs';
+import {ApiService} from './api.service';
 
 @Injectable({ providedIn: 'root' })
 export class OrderApiService extends ApiService {
