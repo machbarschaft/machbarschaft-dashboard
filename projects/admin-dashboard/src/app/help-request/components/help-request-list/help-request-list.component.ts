@@ -30,6 +30,9 @@ export class HelpRequestListComponent implements OnInit {
         console.log('helpRequests', helpRequests);
         this.helpRequests = helpRequests;
         this.changeDetectorRef.detectChanges();
+      }, () => {
+        this.helpRequests = [];
+        this.changeDetectorRef.detectChanges();
       });
   }
 

@@ -2,33 +2,41 @@
   <div class="col-12">
     <h1>{{ 'help-request.overview' | translate }}</h1>
     <ng-container *ngIf="breakPointObserverService.isMobile$ | async; else desktopView">
-      <ng-container *ngFor="let helpRequest of helpRequests">
-        <div class="order-card p-2 mb-3">
-          <div class="row">
-            <div class="col-6">
-              <div class="font-weight-bold">{{ 'help-request.last-changed' | translate }}</div>
-              <div class="font-weight-normal">{{ helpRequest.updatedAt | date }}</div>
-            </div>
-            <div class="col-6">
-              <div class="font-weight-bold">{{ 'help-request.help-seeker' | translate }}</div>
-              <div class="font-weight-normal">{{ helpRequest.adminUser.firstName }} {{ helpRequest.adminUser.lastName }}</div>
-            </div>
-            <div class="col-6">
-              <div class="font-weight-bold">{{ 'help-request.source' | translate }}</div>
-              <div class="font-weight-normal">{{ 'common.' + helpRequest.requestStatus | translate }}</div>
-            </div>
-            <div class="col-6">
-              <div class="font-weight-bold">{{ 'help-request.status' | translate }}</div>
-              <div class="font-weight-normal">{{ 'common.' + helpRequest.requestStatus | translate }}</div>
-            </div>
-            <div class="col-12 mt-3">
-              <a [routerLink]="helpRequest.id" class="text-accent text-center font-weight-bold d-block w-100">
-                {{ 'help-request.to-detail-view' | translate }}
-              </a>
+      <ng-container *ngIf="helpRequests.length; else noHelpRequests">
+        <ng-container *ngFor="let helpRequest of helpRequests">
+          <div class="order-card p-2 mb-3">
+            <div class="row">
+              <div class="col-6">
+                <div class="font-weight-bold">{{ 'help-request.last-changed' | translate }}</div>
+                <div class="font-weight-normal">{{ helpRequest.updatedAt | date }}</div>
+              </div>
+              <div class="col-6">
+                <div class="font-weight-bold">{{ 'help-request.help-seeker' | translate }}</div>
+                <div
+                  class="font-weight-normal">{{ helpRequest.adminUser.firstName }} {{ helpRequest.adminUser.lastName }}</div>
+              </div>
+              <div class="col-6">
+                <div class="font-weight-bold">{{ 'help-request.source' | translate }}</div>
+                <div class="font-weight-normal">{{ 'common.' + helpRequest.requestStatus | translate }}</div>
+              </div>
+              <div class="col-6">
+                <div class="font-weight-bold">{{ 'help-request.status' | translate }}</div>
+                <div class="font-weight-normal">{{ 'common.' + helpRequest.requestStatus | translate }}</div>
+              </div>
+              <div class="col-12 mt-3">
+                <a [routerLink]="helpRequest.id" class="text-accent text-center font-weight-bold d-block w-100">
+                  {{ 'help-request.to-detail-view' | translate }}
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </ng-container>
       </ng-container>
+      <ng-template #noHelpRequests>
+        <div>
+          {{ 'help-request.no-help-requests' | translate }}
+        </div>
+      </ng-template>
     </ng-container>
     <ng-template #desktopView>
       <table class="w-100">
@@ -38,11 +46,11 @@
           <th>{{ 'help-request.help-seeker' | translate }}</th>
           <th>{{ 'help-request.source' | translate }}</th>
           <th>{{ 'help-request.status' | translate }}</th>
-          <th>Status ändern</th>
+          <th>{{ 'help-request.change-status' | translate }}</th>
           <th>&nbsp;</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="helpRequests.length">
         <tr *ngFor="let helpRequest of helpRequests">
           <td>{{ helpRequest.updatedAt | date }}</td>
           <td>{{ helpRequest.adminUser.firstName }} {{ helpRequest.adminUser.lastName }}</td>
@@ -56,13 +64,13 @@
           </ng-template>
           <ng-container [ngSwitch]="helpRequest.requestStatus">
             <td *ngSwitchCase="'OPEN'">
-              <button button-primary>in Arbeit</button>
+              <button button-primary>{{ 'common.WIP' | translate }}</button>
             </td>
             <td *ngSwitchCase="'WIP'">
-              <button button-primary>schließen</button>
+              <button button-primary>{{ 'common.close' | translate }}</button>
             </td>
             <td *ngSwitchCase="'CLOSED'">
-              <button button-primary>wiedereröffnen</button>
+              <button button-primary>{{ 'common.reopen' | translate }}</button>
             </td>
           </ng-container>
           <td>
@@ -73,6 +81,9 @@
         </tr>
         </tbody>
       </table>
+      <div *ngIf="helpRequests.length === 0">
+        {{ 'help-request.no-help-requests' | translate }}
+      </div>
     </ng-template>
   </div>
 </div>
