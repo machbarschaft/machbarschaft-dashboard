@@ -1,7 +1,7 @@
-import { STATUS } from './public-api';
+import {REQUEST_STATUS} from './public-api';
 
 export interface HelpRequest {
   requestText: string;
-  requestStatus: STATUS;
+  requestStatus: REQUEST_STATUS;
   adminUser: string;
 }

@@ -36,6 +36,7 @@ input, textarea {
   font-weight: $font-weight-normal;
   min-width: 180px;
   padding: .75rem $spacer-2;
+  resize: none;
 }
 
 input:focus, input:active, textarea:focus, textarea:active {

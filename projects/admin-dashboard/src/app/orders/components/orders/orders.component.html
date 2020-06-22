@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12">
     <h1>{{ 'help-request.overview' | translate }}</h1>
-    <ng-container *ngIf="breakPointObserverService.isMobile$ | async; else mobileView">
+    <ng-container *ngIf="breakPointObserverService.isMobile$ | async; else desktopView">
       <ng-container *ngFor="let order of orders">
         <div class="order-card p-2 mb-3">
           <div class="row">
@@ -15,11 +15,11 @@
             </div>
             <div class="col-6">
               <div class="font-weight-bold">{{ 'help-request.source' | translate }}</div>
-              <div class="font-weight-normal">{{ 'common.'+order.source | translate }}</div>
+              <div class="font-weight-normal">{{ 'common.' + order.source | translate }}</div>
             </div>
             <div class="col-6">
               <div class="font-weight-bold">{{ 'help-request.status' | translate }}</div>
-              <div class="font-weight-normal">{{ 'common.'+order.status | translate }}</div>
+              <div class="font-weight-normal">{{ 'common.' + order.status | translate }}</div>
             </div>
             <div class="col-12 mt-3">
               <a [routerLink]="order.id" class="text-accent text-center font-weight-bold d-block w-100">
@@ -30,7 +30,7 @@
         </div>
       </ng-container>
     </ng-container>
-    <ng-template #mobileView>
+    <ng-template #desktopView>
       <table class="w-100">
         <thead>
         <tr>
@@ -38,6 +38,7 @@
           <th>{{ 'help-request.help-seeker' | translate }}</th>
           <th>{{ 'help-request.source' | translate }}</th>
           <th>{{ 'help-request.status' | translate }}</th>
+          <th>Status ändern</th>
           <th>&nbsp;</th>
         </tr>
         </thead>
@@ -45,13 +46,25 @@
         <tr *ngFor="let order of orders">
           <td>{{ order.updatedAt | date }}</td>
           <td>{{ order.userId }}</td>
-          <td>{{ 'common.'+order.source | translate }}</td>
-          <ng-container *ngIf="order.status =='TO_BE_DELIVERED' || order.status == 'CONSUMER_CANCELLED'; else akzeptiertBlock">
-            <td class="text-red">{{ 'common.'+order.status | translate }}</td>
+          <td>{{ 'common.' + order.source | translate }}</td>
+          <ng-container
+            *ngIf="order.status =='TO_BE_DELIVERED' || order.status == 'CONSUMER_CANCELLED'; else akzeptiertBlock">
+            <td class="text-red">{{ 'common.' + order.status | translate }}</td>
           </ng-container>
           <ng-template #akzeptiertBlock>
-            <td class="text-green">{{ 'common.'+order.status | translate }}</td>
+            <td class="text-green">{{ 'common.' + order.status | translate }}</td>
           </ng-template>
+          <ng-container [ngSwitch]="order.status">
+            <td *ngSwitchCase="'TO_BE_DELIVERED'">
+              <button button-primary>in Arbeit</button>
+            </td>
+            <td *ngSwitchCase="'ACCEPTED'">
+              <button button-primary>schließen</button>
+            </td>
+            <td *ngSwitchCase="'DELIVERED'">
+              <button button-primary>wiedereröffnen</button>
+            </td>
+          </ng-container>
           <td>
             <a [routerLink]="order.id" class="text-primary">
               {{ 'help-request.to-detail-view' | translate }}

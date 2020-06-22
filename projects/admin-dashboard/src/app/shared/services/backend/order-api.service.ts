@@ -82,7 +82,7 @@ export class OrderApiService extends ApiService {
       userId: 1,
       items: [{ description: 'Brot' }, { description: 'Bananen' }],
       source: 'APP',
-      status: 'TO_BE_DELIVERED',
+      status: 'DELIVERED',
       updatedAt: '2020-09-06 08:00:00'
     });
     orders.push({
