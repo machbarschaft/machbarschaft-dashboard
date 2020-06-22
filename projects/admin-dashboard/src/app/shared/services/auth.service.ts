@@ -72,7 +72,7 @@ export class AuthService {
     return {successful: false, message: errorMessage};
   }
 
-  private sendMailResetPassword(email: string): Promise<any> {
+  sendMailResetPassword(email: string): Promise<any> {
     return this.firebaseAuth.sendPasswordResetEmail(email);
   }
 }
