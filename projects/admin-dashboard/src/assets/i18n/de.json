@@ -18,6 +18,7 @@
     "help-request.create": "Hilfegesuch anlegen",
     "help-request.help-seeker": "Hilfesuchender",
     "help-request.name": "Vor- und Nachname",
+    "help-request.phone": "Telefonnummer",
     "help-request.hint": "Hinweis",
     "help-request.hint-placeholder": "Dringlichkeit, Rückruf erbeten",
     "help-request.price": "Preis",

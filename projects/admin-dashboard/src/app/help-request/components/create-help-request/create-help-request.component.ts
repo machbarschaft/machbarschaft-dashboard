@@ -4,6 +4,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
 import {HelpRequestService} from '../../../shared/services/backend/help-request.service';
 import {HelpRequest} from '../../../shared/models/helpRequest.interface';
+import {HelpSeekerService} from '../../../shared/services/backend/help-seeker.service';
+import {HelpSeeker} from '../../../shared/models/helpSeeker.interface';
 
 @Component({
   selector: 'mbs-ad-create-order',
@@ -15,30 +17,48 @@ import {HelpRequest} from '../../../shared/models/helpRequest.interface';
 export class CreateHelpRequestComponent {
 
   helpRequestGroupForm = new FormGroup({
-    requestText: new FormControl('', Validators.required),
+    fullName: new FormControl(''),
+    phone: new FormControl(''),
+    requestText: new FormControl('', Validators.required)
   });
 
   constructor(private orderApiService: OrderApiService,
+              private helpSeekerService: HelpSeekerService,
               private helpRequestService: HelpRequestService,
               public breakpointObserver: BreakPointObserverService) {}
 
   onSubmit(): void {
     if (this.helpRequestGroupForm.valid) {
-      const helpRequest: HelpRequest = {
-        requestText: this.helpRequestGroupForm.get('requestText').value,
-        requestStatus: 'OPEN',
-        adminUser: null
+      const helpSeeker: HelpSeeker = {
+        fullName: this.helpRequestGroupForm.get('fullName').value,
+        phone: this.helpRequestGroupForm.get('phone').value,
+        source: 'ADMIN'
       };
 
-      this.helpRequestService.postHelpRequest(helpRequest).subscribe((helpRequestResponse: HelpRequest) => {
-        // ToDo: send feedback to user
-        console.log('response', helpRequestResponse);
-      }, (error) => {
-        console.log('error', error);
-      });
-      this.helpRequestGroupForm.reset({
-        requestText: ''
-      });
+      this.helpSeekerService.createHelpSeeker(helpSeeker)
+        .subscribe((createdHelpSeeker: HelpSeeker) => {
+          if (createdHelpSeeker) {
+            const helpRequest: HelpRequest = {
+              requestText: this.helpRequestGroupForm.get('requestText').value,
+              requestStatus: 'OPEN',
+              helpSeeker: createdHelpSeeker.id
+            };
+
+            this.helpRequestService.createHelpRequest(helpRequest).subscribe((helpRequestResponse: HelpRequest) => {
+              // ToDo: send feedback to user
+              console.log('response', helpRequestResponse);
+              this.helpRequestGroupForm.reset({
+                name: '',
+                phone: '',
+                requestText: ''
+              });
+            }, (error) => {
+              console.log('error', error);
+            });
+          }
+        }, () => {
+          console.log('error while creating help seeker');
+        });
     }
   }
 }

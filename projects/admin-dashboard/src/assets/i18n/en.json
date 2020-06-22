@@ -18,6 +18,7 @@
     "help-request.create": "create help request",
     "help-request.help-seeker": "help seeker",
     "help-request.name": "first and last name",
+    "help-request.phone": "phone number",
     "help-request.hint": "hint",
     "help-request.hint-placeholder": "urgency, recall requested",
     "help-request.price": "price",

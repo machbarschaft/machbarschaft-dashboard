@@ -23,7 +23,7 @@ export class HelpRequestService extends ApiService {
     return this.httpClient.get(`${this.apiUrl}v1/help-request/${orderId}`, { headers: super.createApiHeader() });
   }
 
-  postHelpRequest(helpRequest: HelpRequest) {
+  createHelpRequest(helpRequest: HelpRequest) {
     // return this.httpClient.post(`${environment.apiUrl}v1/help-request`, order, { headers: super.createApiHeader() });
     return this.httpClient.post(`${this.apiUrl}v1/help-request`, helpRequest, { headers: super.createApiHeader() });
   }

@@ -23,7 +23,7 @@ export class HelpSeekerService extends ApiService {
     return this.httpClient.get(`${this.apiUrl}v1/help-seeker/${userId}`, { headers: super.createApiHeader() });
   }
 
-  postHelpRequest(helpSeeker: HelpSeeker) {
+  createHelpSeeker(helpSeeker: HelpSeeker) {
     // return this.httpClient.post(`${environment.apiUrl}/v1/help-seeker`, order, { headers: super.createApiHeader() });
     return this.httpClient.post(`${this.apiUrl}v1/help-seeker`, helpSeeker, { headers: super.createApiHeader() });
   }

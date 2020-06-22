@@ -13,7 +13,7 @@
               <div class="col-6">
                 <div class="font-weight-bold">{{ 'help-request.help-seeker' | translate }}</div>
                 <div
-                  class="font-weight-normal">{{ helpRequest.adminUser.firstName }} {{ helpRequest.adminUser.lastName }}</div>
+                  class="font-weight-normal">{{ helpRequest.helpSeeker.fullName }}</div>
               </div>
               <div class="col-6">
                 <div class="font-weight-bold">{{ 'help-request.source' | translate }}</div>
@@ -44,7 +44,6 @@
         <tr>
           <th>{{ 'help-request.last-changed' | translate }}</th>
           <th>{{ 'help-request.help-seeker' | translate }}</th>
-          <th>{{ 'help-request.source' | translate }}</th>
           <th>{{ 'help-request.status' | translate }}</th>
           <th>{{ 'help-request.change-status' | translate }}</th>
           <th>&nbsp;</th>
@@ -53,8 +52,7 @@
         <tbody *ngIf="helpRequests.length">
         <tr *ngFor="let helpRequest of helpRequests">
           <td>{{ helpRequest.updatedAt | date }}</td>
-          <td>{{ helpRequest.adminUser.firstName }} {{ helpRequest.adminUser.lastName }}</td>
-          <td>{{ 'common.' + helpRequest.requestStatus | translate }}</td>
+          <td>{{ helpRequest.helpSeeker.fullName }}</td>
           <ng-container
             *ngIf="helpRequest.requestStatus =='OPEN' || helpRequest.requestStatus == 'WIP'; else requestClosed">
             <td class="text-red">{{ 'common.' + helpRequest.requestStatus | translate }}</td>
