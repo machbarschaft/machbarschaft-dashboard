@@ -10,7 +10,7 @@ const REQUEST_STATUS = {
 const SOURCE = {
   HOTLINE: 'HOTLINE',
   APP: 'APP',
-  ADMIN_DASHBOARD: 'ADMIN_DASHBOARD'
+  ADMIN: 'ADMIN'
 };
 
 // FUNCTIONS
@@ -49,10 +49,10 @@ function createHelpSeeker(fullName, phone, source, enteredBy) {
 
 function createMultipleHelpSeekers() {
   const helpSeekers = [];
-  helpSeekers.push(createHelpSeeker('Max Meier', '01234566789', SOURCE.ADMIN_DASHBOARD, ''));
-  helpSeekers.push(createHelpSeeker('Max Mustermann', '01234566789', SOURCE.ADMIN_DASHBOARD, ''));
-  helpSeekers.push(createHelpSeeker('John Doe', '01234566789', SOURCE.ADMIN_DASHBOARD, ''));
-  helpSeekers.push(createHelpSeeker('Jane Doe', '01234566789', SOURCE.ADMIN_DASHBOARD, ''));
+  helpSeekers.push(createHelpSeeker('Max Meier', '01234566789', SOURCE.ADMIN, ''));
+  helpSeekers.push(createHelpSeeker('Max Mustermann', '01234566789', SOURCE.ADMIN, ''));
+  helpSeekers.push(createHelpSeeker('John Doe', '01234566789', SOURCE.ADMIN, ''));
+  helpSeekers.push(createHelpSeeker('Jane Doe', '01234566789', SOURCE.ADMIN, ''));
   return helpSeekers;
 }
 
