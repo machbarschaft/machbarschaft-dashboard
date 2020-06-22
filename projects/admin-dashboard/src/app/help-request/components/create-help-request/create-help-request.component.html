@@ -1,31 +1,12 @@
 <div class="row mb-4">
   <div class="col-lg-6 mx-auto">
     <h1>{{ 'help-request.create' | translate }}</h1>
-    <form [formGroup]="orderGroupForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="helpRequestGroupForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-lg-12 col-sm-12 pb-2">
-          <label class="d-block pb-2 font-weight-bold">{{ 'help-request.help-seeker' | translate }}</label>
-          <input type="text" formControlName="user" [placeholder]="'help-request.name' | translate" class="w-100">
-        </div>
-        <div class="col-lg-12 col-sm-12 pb-2">
           <label class="d-block pb-2 font-weight-bold">{{ 'help-request.hint' | translate }}</label>
-          <textarea type="text" formControlName="hint" rows="4" [placeholder]="'help-request.hint-placeholder' | translate" class="w-100"></textarea>
-        </div>
-        <div class="col-12">
-          <label class="d-block pb-2 font-weight-bold">{{ 'help-request.add-article-title' | translate }}</label>
-          <div class="mb-3">
-            <input type="string" formControlName="item" [placeholder]="'help-request.article-placeholder' | translate">
-            <button button-primary class="ml-3" (click)="addItem()" type="button">
-              {{ (breakpointObserver.isMobile$ | async) ? '+' : ('help-request.add-article' | translate) }}
-            </button>
-          </div>
-          <label class="d-block pb-2 font-weight-bold" *ngIf="items.length">{{ 'help-request.articles' | translate }}</label>
-          <label class="d-block pb-2 font-weight-light" *ngIf="items.length">
-            {{ 'help-request.articles-delete-hint' | translate }}
-          </label>
-          <ng-container *ngFor="let item of items; index as i">
-            <span class="d-block font-size-s" (click)="removeItem(i)">{{ i + 1 }}: {{ item.description }}</span>
-          </ng-container>
+          <textarea type="text" formControlName="requestText" rows="4"
+                    [placeholder]="'help-request.hint-placeholder' | translate" class="w-100"></textarea>
         </div>
         <div class="col-auto mt-3 mx-auto" [ngClass]="{'col-12': breakpointObserver.isMobile$ | async}">
           <button button-primary type="submit" class="text-center" [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">

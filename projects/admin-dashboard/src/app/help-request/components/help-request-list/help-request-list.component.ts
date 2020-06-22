@@ -1,7 +1,8 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import { OrderApiService } from '../../../shared/services/backend/order-api.service';
-import {Order} from '../../../shared/models/order.interface';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {OrderApiService} from '../../../shared/services/backend/order-api.service';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
+import {HelpRequest} from '../../../shared/models/helpRequest.interface';
+import {HelpRequestService} from '../../../shared/services/backend/help-request.service';
 
 @Component({
   selector: 'mbs-ad-help-request-list',
@@ -12,20 +13,24 @@ import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/ser
 })
 export class HelpRequestListComponent implements OnInit {
 
-  orders: Order[];
+  helpRequests: HelpRequest[];
   isMobile: boolean;
 
   constructor(private orderApiService: OrderApiService,
-              public breakPointObserverService: BreakPointObserverService) {
-    this.orders = [];
+              private helpRequestApiService: HelpRequestService,
+              public breakPointObserverService: BreakPointObserverService,
+              private changeDetectorRef: ChangeDetectorRef) {
+    this.helpRequests = [];
     this.isMobile = false;
   }
 
   ngOnInit(): void {
-    this.orders = this.orderApiService.getAllOrders();
-    this.orderApiService.getAllColiveryOrders()
-      .pipe()
-      .subscribe(response => console.log('response from colivery', response));
+    this.helpRequestApiService.getHelpRequests()
+      .subscribe((helpRequests: HelpRequest[]) => {
+        console.log('helpRequests', helpRequests);
+        this.helpRequests = helpRequests;
+        this.changeDetectorRef.detectChanges();
+      });
   }
 
 }

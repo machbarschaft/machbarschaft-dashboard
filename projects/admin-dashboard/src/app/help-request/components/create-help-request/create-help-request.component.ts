@@ -1,8 +1,9 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation} from '@angular/core';
-import { OrderApiService } from '../../../shared/services/backend/order-api.service';
-import {Order, OrderItem} from '../../../shared/models/order.interface';
+import {OrderApiService} from '../../../shared/services/backend/order-api.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
+import {HelpRequestService} from '../../../shared/services/backend/help-request.service';
+import {HelpRequest} from '../../../shared/models/helpRequest.interface';
 
 @Component({
   selector: 'mbs-ad-create-order',
@@ -13,73 +14,32 @@ import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/ser
 })
 export class CreateHelpRequestComponent {
 
-  items: OrderItem[];
-  item: string;
-  orderGroupForm = new FormGroup({
-    hint: new FormControl(''),
-    maxPrice: new FormControl(0),
-    user: new FormControl(null, Validators.required),
-    item: new FormControl('')
+  helpRequestGroupForm = new FormGroup({
+    requestText: new FormControl('', Validators.required),
   });
 
   constructor(private orderApiService: OrderApiService,
-              public breakpointObserver: BreakPointObserverService) {
-    this.items = [];
-    this.item = '';
-  }
+              private helpRequestService: HelpRequestService,
+              public breakpointObserver: BreakPointObserverService) {}
 
   onSubmit(): void {
-    if (this.orderGroupForm.valid) {
-      const order: Order = {
-        createdAt: new Date().toDateString(),
-        hint: this.orderGroupForm.get('hint').value,
-        id: this.createUUID(),
-        maxPrice: this.orderGroupForm.get('maxPrice').value,
-        userId: this.orderGroupForm.get('user').value,
-        items: this.items,
-        source: 'APP',
-        status: 'TO_BE_DELIVERED',
-        updatedAt: new Date().toDateString(),
+    if (this.helpRequestGroupForm.valid) {
+      const helpRequest: HelpRequest = {
+        requestText: this.helpRequestGroupForm.get('requestText').value,
+        requestStatus: 'OPEN',
+        adminUser: null
       };
 
-      this.orderApiService.createOrder(order);
-      this.items = [];
-      this.item = '';
-      this.orderGroupForm.reset({
-        hint: '',
-        maxPrice: 0,
-        user: 0,
-        item: ''
+      this.helpRequestService.postHelpRequest(helpRequest).subscribe((helpRequestResponse: HelpRequest) => {
+        // ToDo: send feedback to user
+        console.log('response', helpRequestResponse);
+      }, (error) => {
+        console.log('error', error);
       });
-      console.log('order angelegt', order);
+      this.helpRequestGroupForm.reset({
+        requestText: ''
+      });
     }
   }
-
-  addItem(): void {
-    const description = this.orderGroupForm.get('item').value;
-    if (description) {
-      const value = {
-        hint: this.orderGroupForm.get('hint').value,
-        maxPrice: this.orderGroupForm.get('maxPrice').value,
-        user: this.orderGroupForm.get('user').value,
-        item: ''
-      };
-      this.items.push({description});
-      this.orderGroupForm.setValue(value);
-    }
-  }
-
-  removeItem(index: number): void {
-    this.items.splice(index, 1);
-  }
-
-  private createUUID(): string {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-      const r = Math.random() * 16 | 0;
-      const v = c === 'x' ? r : (r & 0x3 | 0x8);
-      return v.toString(16);
-    });
-  }
-
 }
 

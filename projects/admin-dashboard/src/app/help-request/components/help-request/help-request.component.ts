@@ -1,7 +1,7 @@
-import { OrderApiService } from '../../../shared/services/backend/order-api.service';
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Order} from '../../../shared/models/order.interface';
+import {HelpRequest} from '../../../shared/models/helpRequest.interface';
+import {HelpRequestService} from '../../../shared/services/backend/help-request.service';
 
 @Component({
   selector: 'mbs-ad-help-request',
@@ -12,17 +12,23 @@ import {Order} from '../../../shared/models/order.interface';
 })
 export class HelpRequestComponent implements OnInit {
 
-  orderId: string;
-  order: Order;
+  #helpRequestId: string;
+  helpRequest: HelpRequest;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private orderApiService: OrderApiService) {}
+              private helpRequestService: HelpRequestService,
+              private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.activatedRoute.params.pipe()
       .subscribe(params => {
-        this.orderId = params['id'];
-        this.order = this.orderApiService.getOrder(this.orderId);
+        this.#helpRequestId = params['id'];
+        this.helpRequestService.getHelpRequest(this.#helpRequestId)
+          .subscribe((helpRequest: HelpRequest) => {
+            console.log('helpRequest', helpRequest);
+            this.helpRequest = helpRequest;
+            this.changeDetectorRef.detectChanges();
+          });
       });
   }
 

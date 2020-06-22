@@ -1,7 +1,10 @@
-import {REQUEST_STATUS} from './public-api';
+import {REQUEST_STATUS, User} from './public-api';
 
 export interface HelpRequest {
+  id?: string;
   requestText: string;
   requestStatus: REQUEST_STATUS;
-  adminUser: string;
+  adminUser: User | any;
+  createdAt?: string;
+  updatedAt?: string;
 }

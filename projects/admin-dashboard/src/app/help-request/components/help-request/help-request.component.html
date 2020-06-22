@@ -1,4 +1,4 @@
-<ng-container *ngIf="order; else orderNotFound">
+<ng-container *ngIf="helpRequest; else helpRequestNotFound">
   <div class="row mb-4">
     <div class="col-lg-6 col-md-8 col-sm-12 mx-auto">
       <div class="row">
@@ -7,11 +7,11 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <span class="pb-2 font-weight-bold d-block">{{ 'help-request.status' | translate }}</span>
-          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="'common.' + order.status | translate">
+          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="'common.' + helpRequest.requestStatus | translate">
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <span class="pb-2 font-weight-bold d-block">{{ 'help-request.last-changed' | translate }}</span>
-          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="order.updatedAt | date">
+          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="helpRequest.updatedAt | date">
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <span class="pb-2 font-weight-bold d-block">{{ 'help-request.change-status' | translate }}</span>
@@ -19,25 +19,18 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <span class="pb-2 font-weight-bold d-block">{{ 'help-request.hint' | translate }}</span>
-          <textarea class="pb-2 font-weight-normal d-block w-100" rows="4" disabled [ngModel]="order.hint"></textarea>
+          <textarea class="pb-2 font-weight-normal d-block w-100" rows="4" disabled [ngModel]="helpRequest.requestText"></textarea>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <span class="pb-2 font-weight-bold d-block">{{ 'help-request.help-seeker' | translate }}</span>
-          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="order.userId">
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
-          <span class="pb-2 font-weight-bold d-block">{{ 'help-request.source' | translate }}</span>
-          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="'common.' + order.source | translate">
-        </div>
-        <div class="col-12 pb-2">
-          <span class="pb-2 font-weight-bold d-block">{{ 'help-request.articles' | translate }}</span>
-          <span *ngFor="let item of order.items; index as i" class="d-block">{{ i + 1 }}: {{ item.description }}</span>
+          <input class="pb-2 font-weight-normal d-block w-100" disabled
+                 [ngModel]="helpRequest.adminUser?.firstName + ' ' + helpRequest.adminUser?.lastName">
         </div>
       </div>
     </div>
   </div>
 </ng-container>
-<ng-template #orderNotFound>
+<ng-template #helpRequestNotFound>
   <div class="row">
     <div class="col-auto mx-auto">
       {{ 'help-request.not-found' | translate }}
