@@ -4,6 +4,7 @@
     "menu.login": "Anmeldung",
     "menu.logout": "Abmelden",
     "menu.create-help-request": "Hilfegesuch anlegen",
+    "menu.edit-roles": "Rollen bearbeiten",
     "login.login-header": "Anmeldung",
     "login.error": "Fehler",
     "login.username": "Benutzername",
@@ -60,5 +61,6 @@
     "registration.address-title": "Adresse",
     "registration.address-validate": "Adresse überprüfen",
     "registration.register": "Registrieren",
-    "reset.password.title": "Passwort zurücksetzen"
+    "reset.password.title": "Passwort zurücksetzen",
+    "roles.title": "Administrator hinzufügen"
 }

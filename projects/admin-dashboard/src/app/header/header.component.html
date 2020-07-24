@@ -28,6 +28,9 @@
                 <a *ngIf="isAuthenticated" [routerLink]="['order/create']" class="mr-5 text-white">
                   {{ 'menu.create-help-request' | translate }}
                 </a>
+                <a *ngIf="isAuthenticated" [routerLink]="['roles']" class="mr-5 text-white">
+                  {{ 'menu.edit-roles' | translate }}
+                </a>
                 <a *ngIf="!isAuthenticated" [routerLink]="['login']" class="text-white">
                   {{ 'menu.login' | translate }}
                 </a>
@@ -45,6 +48,9 @@
           </button>
           <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('order/create')">
             {{ 'menu.create-help-request' | translate }}
+          </button>
+          <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('roles')">
+            {{ 'menu.edit-roles' | translate }}
           </button>
           <button *ngIf="!isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('login')">
             {{ 'menu.login' | translate }}
