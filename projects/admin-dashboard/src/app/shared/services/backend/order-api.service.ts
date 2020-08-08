@@ -3,20 +3,18 @@ import {Injectable} from '@angular/core';
 import {Order} from '../../models/public-api';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {ApiService} from './api.service';
 
 @Injectable({ providedIn: 'root' })
-export class OrderApiService extends ApiService {
+export class OrderApiService {
 
   readonly #orders: Order[];
 
   constructor(private httpClient: HttpClient) {
-    super(httpClient);
     this.#orders = this.initOrders();
   }
 
   getAllColiveryOrders(): Observable<any> {
-    return this.httpClient.get(`${this.apiUrl}v1/user/orders`, { headers: super.createApiHeader() });
+    return this.httpClient.get(`v1/user/orders`);
   }
 
   getAllOrders(): Order[] {
@@ -25,24 +23,22 @@ export class OrderApiService extends ApiService {
 
   getOrdersInRange(geopoint: GeoPoint, range: number): Observable<any> {
     const params = new HttpParams().set('latitude', geopoint.latitude.toString());
-    return this.httpClient.get(`${this.apiUrl}v1/user/orders`,
+    return this.httpClient.get(`v1/user/orders`,
       {
         params: new HttpParams()
           .set('latitude', geopoint.latitude.toString())
           .set('longitude', geopoint.longitude.toString())
           .set('range', range.toString()),
-        headers: super.createApiHeader()
       });
   }
 
   crerateColiveryOrder(order: Order, credentials: string, details: string, principal: string): Observable<any> {
-    return this.httpClient.post(`${this.apiUrl}v1/user/orders`, order,
+    return this.httpClient.post(`v1/user/orders`, order,
       {
         params: new HttpParams()
           .set('credentials', credentials)
           .set('details', details)
           .set('principal', principal),
-        headers: super.createApiHeader()
       });
   }
 
@@ -60,7 +56,7 @@ export class OrderApiService extends ApiService {
   }
 
   editOrder(orderId: string, type: string): Observable<any> {
-    return this.httpClient.patch(`${this.apiUrl}v1/order/${orderId}/${type}`, { headers: super.createApiHeader() });
+    return this.httpClient.patch(`v1/order/${orderId}/${type}`, null);
   }
 
   getOrder(id: string): Order | null {
