@@ -1,3 +1,4 @@
+import { UserManagementComponent } from './user-management/user-management/user-management.component';
 import { RolesModule } from './roles/roles.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'reset-password',
     loadChildren: () => import('./reset-password/reset-password.module').then(module => module.ResetPasswordModule)
+  },
+  {
+    path: 'user-management',
+    component: UserManagementComponent
   }
 ];
 

@@ -75,4 +75,12 @@ export class AuthService {
   sendMailResetPassword(email: string): Promise<any> {
     return this.firebaseAuth.sendPasswordResetEmail(email);
   }
+
+  verifyPasswordResetCode(code: string): Promise<any> {
+    return this.firebaseAuth.verifyPasswordResetCode(code);
+  }
+
+  confirmPasswordReset(code: string, newPassword: string): Promise<any> {
+    return this.firebaseAuth.confirmPasswordReset(code, newPassword);
+  }
 }
