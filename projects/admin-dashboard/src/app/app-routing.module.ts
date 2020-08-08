@@ -1,3 +1,4 @@
+import { RolesModule } from './roles/roles.module';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AuthenticationGuard} from './shared/guards/authentication-guard';
@@ -6,6 +7,11 @@ const routes: Routes = [
   {
     path: 'order',
     loadChildren: () => import('./help-request/help-request.module').then(module => module.HelpRequestModule),
+    canActivate: [ AuthenticationGuard ]
+  },
+  {
+    path: 'roles',
+    loadChildren: () => import('./roles/roles.module').then(module => module.RolesModule),
     canActivate: [ AuthenticationGuard ]
   },
   {

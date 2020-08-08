@@ -4,6 +4,7 @@
     "menu.login": "sign in",
     "menu.logout": "logout",
     "menu.create-help-request": "create help request",
+    "menu.edit-roles": "edit roles",
     "login.login-header": "sign in",
     "login.error": "error",
     "login.username": "username",
@@ -61,5 +62,7 @@
     "registration.address-title": "address",
     "registration.address-validate": "validate address",
     "registration.register": "sign up",
-    "reset.password.title": "reset Password"
+    "reset.password.title": "reset Password",
+    "roles.title": "Add Administrator"
+
 }
