@@ -76,13 +76,13 @@ tr {
 .button-secondary {
   background-color: darken($accent, 10%);
   border: 1px solid darken($accent, 10%);
-  color: $white;
+  color: $color-1;
 }
 
 .button-secondary:focus, .button-secondary:hover {
   background-color: darken($accent, 30%);
   border: 1px solid darken($accent, 30%);
-  color: $white;
+  color: $color-1;
 }
 
 .button-light {

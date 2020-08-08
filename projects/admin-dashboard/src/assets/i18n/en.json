@@ -70,5 +70,6 @@
   "reset.password.title": "reset Password",
   "roles.title": "Add Administrator",
   "footer.legal-notice": "Legal notice",
-  "footer.privacy-policy": "Privacy policy"
+  "footer.privacy-policy": "Privacy policy",
+  "footer.contact": "Contact"
 }

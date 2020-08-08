@@ -70,5 +70,6 @@
   "reset.password.title": "Passwort zurücksetzen",
   "roles.title": "Administrator hinzufügen",
   "footer.legal-notice": "Impressum",
-  "footer.privacy-policy": "Datenschutz"
+  "footer.privacy-policy": "Datenschutz",
+  "footer.contact": "Kontakt"
 }
