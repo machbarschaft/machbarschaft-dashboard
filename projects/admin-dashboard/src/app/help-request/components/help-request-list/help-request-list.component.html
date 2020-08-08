@@ -45,7 +45,6 @@
           <th>{{ 'help-request.last-changed' | translate }}</th>
           <th>{{ 'help-request.help-seeker' | translate }}</th>
           <th>{{ 'help-request.status' | translate }}</th>
-          <th>{{ 'help-request.change-status' | translate }}</th>
           <th>&nbsp;</th>
         </tr>
         </thead>
@@ -53,24 +52,18 @@
         <tr *ngFor="let helpRequest of helpRequests">
           <td>{{ helpRequest.updatedAt | date }}</td>
           <td>{{ helpRequest.helpSeeker.fullName }}</td>
-          <ng-container
-            *ngIf="helpRequest.requestStatus =='OPEN' || helpRequest.requestStatus == 'WIP'; else requestClosed">
-            <td class="text-red">{{ 'common.' + helpRequest.requestStatus | translate }}</td>
-          </ng-container>
-          <ng-template #requestClosed>
-            <td class="text-green">{{ 'common.' + helpRequest.requestStatus | translate }}</td>
-          </ng-template>
-          <ng-container [ngSwitch]="helpRequest.requestStatus">
-            <td *ngSwitchCase="'OPEN'">
-              <button button-primary>{{ 'common.WIP' | translate }}</button>
-            </td>
-            <td *ngSwitchCase="'WIP'">
-              <button button-primary>{{ 'common.close' | translate }}</button>
-            </td>
-            <td *ngSwitchCase="'CLOSED'">
-              <button button-primary>{{ 'common.reopen' | translate }}</button>
-            </td>
-          </ng-container>
+          <td>
+            <div>
+              <div class="d-inline-block">
+                <ng-container *ngTemplateOutlet="stepCircle; context: { done: true }"></ng-container>
+                <ng-container *ngTemplateOutlet="stepCircle; context: { done: helpRequest.requestStatus === 'WIP' || helpRequest.requestStatus === 'CLOSED' }"></ng-container>
+                <ng-container *ngTemplateOutlet="stepCircle; context: { done: helpRequest.requestStatus === 'CLOSED' }"></ng-container>
+              </div>
+              <div class="d-inline-block step-circle-text">
+                {{ 'common.' + helpRequest.requestStatus | translate }}
+              </div>
+            </div>
+          </td>
           <td>
             <a [routerLink]="helpRequest.id" class="text-primary">
               {{ 'help-request.to-detail-view' | translate }}
@@ -86,3 +79,6 @@
   </div>
 </div>
 
+<ng-template #stepCircle let-done="done">
+  <div class="step-circle d-inline-block mr-2" [ngClass]="{'bg-primary': done, 'bg-gray': !done}"></div>
+</ng-template>

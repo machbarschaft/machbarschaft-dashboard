@@ -5,9 +5,18 @@
         <div class="col-12">
           <h1>{{ 'help-request.detail-view' | translate }}</h1>
         </div>
+        <div class="col-12">
+          <ng-container *ngTemplateOutlet="stepCircle; context: { step: 1, text: 'common.OPEN' | translate,
+            done: true, last: false }"></ng-container>
+          <ng-container *ngTemplateOutlet="stepCircle; context: { step: 2, text: 'common.WIP' | translate,
+            done: helpRequest.requestStatus === 'WIP' || helpRequest.requestStatus === 'CLOSED', last: false }"></ng-container>
+          <ng-container *ngTemplateOutlet="stepCircle; context: { step: 3, text: 'common.CLOSED' | translate,
+            done: helpRequest.requestStatus === 'CLOSED', last: true }"></ng-container>
+        </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <span class="pb-2 font-weight-bold d-block">{{ 'help-request.status' | translate }}</span>
-          <input class="pb-2 font-weight-normal d-block w-100" disabled [ngModel]="'common.' + helpRequest.requestStatus | translate">
+          <input class="pb-2 font-weight-normal d-block w-100" disabled
+                 [ngModel]="'common.' + helpRequest.requestStatus | translate">
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <span class="pb-2 font-weight-bold d-block">{{ 'help-request.last-changed' | translate }}</span>
@@ -19,7 +28,8 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <span class="pb-2 font-weight-bold d-block">{{ 'help-request.hint' | translate }}</span>
-          <textarea class="pb-2 font-weight-normal d-block w-100" rows="4" disabled [ngModel]="helpRequest.requestText"></textarea>
+          <textarea class="pb-2 font-weight-normal d-block w-100" rows="4" disabled
+                    [ngModel]="helpRequest.requestText"></textarea>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <span class="pb-2 font-weight-bold d-block">{{ 'help-request.help-seeker' | translate }}</span>
@@ -39,6 +49,21 @@
   <div class="row">
     <div class="col-auto mx-auto">
       {{ 'help-request.not-found' | translate }}
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #stepCircle let-step="step" let-text="text" let-done="done" let-last="last">
+  <div class="mb-2"
+       [ngClass]="{'mr-2': !last, 'd-block': breakpointObserverService.isMobile$ | async, 'd-inline-block': !(breakpointObserverService.isMobile$ | async)}">
+    <div class="step-circle mr-2 d-inline-block" [ngClass]="{'bg-primary': done, 'bg-gray': !done}">
+      <div class="step-circle-text my-auto h-100 text-white font-size-m font-weight-bold text-center">
+        {{ step }}
+      </div>
+    </div>
+    <div class="d-inline-block">
+      <span class="font-size-s font-weight-bold"
+            [ngClass]="{'text-primary': done, 'text-gray': !done}">{{ text }}</span>
     </div>
   </div>
 </ng-template>

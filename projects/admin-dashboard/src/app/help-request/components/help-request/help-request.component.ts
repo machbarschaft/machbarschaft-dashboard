@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncap
 import {ActivatedRoute} from '@angular/router';
 import {HelpRequest} from '../../../shared/models/helpRequest.interface';
 import {HelpRequestService} from '../../../shared/services/backend/help-request.service';
+import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
 
 @Component({
   selector: 'mbs-ad-help-request',
@@ -17,6 +18,7 @@ export class HelpRequestComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private helpRequestService: HelpRequestService,
+              public breakpointObserverService: BreakPointObserverService,
               private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {

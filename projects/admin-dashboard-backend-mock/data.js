@@ -18,20 +18,23 @@ const SOURCE = {
 function createMultipleHelpRequests() {
   const requests = [];
   for (let i = 0; i < numberOfHelpRequests; i++) {
-    requests.push(createSingleHelpRequest(REQUEST_STATUS.OPEN, 'hallo Welt ' + i, 'xyz'));
+    const index = Math.round(Math.random() * 2);
+    const status = index === 0 ? REQUEST_STATUS.OPEN : index === 1 ? REQUEST_STATUS.WIP : REQUEST_STATUS.CLOSED;
+    requests.push(createSingleHelpRequest(status, 'hallo Welt ' + i, 'xyz'));
   }
   return requests;
 }
 
 function createSingleHelpRequest(requestStatus, requestText, helpSeeker, adminUser = null) {
   const date = new Date();
+  const index = Math.round(Math.random() * (helpSeekers.length - 1));
   const helpRequest = {
     id: uuidv4(),
     createdAt: date,
     updatedAt: date,
     requestStatus: requestStatus,
     requestText: requestText,
-    helpSeeker: helpSeeker,
+    helpSeeker: helpSeekers[index],
     adminUser: adminUser
   };
   return helpRequest;
@@ -58,8 +61,8 @@ function createMultipleHelpSeekers() {
 }
 
 // DATA
-const helpRequests = createMultipleHelpRequests();
 const helpSeekers = createMultipleHelpSeekers();
+const helpRequests = createMultipleHelpRequests();
 
 module.exports = {
   getHelpRequests: function () {
