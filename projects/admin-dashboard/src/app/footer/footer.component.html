@@ -1,0 +1,21 @@
+<div class="container-fluid footer mt-3">
+  <div class="container bg-white mb-3">
+    <div class="row">
+      <div class="col-auto mr-3">
+        <a class="text-primary" href="https://machbarschaft.jetzt/impressum.html">{{ 'footer.legal-notice' | translate }}</a>
+      </div>
+      <div class="col-auto mr-3">
+        <a class="text-primary" href="https://machbarschaft.jetzt/datenschutz.html">{{ 'footer.privacy-policy' | translate }}</a>
+      </div>
+      <div [ngClass]="{'col-auto text-left': breakPointObserverService.isMobile$ | async,
+                        'col text-right': !(breakPointObserverService.isMobile$ | async)}">
+        <span class="text-primary">© Machbarschaft 2020</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 text-center" >
+        Created with ❤ by <a href="https://machbarschaft.jetzt/">Machbarschaft</a>
+      </div>
+    </div>
+  </div>
+</div>

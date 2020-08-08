@@ -10,6 +10,7 @@ import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/h
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {RequestInterceptor} from './shared/services/request.interceptor';
+import {FooterModule} from './footer/footer.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
@@ -26,6 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HelpRequestModule,
     StyleLibModule,
     HeaderModule,
+    FooterModule,
     HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',

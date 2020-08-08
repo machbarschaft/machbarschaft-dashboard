@@ -63,6 +63,7 @@
     "registration.address-validate": "validate address",
     "registration.register": "sign up",
     "reset.password.title": "reset Password",
-    "roles.title": "Add Administrator"
-
+    "roles.title": "Add Administrator",
+    "footer.legal-notice": "Legal notice",
+    "footer.privacy-policy": "Privacy policy"
 }
