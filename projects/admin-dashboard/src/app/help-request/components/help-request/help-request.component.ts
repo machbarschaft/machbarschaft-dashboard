@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {HelpRequest} from '../../../shared/models/helpRequest.interface';
 import {HelpRequestService} from '../../../shared/services/backend/help-request.service';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
+import {REQUEST_STATUS} from '../../../shared/models/constants.interface';
 
 @Component({
   selector: 'mbs-ad-help-request',
@@ -32,6 +33,18 @@ export class HelpRequestComponent implements OnInit {
             this.changeDetectorRef.detectChanges();
           });
       });
+  }
+
+  updateStatus(status: REQUEST_STATUS): void {
+    if (this.helpRequest.requestStatus !== status) {
+      this.helpRequestService.updateHelpRequestStatus(this.helpRequest.id, status)
+        .subscribe((helpRequest: HelpRequest) => {
+          this.helpRequest = helpRequest;
+          this.changeDetectorRef.detectChanges();
+        }, () => {
+          console.log('updating status has not worked');
+        });
+    }
   }
 
 }

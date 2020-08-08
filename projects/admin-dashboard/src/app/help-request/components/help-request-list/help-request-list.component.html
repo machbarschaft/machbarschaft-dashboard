@@ -55,9 +55,12 @@
           <td>
             <div>
               <div class="d-inline-block">
-                <ng-container *ngTemplateOutlet="stepCircle; context: { done: true }"></ng-container>
-                <ng-container *ngTemplateOutlet="stepCircle; context: { done: helpRequest.requestStatus === 'WIP' || helpRequest.requestStatus === 'CLOSED' }"></ng-container>
-                <ng-container *ngTemplateOutlet="stepCircle; context: { done: helpRequest.requestStatus === 'CLOSED' }"></ng-container>
+                <ng-container *ngTemplateOutlet="stepCircle;
+                      context: { done: true, status: 'OPEN', helpRequest: helpRequest }"></ng-container>
+                <ng-container *ngTemplateOutlet="stepCircle;
+                      context: { done: helpRequest.requestStatus === 'WIP' || helpRequest.requestStatus === 'CLOSED', status: 'WIP', helpRequest: helpRequest }"></ng-container>
+                <ng-container *ngTemplateOutlet="stepCircle;
+                      context: { done: helpRequest.requestStatus === 'CLOSED', status: 'CLOSED', helpRequest: helpRequest }"></ng-container>
               </div>
               <div class="d-inline-block step-circle-text">
                 {{ 'common.' + helpRequest.requestStatus | translate }}
@@ -79,6 +82,7 @@
   </div>
 </div>
 
-<ng-template #stepCircle let-done="done">
-  <div class="step-circle d-inline-block mr-2" [ngClass]="{'bg-primary': done, 'bg-gray': !done}"></div>
+<ng-template #stepCircle let-done="done" let-status="status" let-helpRequest="helpRequest">
+  <div class="step-circle d-inline-block mr-2" [ngClass]="{'bg-primary': done, 'bg-gray': !done}"
+       [title]="('common.'+status) | translate" (click)="updateStatus(helpRequest, status)"></div>
 </ng-template>

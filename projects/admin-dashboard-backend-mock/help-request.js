@@ -55,7 +55,7 @@ module.exports = function(app) {
     if (status) {
       const helpRequest = data.getHelpRequest(uuid);
       if (helpRequest) {
-        helpRequest.status = status;
+        helpRequest.requestStatus = status;
         res.send(helpRequest);
       } else {
         res.status(404).end();
