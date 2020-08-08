@@ -30,10 +30,9 @@ module.exports = function(app) {
    const fullName = req.body['fullName'];
    const phone = req.body['phone'];
    const source = req.body['source'];
-   const enteredBy = req.body['enteredBy'];
 
-    if (fullName && phone && source && enteredBy) {
-      const helpRequest = data.createHelpSeeker(fullName, phone, source, enteredBy);
+    if (fullName && phone && source) {
+      const helpRequest = data.createHelpSeeker(fullName, phone, source, null);
       res.status(201);
       res.send(helpRequest);
     } else {

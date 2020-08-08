@@ -23,7 +23,7 @@ function createMultipleHelpRequests() {
   return requests;
 }
 
-function createSingleHelpRequest(requestStatus, requestText, adminUser) {
+function createSingleHelpRequest(requestStatus, requestText, helpSeeker, adminUser = null) {
   const date = new Date();
   const helpRequest = {
     id: uuidv4(),
@@ -31,18 +31,19 @@ function createSingleHelpRequest(requestStatus, requestText, adminUser) {
     updatedAt: date,
     requestStatus: requestStatus,
     requestText: requestText,
+    helpSeeker: helpSeeker,
     adminUser: adminUser
   };
   return helpRequest;
 }
 
-function createHelpSeeker(fullName, phone, source, enteredBy) {
+function createHelpSeeker(fullName, phone, source, enteredBy = null) {
   const helpSeeker = {
     id: uuidv4(),
     user: null,
     fullName: fullName,
     source: source,
-    enteredBy: null
+    enteredBy: enteredBy
   };
   return helpSeeker;
 }

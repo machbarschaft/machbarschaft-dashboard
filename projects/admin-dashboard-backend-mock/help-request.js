@@ -30,9 +30,10 @@ module.exports = function(app) {
     const requestText = req.body['requestText'];
     const requestStatus = req.body['requestStatus'];
     const adminUser = req.body['adminUser'];
+    const helpSeeker = req.body['helpSeeker'];
 
-    if (requestText && requestStatus && adminUser) {
-      const helpRequest = data.createHelpRequest(requestStatus, requestText, adminUser);
+    if (requestText && requestStatus && helpSeeker) {
+      const helpRequest = data.createHelpRequest(requestStatus, requestText, adminUser, helpSeeker);
       res.status(201);
       res.send(helpRequest);
     } else {
