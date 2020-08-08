@@ -1,10 +1,13 @@
-import { UserManagementComponent } from './user-management/user-management/user-management.component';
-import { RolesModule } from './roles/roles.module';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {UserManagementComponent} from './user-management/user-management/user-management.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AuthenticationGuard} from './shared/guards/authentication-guard';
 
 const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () => import('./home/home.module').then(module => module.HomeModule)
+  },
   {
     path: 'order',
     loadChildren: () => import('./help-request/help-request.module').then(module => module.HelpRequestModule),
