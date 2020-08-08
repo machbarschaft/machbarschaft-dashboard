@@ -28,11 +28,15 @@ module.exports = function(app) {
    */
   app.post('/v1/help-request', function(req, res) {
     const requestText = req.body['requestText'];
-    const requestStatus = req.body['requestStatus'];
+    let requestStatus = req.body['requestStatus'];
     const adminUser = req.body['adminUser'];
     const helpSeeker = req.body['helpSeeker'];
 
-    if (requestText && requestStatus && helpSeeker) {
+    if (!!requestStatus) {
+      requestStatus = 'OPEN';
+    }
+
+    if (requestText && helpSeeker) {
       const helpRequest = data.createHelpRequest(requestStatus, requestText, adminUser, helpSeeker);
       res.status(201);
       res.send(helpRequest);
