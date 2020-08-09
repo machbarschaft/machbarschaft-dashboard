@@ -68,6 +68,10 @@
   "registration.address-validate": "Adresse überprüfen",
   "registration.register": "Registrieren",
   "reset.password.title": "Passwort zurücksetzen",
+  "reset.new.password": "neues Passwort",
+  "reset.new.password.repeat": "Passwort wiederholen",
+  "reset.password.Error.invalidPassword": "Das Passwort muss mindestends aus 6 Zeichen bestehen",
+  "reset.password.Error.invalidCode": "Der Link ist nicht mehr gültig",
   "roles.title": "Administrator hinzufügen",
   "footer.legal-notice": "Impressum",
   "footer.privacy-policy": "Datenschutz"

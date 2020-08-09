@@ -68,6 +68,10 @@
   "registration.address-validate": "validate address",
   "registration.register": "sign up",
   "reset.password.title": "reset Password",
+  "reset.new.password": "new Password",
+  "reset.new.password.repeat": "repeat password",
+  "reset.password.Error.invalidPassword": "Password should be at least 6 characters",
+  "reset.password.Error.invalidCode": "The link is no longer valid",
   "roles.title": "Add Administrator",
   "footer.legal-notice": "Legal notice",
   "footer.privacy-policy": "Privacy policy"

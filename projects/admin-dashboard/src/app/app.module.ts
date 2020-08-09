@@ -1,3 +1,4 @@
+import { UserManagementModule } from './user-management/user-management.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
@@ -30,6 +31,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     HeaderModule,
     FooterModule,
     HomeModule,
+    UserManagementModule,
     HttpClientModule,
     TranslateModule.forRoot({
       defaultLanguage: 'de',
