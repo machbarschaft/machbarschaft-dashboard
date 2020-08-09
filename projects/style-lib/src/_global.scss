@@ -11,7 +11,13 @@ a {
   text-decoration: none;
 }
 
-a:hover, a:active {}
+a:hover, a:active {
+  color: $blue;
+
+  &:after {
+    color: $blue;
+  }
+}
 
 button {
   background-color: $white;

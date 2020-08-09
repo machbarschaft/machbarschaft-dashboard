@@ -83,7 +83,7 @@ export class RegistrationComponent implements OnInit {
           console.log('registration in firebase successful');
           this.authService.getToken().subscribe(
             (result) => {
-              this.storageService.setItem('token', result);
+              localStorage.setItem('token', result);
 
               // if the registration in firebase was sucessful: register in backend
               const user: User = {

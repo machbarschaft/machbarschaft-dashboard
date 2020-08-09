@@ -10,7 +10,7 @@ export class AuthenticationGuardService {
   constructor(private storageService: StorageService) {
     this.#isAuthenticated = new ReplaySubject<boolean>(1);
 
-    const refreshToken = this.storageService.getItem('refreshToken');
+    const refreshToken = localStorage.getItem('refreshToken');
     if (refreshToken) {
       this.#isAuthenticated.next(true);
     } else {

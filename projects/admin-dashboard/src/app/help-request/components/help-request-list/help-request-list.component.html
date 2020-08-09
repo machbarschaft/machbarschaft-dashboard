@@ -4,7 +4,7 @@
     <ng-container *ngIf="breakPointObserverService.isMobile$ | async; else desktopView">
       <ng-container *ngIf="helpRequests.length; else noHelpRequests">
         <ng-container *ngFor="let helpRequest of helpRequests">
-          <div class="order-card p-2 mb-3">
+          <div class="help-request-card p-2 mb-3">
             <div class="row">
               <div class="col-6">
                 <div class="font-weight-bold">{{ 'help-request.last-changed' | translate }}</div>
@@ -24,9 +24,9 @@
                 <div class="font-weight-normal">{{ 'common.' + helpRequest.requestStatus | translate }}</div>
               </div>
               <div class="col-12 mt-3">
-                <a [routerLink]="helpRequest.id" class="text-primary text-center font-weight-bold d-block w-100">
+                <button button-primary [routerLink]="helpRequest.id" class="w-100">
                   {{ 'help-request.to-detail-view' | translate }}
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -68,7 +68,7 @@
             </div>
           </td>
           <td>
-            <a [routerLink]="helpRequest.id" class="text-primary">
+            <a [routerLink]="helpRequest.id" class="text-primary font-weight-bold detail-view">
               {{ 'help-request.to-detail-view' | translate }}
             </a>
           </td>

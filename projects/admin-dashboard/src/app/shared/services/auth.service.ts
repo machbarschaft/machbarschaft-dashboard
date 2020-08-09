@@ -26,8 +26,8 @@ export class AuthService {
       .then((result) => {
         const refreshToken = result.user.refreshToken;
         const authToken = result.user['xa'];
-        this.storageService.setItem('token', authToken);
-        this.storageService.setItem('refreshToken', refreshToken);
+        localStorage.setItem('token', authToken);
+        localStorage.setItem('refreshToken', refreshToken);
 
         this.authenticationGuardService.changeAuthenticated(true);
         subject$.next({message: 'success', successful: true});
@@ -48,7 +48,7 @@ export class AuthService {
     this.firebaseAuth.signOut()
       .then(() => {
         this.router.navigate(['login']).then();
-        this.storageService.clear();
+        localStorage.clear();
         this.authenticationGuardService.changeAuthenticated(false);
       }).catch((error) => {
       console.log(error);

@@ -33,7 +33,7 @@ export class RequestInterceptor implements HttpInterceptor {
         catchError((error: HttpErrorResponse) => {
           if (error && error.status === 401) {
             // user is unauthorized, has to be logged out and redirected to login
-            this.storageService.clear();
+            localStorage.clear();
             this.authenticationGuardService.changeAuthenticated(false);
             this.router.navigate(['login']).then();
           }
