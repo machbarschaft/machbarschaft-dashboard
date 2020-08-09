@@ -18,6 +18,7 @@ export class UserManagementComponent implements OnInit {
 
   passwordError: boolean = false;
   resetSuccessful: boolean = false;
+  errorString: string;
 
   mode: string;
   actionCode: string;
@@ -43,6 +44,7 @@ export class UserManagementComponent implements OnInit {
         })
         .catch(
           (err) => {
+            this.errorString = err.message;
             this.passwordError = true;
             console.log({ err });
           }

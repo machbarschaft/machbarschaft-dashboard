@@ -14,7 +14,7 @@
           [placeholder]="'reset.new.password.repeat' | translate" required>
 
         <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="passwordError">
-          {{ 'reset.password.Error.invalidPassword' | translate }}
+          {{ errorString }}
         </small>
       </div>
 
