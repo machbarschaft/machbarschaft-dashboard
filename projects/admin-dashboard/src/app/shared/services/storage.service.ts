@@ -11,7 +11,7 @@ export class StorageService {
     sessionStorage.setItem(key, value);
   }
 
-  getItem(key: string): any {
+  getItem(key: string): string | any {
     sessionStorage.getItem(key);
   }
 

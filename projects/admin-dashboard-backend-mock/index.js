@@ -18,6 +18,7 @@ app.use(function(req, res, next) {
   }
   else {
     const authorizationHeader = req.headers.authorization;
+    console.log('authHeader', authorizationHeader);
 
     if (authorizationHeader && authorizationHeader.indexOf('Bearer ') === 0 &&
         authorizationHeader.replace('Bearer ', '') !== 'null' &&
