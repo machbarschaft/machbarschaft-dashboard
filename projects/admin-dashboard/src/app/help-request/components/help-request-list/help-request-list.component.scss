@@ -1,6 +1,6 @@
 @import "projects/style-lib/src/variables";
 
-.order-card {
+.help-request-card {
   border: 1px solid $gray-600;
   border-radius: $spacer-1;
   padding: .75rem $spacer-2;
@@ -15,4 +15,9 @@
 
 .step-circle-text {
   padding: 7.5px 0;
+}
+
+.detail-view:after {
+  content: '>';
+  color: $primary;
 }

@@ -3,6 +3,7 @@ import {AuthService, MapsService, UserService} from '../shared/services/public-a
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {GeoPoint, User} from '../shared/public-api';
 import {BreakPointObserverService} from '../../../../style-lib/src/lib/services/break-point-observer.service';
+import {StorageService} from '../shared/services/storage.service';
 
 @Component({
   selector: 'app-registration',
@@ -34,6 +35,7 @@ export class RegistrationComponent implements OnInit {
   constructor(private authService: AuthService,
               private mapsService: MapsService,
               private userService: UserService,
+              private storageService: StorageService,
               public breakpointObserver: BreakPointObserverService,
               private changeDetectorRef: ChangeDetectorRef,
               private router: Router) {

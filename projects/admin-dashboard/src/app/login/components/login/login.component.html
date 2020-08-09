@@ -2,7 +2,6 @@
   <div class="col-lg-4 col-sm-12 col-md-12 mx-lg-auto">
     <h1>{{ 'login.login-header' | translate }}</h1>
     <form class="my-5" [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
-      <div *ngIf="loginError" class="alert alert-danger" role="alert">{{ 'login.error' | translate }}</div>
       <div class="form-group mb-3">
         <label class="d-block pb-2 font-weight-bold">{{ 'login.username' | translate }}</label>
         <input class="form-control" type="email" formControlName="email" name="user"
@@ -19,6 +18,11 @@
           {{ 'login.error-password' | translate }}
         </small>
       </div>
+      <ng-container *ngIf="loginError || noInternetConnection">
+        <small class="d-block text-red font-size-xs">
+          {{ (loginError ? 'login.error-username-or-password' : 'common.error.no-internet-connection') | translate }}
+        </small>
+      </ng-container>
       <div class="my-3 text-center">
          <a [routerLink]="['/reset-password']">{{ 'login.reset-password' | translate }}</a>
       </div>
@@ -33,7 +37,7 @@
         {{ 'login.register-text' | translate }}
       </span>
       <div class="text-center">
-        <button [routerLink]="['/registration']" button-primary class="w-100">
+        <button [routerLink]="['/registration']" type="button" button-primary class="w-100">
           {{ 'login.register' | translate }}
         </button>
       </div>

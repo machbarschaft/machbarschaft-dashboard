@@ -6,6 +6,7 @@ import {AuthenticationGuardService} from './authentication-guard.service';
 import {Observable, ReplaySubject} from 'rxjs';
 import {AuthResponse} from '../models/common.interface';
 import {FIREBASE_LOGIN_ERROR_ENUM, LOGIN_ERROR_ENUM} from '../models/constants.interface';
+import {StorageService} from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class AuthService {
   constructor(private firebaseAuth: AngularFireAuth,
               private router: Router,
               private sodium: SodiumCryptoService,
+              private storageService: StorageService,
               private authenticationGuardService: AuthenticationGuardService) {
   }
 
@@ -35,6 +37,7 @@ export class AuthService {
       // window.alert(error.message);
       this.authenticationGuardService.changeAuthenticated(false);
       const authResponse = this.getAuthResponseForError(error ? error.code : error);
+      console.log('authResponse', authResponse);
       subject$.next(authResponse);
       subject$.complete();
     });

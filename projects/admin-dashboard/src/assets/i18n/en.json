@@ -13,6 +13,7 @@
   "login.password": "password",
   "login.error-password": "Password has to be at least 8 characters.",
   "login.reset-password": "forgot password",
+  "login.error-username-or-password": "Username or password is wrong.",
   "login.login": "sign in",
   "login.register-text": "I do not have an account yet and would like to sign up.",
   "login.register": "sign up",
@@ -74,5 +75,6 @@
   "reset.password.Error.invalidCode": "The link is no longer valid",
   "roles.title": "Add Administrator",
   "footer.legal-notice": "Legal notice",
-  "footer.privacy-policy": "Privacy policy"
+  "footer.privacy-policy": "Privacy policy",
+  "footer.contact": "Contact"
 }
