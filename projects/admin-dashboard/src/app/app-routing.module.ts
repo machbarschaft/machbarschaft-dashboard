@@ -9,7 +9,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then(module => module.HomeModule)
   },
   {
-    path: 'order',
+    path: 'help-request',
     loadChildren: () => import('./help-request/help-request.module').then(module => module.HelpRequestModule),
     canActivate: [ AuthenticationGuard ]
   },

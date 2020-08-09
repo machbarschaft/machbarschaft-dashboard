@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation} from '@angular/core';
-import {OrderApiService} from '../../../shared/services/backend/order-api.service';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
 import {HelpRequestService} from '../../../shared/services/backend/help-request.service';
@@ -8,7 +7,7 @@ import {HelpSeekerService} from '../../../shared/services/backend/help-seeker.se
 import {HelpSeeker} from '../../../shared/models/helpSeeker.interface';
 
 @Component({
-  selector: 'mbs-ad-create-order',
+  selector: 'mbs-ad-create-help-request',
   templateUrl: './create-help-request.component.html',
   styleUrls: ['./create-help-request.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,8 +24,7 @@ export class CreateHelpRequestComponent {
   noInternetConnection: boolean = false;
   success: boolean = false;
 
-  constructor(private orderApiService: OrderApiService,
-              private helpSeekerService: HelpSeekerService,
+  constructor(private helpSeekerService: HelpSeekerService,
               private helpRequestService: HelpRequestService,
               private changeDetectorRef: ChangeDetectorRef,
               public breakpointObserver: BreakPointObserverService) {}

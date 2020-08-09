@@ -13,6 +13,7 @@
   "login.password": "password",
   "login.error-password": "Password has to be at least 8 characters.",
   "login.reset-password": "forgot password",
+  "login.error-username-or-password": "Username or password is wrong.",
   "login.login": "sign in",
   "login.register-text": "I do not have an account yet and would like to sign up.",
   "login.register": "sign up",

@@ -16,7 +16,8 @@ export class LoginComponent {
   // Used to display error messages in forms
   emailError: boolean = false;
   passwordError: boolean = false;
-  loginError: string = null;
+  loginError: string;
+  noInternetConnection: boolean = false;
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -25,22 +26,21 @@ export class LoginComponent {
 
   constructor(private authService: AuthService,
               private router: Router,
-              public breakpointObserver: BreakPointObserverService) {
-    this.loginError = null;
-  }
+              public breakpointObserver: BreakPointObserverService) {}
 
   onFormSubmit(): void {
     if (this.loginForm.valid) {
       // Form is valid and reset all errors
-      this._reset_errors_();
+      this.resetErrors();
       // Observer for login
       this.authService.login$(this.loginForm.value.email, this.loginForm.value.password).subscribe((authResponse: AuthResponse) => {
         if (authResponse.successful) {
-          this.router.navigate(['order']).then();
+          this.router.navigate(['help-request']).then();
         } else {
           this.loginError = authResponse.message;
-          console.error('Login.component: loginError', this.loginError);
         }
+      }, () => {
+        this.noInternetConnection = true;
       });
     } else {
       if (this.loginForm.get('email').invalid) {
@@ -52,10 +52,11 @@ export class LoginComponent {
     }
   }
 
-  _reset_errors_() {
+  private resetErrors(): void {
     this.loginError = null;
     this.emailError = false;
     this.passwordError = false;
+    this.noInternetConnection = false;
   }
 
   forgotPassword() {

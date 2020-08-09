@@ -1,5 +1,4 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {OrderApiService} from '../../../shared/services/backend/order-api.service';
 import {BreakPointObserverService} from '../../../../../../style-lib/src/lib/services/break-point-observer.service';
 import {HelpRequest} from '../../../shared/models/helpRequest.interface';
 import {HelpRequestService} from '../../../shared/services/backend/help-request.service';
@@ -17,8 +16,7 @@ export class HelpRequestListComponent implements OnInit {
   helpRequests: HelpRequest[];
   isMobile: boolean;
 
-  constructor(private orderApiService: OrderApiService,
-              private helpRequestApiService: HelpRequestService,
+  constructor(private helpRequestApiService: HelpRequestService,
               public breakPointObserverService: BreakPointObserverService,
               private changeDetectorRef: ChangeDetectorRef) {
     this.helpRequests = [];
