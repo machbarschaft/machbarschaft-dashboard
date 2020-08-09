@@ -35,6 +35,7 @@ export class AuthService {
       // window.alert(error.message);
       this.authenticationGuardService.changeAuthenticated(false);
       const authResponse = this.getAuthResponseForError(error ? error.code : error);
+      console.log('authResponse', authResponse);
       subject$.next(authResponse);
       subject$.complete();
     });

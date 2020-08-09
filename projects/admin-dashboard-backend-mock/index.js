@@ -17,8 +17,16 @@ app.use(function(req, res, next) {
     res.send('OK');
   }
   else {
-    //move on
-    next();
+    const authorizationHeader = req.headers.authorization;
+
+    if (authorizationHeader && authorizationHeader.indexOf('Bearer ') === 0 &&
+        authorizationHeader.replace('Bearer ', '') !== 'null') {
+      //move on
+      next();
+    } else {
+      res.status(401);
+      res.send();
+    }
   }
 });
 
