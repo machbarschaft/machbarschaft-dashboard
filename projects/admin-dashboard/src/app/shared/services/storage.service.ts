@@ -7,4 +7,12 @@ export class StorageService {
     sessionStorage.clear();
   }
 
+  setItem(key: string, value: any): void {
+    sessionStorage.setItem(key, value);
+  }
+
+  getItem(key: string): any {
+    sessionStorage.getItem(key);
+  }
+
 }
