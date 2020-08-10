@@ -1,11 +1,9 @@
-export interface Location {
-  latitude: number;
-  longitude: number;
-}
+import {GeoPoint} from './geo.interface';
 
 export interface Address {
-  street: string;
-  zipCode: string;
   city: string;
-  location: Location;
+  street: string;
+  streetNo: string;
+  zipCode: string;
+  location?: GeoPoint;
 }

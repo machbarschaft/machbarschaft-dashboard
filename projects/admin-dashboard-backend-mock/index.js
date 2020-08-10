@@ -37,6 +37,7 @@ app.listen(3000, () =>
 
 require('./help-request')(app);
 require('./help-seeker')(app);
+require('./user')(app);
 
 app.get('/', (req, res) => {
   res.send('hello world');

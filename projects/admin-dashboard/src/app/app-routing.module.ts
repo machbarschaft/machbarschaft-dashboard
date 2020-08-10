@@ -33,6 +33,10 @@ const routes: Routes = [
   {
     path: 'user-management',
     component: UserManagementComponent
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
   }
 ];
 

@@ -71,8 +71,6 @@ export class RegistrationComponent implements OnInit {
   }
 
   registration(): void {
-    console.log('registration called');
-
     if (this.password === this.repeatPassword) {
       if (this.location === undefined || this.location === null) {
         this.checkAddress(true);

@@ -34,6 +34,10 @@
                    [routerLinkActive]="['font-weight-bold']" class="mr-5 text-white">
                   {{ 'menu.edit-roles' | translate }}
                 </a>
+                <a *ngIf="isAuthenticated" [routerLink]="['user']"
+                   [routerLinkActive]="['font-weight-bold']" class="mr-5 text-white">
+                  {{ 'menu.profile' | translate }}
+                </a>
                 <a *ngIf="!isAuthenticated" [routerLink]="['login']"
                    [routerLinkActive]="['font-weight-bold']" class="text-white">
                   {{ 'menu.login' | translate }}
@@ -66,6 +70,9 @@
           </button>
           <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('roles')">
             {{ 'menu.edit-roles' | translate }}
+          </button>
+          <button *ngIf="isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('user')">
+            {{ 'menu.profile' | translate }}
           </button>
           <button *ngIf="!isAuthenticated" button-light class="w-100 mb-3" (click)="navigate('login')">
             {{ 'menu.login' | translate }}

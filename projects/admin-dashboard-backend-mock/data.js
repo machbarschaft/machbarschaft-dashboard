@@ -60,6 +60,23 @@ function createMultipleHelpSeekers() {
   return helpSeekers;
 }
 
+function createUser(firstName, lastName, street, streetNo, zipCode,
+                    city, email, location, phone, source) {
+  const user = {
+    firstName: firstName,
+    lastName: lastName,
+    street: street,
+    streetNo: streetNo,
+    zipCode: zipCode,
+    city: city,
+    email: email,
+    location: location,
+    phone: phone,
+    source: source
+  };
+  return user;
+}
+
 // DATA
 const helpSeekers = createMultipleHelpSeekers();
 const helpRequests = createMultipleHelpRequests();
@@ -82,6 +99,11 @@ module.exports = {
   },
   getHelpSeeker: function (uuid) {
     return helpSeekers.find(seeker => seeker.id === uuid);
+  },
+  createUser: function(firstName, lastName, street, streetNo, zipCode,
+                       city, email, location, phone, source) {
+    return createUser(firstName, lastName, street, streetNo, zipCode,
+      city, email, location, phone, source);
   }
 };
 
