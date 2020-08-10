@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../shared/public-api';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'mbs-user-management',
@@ -8,11 +9,19 @@ import { AuthService } from '../../shared/public-api';
   styleUrls: ['./user-management.component.scss']
 })
 export class UserManagementComponent implements OnInit {
+  // Form
+  resetPasswordForm = new FormGroup({
+    newPassword: new FormControl('', [Validators.required, Validators.minLength(8)]),
+    newPasswordConfirm: new FormControl('', [Validators.required, Validators.minLength(8)]),
+
+  });
+
+  passwordError: boolean = false;
+  resetSuccessful: boolean = false;
 
   mode: string;
   actionCode: string;
-  newPassword: string = '';
-  newPasswordConfirm: string = '';
+
   constructor(private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit(): void {
@@ -24,14 +33,18 @@ export class UserManagementComponent implements OnInit {
   }
 
   resetPassword() {
-    if (this.newPassword === this.newPasswordConfirm) {
-      this.authService.confirmPasswordReset(this.actionCode, this.newPassword)
+    console.log({ P: this.resetPasswordForm.value.newPassword });
+    if (this.resetPasswordForm.value.newPassword === this.resetPasswordForm.value.newPasswordConfirm) {
+      this.authService.confirmPasswordReset(this.actionCode, this.resetPasswordForm.value.newPassword)
         .then((res) => {
-            console.log({res});
+          this.passwordError = false;
+          this.resetPasswordForm.disable();
+          this.resetSuccessful = true;
         })
         .catch(
           (err) => {
-            console.log({err});
+            this.passwordError = true;
+            console.log({ err });
           }
         );
     }
