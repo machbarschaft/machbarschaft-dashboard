@@ -5,6 +5,8 @@
   "menu.logout": "logout",
   "menu.create-help-request": "create help request",
   "menu.edit-roles": "edit roles",
+  "menu.language.de": "german",
+  "menu.language.en": "english",
   "login.login-header": "sign in",
   "login.error": "error",
   "login.username": "username",

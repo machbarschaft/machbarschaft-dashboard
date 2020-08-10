@@ -20,23 +20,38 @@
                 Machbarschaft
               </a>
             </div>
-            <div class="col-auto">
+            <div class="col">
               <div>
-                <a *ngIf="isAuthenticated" [routerLink]="['help-request']" class="mr-5 text-white">
+                <a *ngIf="isAuthenticated" [routerLink]="['help-request']" [routerLinkActiveOptions]="{ exact: true }"
+                   [routerLinkActive]="['font-weight-bold']" class="mr-5 text-white">
                   {{ 'menu.overview' | translate }}
                 </a>
-                <a *ngIf="isAuthenticated" [routerLink]="['help-request/create']" class="mr-5 text-white">
+                <a *ngIf="isAuthenticated" [routerLink]="['help-request/create']"
+                   [routerLinkActive]="['font-weight-bold']" class="mr-5 text-white">
                   {{ 'menu.create-help-request' | translate }}
                 </a>
-                <a *ngIf="isAuthenticated" [routerLink]="['roles']" class="mr-5 text-white">
+                <a *ngIf="isAuthenticated" [routerLink]="['roles']"
+                   [routerLinkActive]="['font-weight-bold']" class="mr-5 text-white">
                   {{ 'menu.edit-roles' | translate }}
                 </a>
-                <a *ngIf="!isAuthenticated" [routerLink]="['login']" class="text-white">
+                <a *ngIf="!isAuthenticated" [routerLink]="['login']"
+                   [routerLinkActive]="['font-weight-bold']" class="text-white">
                   {{ 'menu.login' | translate }}
                 </a>
                 <button button-secondary *ngIf="isAuthenticated" (click)="logout()" class="ml-3">
                   {{ 'menu.logout' | translate }}
                 </button>
+              </div>
+            </div>
+            <div class="col-auto">
+              <div class="d-inline-block text-white text-right">
+                <span class="cursor-pointer" (click)="changeLanguage('de')" [ngClass]="{'font-weight-bold': language === 'de'}">
+                  DE
+                </span>
+                <span>|</span>
+                <span class="cursor-pointer" (click)="changeLanguage('en')" [ngClass]="{'font-weight-bold': language === 'en'}">
+                  EN
+                </span>
               </div>
             </div>
           </ng-template>
@@ -58,6 +73,15 @@
           <button *ngIf="isAuthenticated" button-secondary class="w-100" (click)="logout()">
             {{ 'menu.logout' | translate }}
           </button>
+          <div class="w-100 text-center text-white font-size-m mt-3">
+            <span class="cursor-pointer" (click)="changeLanguage('de')" [ngClass]="{'font-weight-bold': language === 'de'}">
+              {{ 'menu.language.de' | translate | uppercase }}
+            </span>
+            <span>|</span>
+            <span class="cursor-pointer" (click)="changeLanguage('en')" [ngClass]="{'font-weight-bold': language === 'en'}">
+              {{ 'menu.language.en' | translate | uppercase }}
+            </span>
+          </div>
       </ng-container>
     </div>
   </div>

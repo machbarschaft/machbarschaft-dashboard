@@ -5,6 +5,8 @@
   "menu.logout": "Abmelden",
   "menu.create-help-request": "Hilfegesuch anlegen",
   "menu.edit-roles": "Rollen bearbeiten",
+  "menu.language.de": "deutsch",
+  "menu.language.en": "englisch",
   "login.login-header": "Anmeldung",
   "login.error": "Fehler",
   "login.username": "Benutzername",
