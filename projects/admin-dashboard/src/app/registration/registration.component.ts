@@ -4,38 +4,42 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {GeoPoint, User} from '../shared/public-api';
 import {BreakPointObserverService} from '../../../../style-lib/src/lib/services/break-point-observer.service';
 import {StorageService} from '../shared/services/storage.service';
+import {AsyncPipe} from '@angular/common';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  styleUrls: ['./registration.component.scss'],
+  providers: [AsyncPipe]
 })
 export class RegistrationComponent implements OnInit {
 
   // for map
-  showMap = false;
+  showMap: boolean = false;
   mapCenter: google.maps.LatLngLiteral;
-  markerTitle = 'Ihre Adresse?';
+  markerTitle: string;
   // creating a user
-  email = '';
-  firstName = '';
-  lastName = '';
-  phoneNumber = '';
-  street = '';
-  streetNo = '';
-  updatedAt = '';
-  zipCode = '';
-  city = '';
-  password = '';
-  repeatPassword = '';
+  email: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  phoneNumber: string = '';
+  street: string = '';
+  streetNo: string = '';
+  zipCode: string = '';
+  city: string = '';
+  password: string = '';
+  repeatPassword: string = '';
   location: GeoPoint;
-  address = '';
+  address: any = '';
   mapWidth: number;
 
   constructor(private authService: AuthService,
               private mapsService: MapsService,
               private userService: UserService,
               private storageService: StorageService,
+              private asyncPipe: AsyncPipe,
+              private translateService: TranslateService,
               public breakpointObserver: BreakPointObserverService,
               private changeDetectorRef: ChangeDetectorRef,
               private router: Router) {
@@ -47,6 +51,7 @@ export class RegistrationComponent implements OnInit {
         this.mapWidth = window.innerWidth > 760 ? null : window.innerWidth - 60;
         this.changeDetectorRef.detectChanges();
       });
+    this.markerTitle = this.asyncPipe.transform(this.translateService.get('user.your-address'));
   }
 
   checkAddress(onRegistration?: boolean): void {

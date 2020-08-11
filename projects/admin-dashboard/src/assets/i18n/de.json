@@ -80,6 +80,7 @@
   "user.error.not-found": "Ihre Benutzerdaten konnten nicht abgerufen werden. Bitte probieren Sie es später erneut.",
   "user.success": "Die Änderungen wurden erfolgreich gespeichert.",
   "user.save": "speichern",
+  "user.your-address": "Ihre Adresse",
   "reset.password.title": "Passwort zurücksetzen",
   "reset.new.password": "neues Passwort",
   "reset.new.password.repeat": "Passwort wiederholen",

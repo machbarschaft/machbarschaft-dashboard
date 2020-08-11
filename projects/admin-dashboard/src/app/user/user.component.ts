@@ -5,13 +5,16 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {BreakPointObserverService} from '../../../../style-lib/src/lib/services/break-point-observer.service';
 import {MapsService} from '../shared/services/maps.service';
 import {Address} from '../shared/models/address';
+import {AsyncPipe} from '@angular/common';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'mbs-ad-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss'],
   encapsulation: ViewEncapsulation.Emulated,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [AsyncPipe]
 })
 export class UserComponent implements OnInit {
 
@@ -24,7 +27,7 @@ export class UserComponent implements OnInit {
   showMap: boolean = false;
   mapCenter: google.maps.LatLngLiteral;
   mapWidth: number;
-  markerTitle = 'Ihre Adresse?';
+  markerTitle: string;
   addressNotFound: boolean = false;
 
   userForm = new FormGroup({
@@ -38,6 +41,8 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService,
               private mapsService: MapsService,
               public breakpointObserver: BreakPointObserverService,
+              private asyncPipe: AsyncPipe,
+              private translateService: TranslateService,
               private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -62,6 +67,8 @@ export class UserComponent implements OnInit {
         this.user = null;
         this.changeDetectorRef.detectChanges();
       });
+
+    this.markerTitle = this.asyncPipe.transform(this.translateService.get('user.your-address'));
   }
 
   getAbstractControl(key: string): AbstractControl | null {
@@ -104,7 +111,6 @@ export class UserComponent implements OnInit {
             this.changeDetectorRef.detectChanges();
           }
         }, () => {
-          // tbd
           this.updateFailed = true;
           this.changeDetectorRef.detectChanges();
         });

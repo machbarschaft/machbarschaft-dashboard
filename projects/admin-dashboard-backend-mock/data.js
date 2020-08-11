@@ -46,7 +46,8 @@ function createHelpSeeker(fullName, phone, source, enteredBy = null) {
     user: null,
     fullName: fullName,
     source: source,
-    enteredBy: enteredBy
+    enteredBy: enteredBy,
+    phone: phone
   };
   return helpSeeker;
 }

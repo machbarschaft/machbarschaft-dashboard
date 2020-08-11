@@ -80,6 +80,7 @@
   "user.error.not-found": "Your data could not be requested. Please try again later.",
   "user.success": "Your changes have been saved successfully.",
   "user.save": "save",
+  "user.your-address": "Your address",
   "reset.password.title": "reset Password",
   "reset.new.password": "new Password",
   "reset.new.password.repeat": "repeat password",

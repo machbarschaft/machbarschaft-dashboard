@@ -4,6 +4,7 @@ import {AuthService} from '../shared/services/auth.service';
 import {BreakPointObserverService} from '../../../../style-lib/src/lib/services/break-point-observer.service';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
+import {MbsTranslateService} from '../shared/services/mbs-translate.service';
 
 @Component({
   selector: 'mbs-ad-header',
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
               public breakpointObserver: BreakPointObserverService,
               private router: Router,
               private translateService: TranslateService,
+              private mbsTranslateService: MbsTranslateService,
               private changeDetectorRef: ChangeDetectorRef) {
     this.isAuthenticated = false;
     this.menuOpen = false;
@@ -54,7 +56,7 @@ export class HeaderComponent implements OnInit {
     // works fine -> change as dropdown
     if (this.language !== newLanguage) {
       this.language = this.language === 'de' ? 'en' : 'de';
-      this.translateService.use(this.language).subscribe(() => {});
+      this.translateService.use(this.language).subscribe(() => this.mbsTranslateService.changeLanguage(this.language));
     }
   }
 
