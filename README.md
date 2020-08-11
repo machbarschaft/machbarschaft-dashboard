@@ -18,7 +18,7 @@ Start admin-dashboard
 
 Build admin-dashboard 
 
-`npm run build:dashboard`
+`npm run build:dashboard:production`
 
 Start lite-server for admin-dashboard project (located at dist/admin-dashboard)
 

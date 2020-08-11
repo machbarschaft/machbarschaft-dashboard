@@ -27,4 +27,8 @@ export class HelpRequestService {
     return this.httpClient.put<HelpRequest>(`v1/help-request/${uuid}`, { status });
   }
 
+  // url has to be defined
+  updateHelpRequest(helpRequest: HelpRequest): Observable<HelpRequest> {
+    return this.httpClient.put<HelpRequest>(``, helpRequest);
+  }
 }

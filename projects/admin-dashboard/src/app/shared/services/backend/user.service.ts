@@ -10,12 +10,20 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) {}
 
-  createUser(user: User) {
-    return this.httpClient.post('', user);
+  createUser(user: User): Observable<User> {
+    return this.httpClient.post<User>('v1/user/', user);
   }
 
   makeUserToAdmin(userId: string): Observable<any>{
     return this.httpClient.patch(`v1/admin/users/${userId}`, {role: 'admin'});
+  }
+
+  updateUser(user: User): Observable<User> {
+    return this.httpClient.put<User>('v1/user', user);
+  }
+
+  getUser(): Observable<User> {
+    return this.httpClient.get<User>('v1/user');
   }
 
 }

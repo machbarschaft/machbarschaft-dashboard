@@ -46,7 +46,8 @@ function createHelpSeeker(fullName, phone, source, enteredBy = null) {
     user: null,
     fullName: fullName,
     source: source,
-    enteredBy: enteredBy
+    enteredBy: enteredBy,
+    phone: phone
   };
   return helpSeeker;
 }
@@ -58,6 +59,23 @@ function createMultipleHelpSeekers() {
   helpSeekers.push(createHelpSeeker('John Doe', '01234566789', SOURCE.ADMIN, ''));
   helpSeekers.push(createHelpSeeker('Jane Doe', '01234566789', SOURCE.ADMIN, ''));
   return helpSeekers;
+}
+
+function createUser(firstName, lastName, street, streetNo, zipCode,
+                    city, email, location, phone, source) {
+  const user = {
+    firstName: firstName,
+    lastName: lastName,
+    street: street,
+    streetNo: streetNo,
+    zipCode: zipCode,
+    city: city,
+    email: email,
+    location: location,
+    phone: phone,
+    source: source
+  };
+  return user;
 }
 
 // DATA
@@ -82,6 +100,11 @@ module.exports = {
   },
   getHelpSeeker: function (uuid) {
     return helpSeekers.find(seeker => seeker.id === uuid);
+  },
+  createUser: function(firstName, lastName, street, streetNo, zipCode,
+                       city, email, location, phone, source) {
+    return createUser(firstName, lastName, street, streetNo, zipCode,
+      city, email, location, phone, source);
   }
 };
 
