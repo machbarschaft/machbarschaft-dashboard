@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/public-api';
+
 
 @Component({
   selector: 'mbs-reset-password',
@@ -23,17 +24,22 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onFormSubmit() {
-    if (this.resetPasswordForm.valid) {
+        if (this.resetPasswordForm.valid) {
       // Form is valid and reset all errors
       this.authService.sendMailResetPassword(this.resetPasswordForm.value.email)
-      .then(result => console.log(result))
-      .catch(error => console.log(error));
-      this.router.navigate(['login']).then();
+        .then(result => {
+          document.querySelector<HTMLElement>('.bg-modal').style.display = 'flex';
+        })
+        .catch(error => console.log(error));
 
     } else {
       if (this.resetPasswordForm.get('email').invalid) {
         this.emailError = true;
       }
     }
+  }
+
+  closePopUp() {
+    document.querySelector<HTMLElement>('.bg-modal').style.display = 'none';
   }
 }
