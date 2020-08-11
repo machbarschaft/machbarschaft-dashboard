@@ -32,11 +32,13 @@ const routes: Routes = [
   },
   {
     path: 'user-management',
-    component: UserManagementComponent
+    component: UserManagementComponent,
+    canActivate: [ AuthenticationGuard ]
   },
   {
     path: 'user',
-    loadChildren: () => import('./user/user.module').then(module => module.UserModule)
+    loadChildren: () => import('./user/user.module').then(module => module.UserModule),
+    canActivate: [ AuthenticationGuard ]
   }
 ];
 
