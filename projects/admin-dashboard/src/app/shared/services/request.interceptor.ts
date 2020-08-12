@@ -20,11 +20,23 @@ export class RequestInterceptor implements HttpInterceptor {
       const token: string = localStorage.getItem('token');
       // get api url from environment
       const host: string = environment.apiUrl;
+      // source url
+      const source: string = environment.host;
       // close request and add request headers for content type and authorization
       // update url with host from environment
       const request = req.clone({
-        headers: req.headers.set('Content-Type', 'application/json').set('Authorization', `Bearer ${token}`),
-        url: `${host}${req.url}`
+        headers: req.headers
+          .set('Content-Type', 'application/json')
+          .set('Authorization', `Bearer ${token}`)
+          .set(':scheme', 'https').set(':method', req.method)
+          .set(':authority', environment.apiUrl.replace('https://', '').replace('/', ''))
+          .set('origin', source)
+          .set('pragma:', 'no-cache')
+          .set('sec-fetch-dest:', 'empty')
+          .set('sec-fetch-mode:', 'cors')
+          .set('sec-fetch-site:', 'cross-site')
+        ,
+        url: `${host}${req.url}`,
       });
       return next.handle(request).pipe(
         map((event: HttpEvent<any>) => {
