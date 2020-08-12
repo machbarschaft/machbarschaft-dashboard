@@ -82,6 +82,8 @@
   "user.save": "save",
   "user.your-address": "Your address",
   "reset.password.title": "reset Password",
+  "reset.password.emailSent": "An email has been sent, look in your mail box!",
+  "reset.password.backToLogin": "Back to Login!",
   "reset.new.password": "new Password",
   "reset.new.password.repeat": "repeat password",
   "reset.password.Error.invalidPassword": "Password should be at least 6 characters",

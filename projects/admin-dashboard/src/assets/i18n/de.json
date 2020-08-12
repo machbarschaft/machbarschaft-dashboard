@@ -82,6 +82,8 @@
   "user.save": "speichern",
   "user.your-address": "Ihre Adresse",
   "reset.password.title": "Passwort zurücksetzen",
+  "reset.password.emailSent": "Eine Mail wurde versendet, schaue in deine Postfach nach!",
+  "reset.password.backToLogin": "Zurück zum Login!",
   "reset.new.password": "neues Passwort",
   "reset.new.password.repeat": "Passwort wiederholen",
   "reset.password.Error.invalidPassword": "Das Passwort muss mindestends aus 6 Zeichen bestehen",
