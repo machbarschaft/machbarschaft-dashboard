@@ -46,6 +46,7 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
+    this.changeDetectorRef.detectChanges();
   }
 
   navigate(target: string): void {
