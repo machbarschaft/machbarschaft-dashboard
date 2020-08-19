@@ -38,7 +38,7 @@ Note: before firebase deployment files from build have to be copied to directory
 
 Windows:
 
-`xcopy dist\admin-dashboard\** public /s /e /Y`
+`xcopy dist\admin-dashboard\** public\ /s /e /Y`
 
 Linux:
 
