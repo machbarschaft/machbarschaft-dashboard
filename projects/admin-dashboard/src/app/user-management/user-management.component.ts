@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../shared/public-api';
+import { AuthService } from '../shared/public-api';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({

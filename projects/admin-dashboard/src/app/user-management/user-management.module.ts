@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserManagementComponent } from './user-management/user-management.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
+import {UserManagementRoutingModule} from './user-management-routing.module';
+import {UserManagementComponent} from './user-management.component';
 
 
 
@@ -12,7 +13,8 @@ import {TranslateModule} from '@ngx-translate/core';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    UserManagementRoutingModule
   ],
   exports: [
     UserManagementComponent

@@ -1,4 +1,3 @@
-import {UserManagementComponent} from './user-management/user-management/user-management.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthenticationGuard} from './shared/guards/authentication-guard';
@@ -32,8 +31,7 @@ const routes: Routes = [
   },
   {
     path: 'user-management',
-    component: UserManagementComponent,
-    canActivate: [ AuthenticationGuard ]
+    loadChildren: () => import('./user-management/user-management.module').then(module => module.UserManagementModule)
   },
   {
     path: 'user',
