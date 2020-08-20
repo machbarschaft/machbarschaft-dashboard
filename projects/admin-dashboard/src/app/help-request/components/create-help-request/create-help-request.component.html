@@ -1,0 +1,55 @@
+<div class="row mb-4">
+  <div class="col-lg-6 mx-auto">
+    <h1>{{ 'help-request.create' | translate }}</h1>
+    <form [formGroup]="helpRequestGroupForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
+          <label class="d-block pb-2 font-weight-bold">{{ 'help-request.name' | translate }}</label>
+          <input type="text" class="w-100" formControlName="fullName" placeholder="Max Mustermann">
+          <small class="d-block text-red font-size-xs"
+                 *ngIf="(submitted || getAbstractControl('fullName').dirty) && getAbstractControl('fullName').invalid">
+            {{ 'help-request.error.no-help-seeker' | translate }}
+          </small>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
+          <label class="d-block pb-2 font-weight-bold">{{ 'help-request.phone' | translate }}</label>
+          <input type="phone" class="w-100" formControlName="phone" placeholder="+49 160 1234567">
+          <small class="d-block text-red font-size-xs"
+                 *ngIf="(submitted || getAbstractControl('phone').dirty) && getAbstractControl('phone').invalid">
+            {{ 'help-request.error.no-phone' | translate }}
+          </small>
+        </div>
+        <div class="col-lg-12 col-sm-12 pb-2">
+          <label class="d-block pb-2 font-weight-bold">{{ 'help-request.hint' | translate }}</label>
+          <textarea type="text" formControlName="requestText" rows="4"
+                    [placeholder]="'help-request.hint-placeholder' | translate" class="w-100"></textarea>
+          <small class="d-block text-red font-size-xs"
+                 *ngIf="(submitted || getAbstractControl('requestText').dirty) && getAbstractControl('requestText').invalid">
+            {{ 'help-request.error.no-request-text' | translate }}
+          </small>
+        </div>
+        <ng-container *ngIf="noInternetConnection">
+          <div class="col-lg-12 col-sm-12 pb-2">
+            <small class="d-block text-red font-size-xs">
+              {{ 'common.error.no-internet-connection' | translate }}
+            </small>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="success && !helpRequestGroupForm.touched">
+          <div class="col-lg-12 col-sm-12 pb-2">
+            <small class="d-block text-green font-size-xs">
+              {{ 'help-request.success.creation' | translate }}
+            </small>
+          </div>
+        </ng-container>
+        <div class="col-auto mt-3 mx-auto" [ngClass]="{'col-12': breakpointObserver.isMobile$ | async}">
+          <button button-primary type="submit" class="text-center"
+                  [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
+            {{ 'help-request.save' | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

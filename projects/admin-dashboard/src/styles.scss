@@ -1,2 +1,71 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'montserratbold';
+  src: url('assets/fonts/montserrat-bold-webfont.woff2') format('woff2'),
+  url('assets/fonts/montserrat-bold-webfont.woff') format('woff'),
+  url('assets/fonts/Montserrat-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'montserratlight';
+  src: url('assets/fonts/montserrat-light-webfont.woff2') format('woff2'),
+  url('assets/fonts/montserrat-light-webfont.woff') format('woff'),
+  url('assets/fonts/Montserrat-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'montserratregular';
+  src: url('assets/fonts/montserrat-regular-webfont.woff2') format('woff2'),
+  url('assets/fonts/montserrat-regular-webfont.woff') format('woff'),
+  url('assets/fonts/Montserrat-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'montserratthin';
+  src: url('assets/fonts/montserrat-thin-webfont.woff2') format('woff2'),
+  url('assets/fonts/montserrat-thin-webfont.woff') format('woff'),
+  url('assets/fonts/Montserrat-Bold.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('assets/fonts/material-icons.woff2') format('woff2');;
+}
+
 @import "../../style-lib/src/styles";
+@import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

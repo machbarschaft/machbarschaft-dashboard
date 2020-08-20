@@ -1,1 +1,46 @@
-<p>Login works!</p>
+<div class="row">
+  <div class="col-lg-4 col-sm-12 col-md-12 mx-lg-auto">
+    <h1>{{ 'login.login-header' | translate }}</h1>
+    <form class="my-5" [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+      <div class="form-group mb-3">
+        <label class="d-block pb-2 font-weight-bold">{{ 'login.username' | translate }}</label>
+        <input class="form-control" type="email" formControlName="email" name="user"
+               [placeholder]="'login.email' | translate" required>
+        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="emailError">
+          {{ 'login.error-email' | translate }}
+        </small>
+      </div>
+      <div class="form-group mb-3">
+        <label class="d-block pb-2 font-weight-bold">{{ 'login.password' | translate }}</label>
+        <input class="form-control" type="password" formControlName="password" name="password"
+               [placeholder]="'login.password' | translate" required>
+        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="passwordError">
+          {{ 'login.error-password' | translate }}
+        </small>
+      </div>
+      <ng-container *ngIf="loginError || noInternetConnection">
+        <small class="d-block text-red font-size-xs">
+          {{ (loginError ? 'login.error-username-or-password' : 'common.error.no-internet-connection') | translate }}
+        </small>
+      </ng-container>
+      <div class="my-3 text-center">
+         <a [routerLink]="['/reset-password']">{{ 'login.reset-password' | translate }}</a>
+      </div>
+      <div class="text-center">
+        <button button-primary type="submit" class="w-100">
+          {{ 'login.login' | translate }}
+        </button>
+      </div>
+    </form>
+    <div class="my-3">
+      <span class="d-block mb-2 text-center">
+        {{ 'login.register-text' | translate }}
+      </span>
+      <div class="text-center">
+        <button [routerLink]="['/registration']" type="button" button-primary class="w-100">
+          {{ 'login.register' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

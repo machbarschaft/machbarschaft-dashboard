@@ -1,0 +1,112 @@
+<ng-container *ngIf="user; else userNotFound">
+  <div class="row mt-3">
+    <div class="col-lg-8 col-sm-12 col-md-12 mx-lg-auto">
+      <h1>{{ 'menu.profile' | translate }}</h1>
+      <form class="mb-5" [formGroup]="userForm" (ngSubmit)="saveChanges()">
+        <div class="row">
+          <div class="col-lg-6 col-sm-12">
+            <div class="form-group mb-3">
+              <label class="d-block pb-2 font-weight-bold">{{ 'user.mail' | translate }}</label>
+              <input class="form-control" type="email" formControlName="email"
+                     [placeholder]="'user.mail' | translate">
+              <small class="d-block text-red font-size-xs"
+                     *ngIf="(submitted && getAbstractControl('email').dirty) && getAbstractControl('email').invalid">
+                {{ 'user.error.email' | translate }}
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <div class="form-group mb-3">
+              <label class="d-block pb-2 font-weight-bold">{{ 'user.phone' | translate }}</label>
+              <input class="form-control" type="text" formControlName="phone"
+                     placeholder="+49 160 1234567">
+              <small class="d-block text-red font-size-xs"
+                     *ngIf="(submitted && getAbstractControl('phone').dirty) && getAbstractControl('phone').invalid">
+                {{ 'user.error.phone' | translate }}
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <div class="form-group mb-3">
+              <label class="d-block pb-2 font-weight-bold">{{ 'user.first-name' | translate }}</label>
+              <input class="form-control" type="text" formControlName="firstName"
+                     [placeholder]="'user.first-name' | translate">
+              <small class="d-block text-red font-size-xs"
+                     *ngIf="(submitted && getAbstractControl('firstName').dirty) && getAbstractControl('firstName').invalid">
+                {{ 'user.error.firstName' | translate }}
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-6 col-sm-12">
+            <div class="form-group mb-3">
+              <label class="d-block pb-2 font-weight-bold">{{ 'user.last-name' | translate }}</label>
+              <input class="form-control" type="text" formControlName="lastName"
+                     [placeholder]="'user.last-name' | translate">
+              <small class="d-block text-red font-size-xs"
+                     *ngIf="(submitted && getAbstractControl('lastName').dirty) && getAbstractControl('lastName').invalid">
+                {{ 'user.error.lastName' | translate }}
+              </small>
+            </div>
+          </div>
+          <div class="col-lg-12 col-sm-12">
+            <div class="form-group mb-3">
+              <label class="d-block pb-2 font-weight-bold">{{ 'user.address' | translate }}</label>
+              <input class="form-control" name="address" formControlName="address"
+                     [placeholder]="'user.address-title' | translate">
+              <small class="d-block text-red font-size-xs"
+                     *ngIf="(submitted && getAbstractControl('address').dirty) && getAbstractControl('address').invalid">
+                {{ 'user.error.address' | translate }}
+              </small>
+              <button button-secondary type="button" (click)="checkAddress()" class="mt-3"
+                      [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
+                {{ 'user.address-validate' | translate }}
+              </button>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="form-group mb-3">
+              <div id="mapdiv" *ngIf="showMap" class="form-group mb-3">
+                <google-map [center]="mapCenter" [zoom]=15 [height]="200" [width]="mapWidth">
+                  <map-marker [position]="mapCenter" [title]="markerTitle"></map-marker>
+                </google-map>
+              </div>
+              <ng-container *ngIf="addressNotFound">
+                <small class="d-block text-red font-size-xs">
+                  {{ 'user.error.address-not-found' | translate }}
+                </small>
+              </ng-container>
+            </div>
+          </div>
+          <ng-container *ngIf="success">
+            <div class="col-12">
+              <small class="d-block text-green font-size-xs">
+                {{ 'user.success' | translate }}
+              </small>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="updateFailed">
+            <div class="col-12">
+              <small class="d-block text-red font-size-xs">
+                {{ 'common.error.no-internet-connection' | translate }}
+              </small>
+            </div>
+          </ng-container>
+          <div class="col-12">
+            <div class="my-3 text-center">
+              <button button-primary type="submit" [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
+                {{ 'user.save' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-container>
+<ng-template #userNotFound>
+  <div class="row">
+    <div class="col-auto">
+      {{ 'user.error.not-found' | translate }}
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-lg-8 col-sm-12 col-md-12 mx-lg-auto">
+    <h1>{{ 'user.title' | translate }}</h1>
+    <form class="my-5">
+      <div class="row">
+        <div class="col-lg-6 col-sm-12">
+          <div class="form-group mb-3">
+            <label class="d-block pb-2 font-weight-bold">{{ 'user.mail' | translate }}</label>
+            <input class="form-control" type="email" [(ngModel)]="email" name="user" [placeholder]="'user.mail' | translate"
+                   required>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <div class="form-group mb-3">
+            <label class="d-block pb-2 font-weight-bold">{{ 'user.phone' | translate }}</label>
+            <input class="form-control" type="text" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="+49 160 1234567"
+                   required>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <div class="form-group mb-3">
+            <label class="d-block pb-2 font-weight-bold">{{ 'user.first-name' | translate }}</label>
+            <input class="form-control" type="text" [(ngModel)]="firstName" name="firstname"
+                   [placeholder]="'user.first-name' | translate" required>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <div class="form-group mb-3">
+            <label class="d-block pb-2 font-weight-bold">{{ 'user.last-name' | translate }}</label>
+            <input class="form-control" type="text" [(ngModel)]="lastName" name="lastName"
+                   [placeholder]="'user.last-name' | translate" required>
+          </div>
+        </div>
+        <div class="col-lg-12 col-sm-12">
+          <label class="d-block pb-2 font-weight-bold">{{ 'user.password-title' | translate }}</label>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <div class="form-group mb-3">
+            <input class="form-control" type="password" [(ngModel)]="password" name="password"
+                   [placeholder]="'user.password' | translate" required>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-12">
+          <div class="form-group mb-3">
+            <input class="form-control" type="password" [(ngModel)]="repeatPassword" name="repeatPassword"
+                   [placeholder]="'user.password-repeat' | translate" required>
+          </div>
+        </div>
+        <div class="col-lg-12 col-sm-12">
+          <div class="form-group mb-3">
+            <label class="d-block pb-2 font-weight-bold">{{ 'user.address' | translate }}</label>
+            <input class="form-control" name="address" [(ngModel)]="address"
+                   [placeholder]="'user.address-title' | translate" required>
+            <button button-secondary (click)="checkAddress()" class="mt-3"
+                    [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
+              {{ 'user.address-validate' | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <div id="mapdiv" *ngIf="showMap" class="form-group mb-3">
+          <google-map [center]="mapCenter" [zoom]=15 [height]="200" [width]="mapWidth">
+            <map-marker [position]="mapCenter" [title]="markerTitle"></map-marker>
+          </google-map>
+        </div>
+      </div>
+      <div class="my-3 text-center">
+        <button button-primary (click)="registration()" [ngClass]="{'w-100': breakpointObserver.isMobile$ | async}">
+          {{ 'user.register' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

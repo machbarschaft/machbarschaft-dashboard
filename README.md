@@ -18,7 +18,7 @@ Start admin-dashboard
 
 Build admin-dashboard 
 
-`npm run build:dashboard`
+`npm run build:dashboard:production`
 
 Start lite-server for admin-dashboard project (located at dist/admin-dashboard)
 
@@ -26,7 +26,23 @@ Start lite-server for admin-dashboard project (located at dist/admin-dashboard)
 
 Build style-lib
  
- `npm run build:style`
+`npm run build:style`
+
+Firebase deployment
+
+`npm run firebase:deploy:dashboard`
+
+Note: before firebase deployment files from build have to be copied to directory public in root. If this directory is not existing, you have to create it with
+
+`mkdir public`
+
+Windows:
+
+`xcopy dist\admin-dashboard\** public\ /s /e /Y`
+
+Linux:
+
+`cp dist/admin-dashboard/** public -r`
 
 Further information will be added soon
 
@@ -72,4 +88,3 @@ Further information will be added soon
 </table>
 
 made with ❤ by us (machbarschaft).
-

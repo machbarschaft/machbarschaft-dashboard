@@ -1,15 +1,12 @@
-<div class="w-100 h-100 bg-color-1 position-absolute">
-  <div class="p-3">
-    <span class="font-weight-bold text-white mb-3 d-block font-size-l">Machbarschaft Admin Dashboard works!</span>
-    <div>
-      <button button-secondary>Button secondary</button>
-    </div>
-    <div>
-      <a [routerLink]="['request']" class="mr-3">Request</a>
-      <a [routerLink]="['login']" class="mx-3">Login</a>
-    </div>
-    <lib-style-lib></lib-style-lib>
+<header>
+  <mbs-ad-header></mbs-ad-header>
+</header>
+<div class="container-fluid">
+  <div class="container bg-white">
     <router-outlet></router-outlet>
   </div>
 </div>
+<footer>
+  <mbs-ad-footer></mbs-ad-footer>
+</footer>
 
