@@ -114,7 +114,7 @@ export class HelpRequestComponent implements OnInit {
       this.helpRequest = helpRequest;
     }
     this.helpRequestForm.patchValue({
-      requestText: this.helpRequest && this.helpRequest.requestText ? this.helpRequest.helpSeeker.requestText : '',
+      requestText: this.helpRequest && this.helpRequest.requestText ? this.helpRequest.requestText : '',
       fullName: this.helpRequest && this.helpRequest.helpSeeker.fullName ? this.helpRequest.helpSeeker.fullName : '',
       phone: this.helpRequest && this.helpRequest.helpSeeker.phone ? this.helpRequest.helpSeeker.phone : '',
       requestStatus: this.helpRequest ? this.asyncPipe.transform(
