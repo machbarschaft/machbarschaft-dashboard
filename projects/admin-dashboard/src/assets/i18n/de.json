@@ -17,6 +17,7 @@
   "login.error-password": "Das Passwort muss mindestens aus 8 Zeichen bestehen.",
   "login.reset-password": "Passwort vergessen",
   "login.error-username-or-password": "Der eingegebene Benutzername oder das Passwort sind falsch.",
+  "login.error-unauthorized": "Sie haben entweder keine Berechtigung oder Ihre Anmeldung ist abgelaufen.",
   "login.login": "Anmelden",
   "login.register-text": "Ich habe noch keinen Account und möchte mich gerne registrieren.",
   "login.register": "Registrieren",

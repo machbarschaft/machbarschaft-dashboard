@@ -37,7 +37,7 @@ export class RequestInterceptor implements HttpInterceptor {
             // user is unauthorized, has to be logged out and redirected to login
            localStorage.clear();
            this.authenticationGuardService.changeAuthenticated(false);
-           this.router.navigate(['login']).then();
+           this.router.navigate(['/login'], { queryParams: { message: 'unauthorized' } }).then();
           }
           return throwError(error);
         })
