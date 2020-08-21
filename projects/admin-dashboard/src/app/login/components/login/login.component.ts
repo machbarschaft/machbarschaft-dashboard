@@ -36,10 +36,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      console.log('params', params);
       const queryMessage = params['message'];
       this.loginError = queryMessage === 'unauthorized' ? LoginError.UNAUTHORIZED : null;
-      console.log('loginError', this.loginError, queryMessage === 'unauthorized');
       this.changeDetectorRef.detectChanges();
     });
   }
