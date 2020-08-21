@@ -17,7 +17,9 @@ export class RolesComponent implements OnInit {
   addAminForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email])
   });
+
   emailError: boolean = false;
+  success: boolean = false;
 
   constructor(private userService: UserService) { }
 
@@ -29,18 +31,18 @@ export class RolesComponent implements OnInit {
       // Form is valid and reset error
       this.emailError = false;
 
-      // fehelnde funktion: aus mail userID bekommen
-      /*
-      this.userService.makeUserToAdmin('userID').subscribe((response) => {
-
-      });
-      */
+      this.userService.makeUserToAdmin(this.addAminForm.value.email).subscribe(
+        (response) => {
+          this.success = true;
+        }, (error) => {
+        });
 
     } else {
       if (this.addAminForm.get('email').invalid) {
         this.emailError = true;
+        this.success = false;
       }
     }
   }
 
-  }
+}

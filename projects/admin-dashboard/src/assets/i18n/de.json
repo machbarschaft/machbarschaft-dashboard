@@ -92,5 +92,6 @@
   "roles.title": "Administrator hinzufügen",
   "footer.legal-notice": "Impressum",
   "footer.privacy-policy": "Datenschutz",
-  "footer.contact": "Kontakt"
+  "footer.contact": "Kontakt",
+  "admin.added": "Dem Nutzer wurden Adminrechte zugeteilt"
 }
