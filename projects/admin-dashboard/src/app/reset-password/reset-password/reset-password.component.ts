@@ -18,28 +18,29 @@ export class ResetPasswordComponent implements OnInit {
   });
 
   emailError: boolean = false;
+  success: boolean = false;
+
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onFormSubmit() {
-        if (this.resetPasswordForm.valid) {
+    if (this.resetPasswordForm.valid) {
       // Form is valid and reset all errors
       this.authService.sendMailResetPassword(this.resetPasswordForm.value.email)
-        .then(result => {
-          document.querySelector<HTMLElement>('.bg-modal').style.display = 'flex';
+        .then(() => {
+          this.success = true;
         })
         .catch(error => console.log(error));
 
     } else {
       if (this.resetPasswordForm.get('email').invalid) {
         this.emailError = true;
+        this.success = false;
       }
     }
   }
 
-  closePopUp() {
-    document.querySelector<HTMLElement>('.bg-modal').style.display = 'none';
-  }
+
 }
