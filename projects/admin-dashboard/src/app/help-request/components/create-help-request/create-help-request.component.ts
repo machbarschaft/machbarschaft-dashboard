@@ -17,7 +17,7 @@ export class CreateHelpRequestComponent {
 
   helpRequestGroupForm = new FormGroup({
     fullName: new FormControl('', Validators.required),
-    phone: new FormControl('', Validators.required),
+    phone: new FormControl('', [Validators.required, this.noWhitespaceValidator, Validators.pattern("^((\\+-?)|0)?[0-9]*$"), Validators.minLength(9), Validators.maxLength(15)]),
     requestText: new FormControl('', Validators.required)
   });
   submitted: boolean = false;
@@ -75,6 +75,12 @@ export class CreateHelpRequestComponent {
 
   getAbstractControl(key: string): AbstractControl | null {
     return this.helpRequestGroupForm.get(key);
+  }
+  
+   noWhitespaceValidator(control: FormControl) {
+      const isWhitespace = (control.value || '').trim().length === 0;
+      const isValid = !isWhitespace;
+      return isValid ? null : { 'whitespace': true };
   }
 }
 
