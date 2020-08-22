@@ -13,7 +13,7 @@
         </div>
         <div class="col-lg-6 col-md-6 col-sm-12 pb-2">
           <label class="d-block pb-2 font-weight-bold">{{ 'help-request.phone' | translate }}</label>
-          <input type="phone" class="w-100" formControlName="phone" placeholder="+49 160 1234567">
+          <input type="phone" class="w-100" formControlName="phone" placeholder="+49 160 1234567" (keydown.space)="$event.preventDefault();">
           <small class="d-block text-red font-size-xs"
                  *ngIf="(submitted || getAbstractControl('phone').dirty) && getAbstractControl('phone').invalid">
             {{ 'help-request.error.no-phone' | translate }}
