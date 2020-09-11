@@ -47,6 +47,7 @@
   "help-request.error.no-help-seeker": "Please enter a help seeker.",
   "help-request.error.no-phone": "Please enter a phone number.",
   "help-request.success.creation": "Help request created successfully.",
+  "help-request.success.update": "Help request updated successfully.",
   "common.HOTLINE": "hot-line",
   "common.APP": "app",
   "common.ADMIN": "admin",

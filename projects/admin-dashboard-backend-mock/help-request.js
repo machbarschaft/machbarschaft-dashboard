@@ -46,12 +46,35 @@ module.exports = function(app) {
   });
   /**
    * METHOD: PUT
-   * BODY: { status: 'OPEN' }
+   * BODY: { requestText: 'text', helpSeeker: {} }
    * URL: '/v1/help-request/{uuid}
    */
   app.put('/v1/help-request/*', function(req, res) {
     const uuid = req.params['0'];
+    const requestText = req.body['requestText'];
+    const helpSeeker = req.body['helpSeeker']
+    if (requestText && helpSeeker) {
+      const helpRequest = data.getHelpRequest(uuid);
+      if (helpRequest) {
+        helpRequest.requestText = requestText;
+        helpRequest.helpSeeker = helpSeeker;
+        res.send(helpRequest);
+      } else {
+        res.status(404).end();
+      }
+    } else {
+      res.status(400).end();
+    }
+  });
+  /**
+   * METHOD: PUT
+   * BODY: { status: 'OPEN' }
+   * URL: '/v1/help-request/{uuid}/status
+   */
+  app.put('/v1/help-request/:uuid/status', function(req, res) {
+    const uuid = req.params['uuid'];
     const status = req.body['status'];
+    console.log('status', status, 'uuid', uuid);
     if (status) {
       const helpRequest = data.getHelpRequest(uuid);
       if (helpRequest) {

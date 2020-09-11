@@ -47,6 +47,7 @@
   "help-request.error.no-help-seeker": "Bitte geben Sie einen Hilfesuchenden ein.",
   "help-request.error.no-phone": "Bitte geben Sie eine Telefonnummer ein.",
   "help-request.success.creation": "Das Hilfegesuch wurde erfolgreich angelegt.",
+  "help-request.success.update": "Das Hilfegesuch wurde erfolgreich gespeichert.",
   "common.HOTLINE": "Hotline",
   "common.APP": "App",
   "common.ADMIN": "Admin",

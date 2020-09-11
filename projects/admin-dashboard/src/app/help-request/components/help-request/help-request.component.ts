@@ -26,9 +26,9 @@ export class HelpRequestComponent implements OnInit {
   success: boolean = false;
 
   helpRequestForm = new FormGroup({
-    requestText: new FormControl({ value: '', disabled: true }, [Validators.required]),
-    fullName: new FormControl({ value: '', disabled: true }, [Validators.required]),
-    phone: new FormControl({ value: '', disabled: true }, [Validators.required]),
+    requestText: new FormControl({ value: '', disabled: false }, [Validators.required]),
+    fullName: new FormControl({ value: '', disabled: false }, [Validators.required]),
+    phone: new FormControl({ value: '', disabled: false }, [Validators.required]),
     requestStatus: new FormControl({ value: '', disabled: true }),
     updatedAt: new FormControl({ value: '', disabled: true })
   });
@@ -78,8 +78,8 @@ export class HelpRequestComponent implements OnInit {
         requestText: this.getAbstractControl('requestText').value,
         helpSeeker: {
           id: this.helpRequest.helpSeeker.id,
-          fullName: this.getAbstractControl('fullName'),
-          phone: this.getAbstractControl('phone'),
+          fullName: this.getAbstractControl('fullName').value,
+          phone: this.getAbstractControl('phone').value,
           source: this.helpRequest.helpSeeker.source,
           enteredBy: this.helpRequest.helpSeeker.enteredBy,
           user: this.helpRequest.helpSeeker.user
@@ -90,14 +90,14 @@ export class HelpRequestComponent implements OnInit {
         updatedAt: this.helpRequest.updatedAt
       };
 
-      this.helpRequestService.updateHelpRequest(newHelpRequest)
+      this.helpRequestService.updateHelpRequest(this.helpRequest.id, newHelpRequest)
         .subscribe(helpRequest => {
           this.updateFailed = false;
           this.submitted = false;
           this.success = true;
           this._updateHelpRequestForm(helpRequest);
-          this.changeDetectorRef.detectChanges();
-        }, () => {
+        }, (error) => {
+          console.error(error);
           this.updateFailed = true;
           this.success = false;
           this.changeDetectorRef.detectChanges();
