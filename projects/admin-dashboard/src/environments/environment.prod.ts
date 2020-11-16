@@ -3,6 +3,6 @@ export const environment = {
   firebaseConfig : {},
   mapsUrl: 'https://maps.googleapis.com/maps/api/geocode/json',
   mapsKey: '',
-  apiUrl: 'https://service-api-ng.nightly.staging.colivery.app/'
+  apiUrl: 'https://machbarschaft-api-develop-lofrxpalia-ew.a.run.app/'
 };
 
