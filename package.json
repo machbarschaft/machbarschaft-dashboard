@@ -27,7 +27,8 @@
     "start:app": "ng serve --port 4200",
     "start:dashboard-mock": "cd projects/admin-dashboard-backend-mock && node index.js",
     "build:dashboard:production": "ng build admin-dashboard --prod --aot",
-    "build:dashboard:develop": "ng build admin-dashboard --source-map -ec true",
+    "build:dashboard:staging": "ng build admin-dashboard -c staging",
+    "build:dashboard:develop": "ng build admin-dashboard --dev --source-map -ec true",
     "build:app": "ng build --prod --aot",
     "build:style": "ng build style-lib",
     "liteserver:dashboard": "lite-server --baseDir=\"dist/admin-dashboard\"",
@@ -73,6 +74,7 @@
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^10.0.1",
     "@angular-devkit/build-angular": "~0.901.7",
     "@angular-devkit/build-ng-packagr": "~0.901.7",
     "@angular/cli": "~9.1.7",

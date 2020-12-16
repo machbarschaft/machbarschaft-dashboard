@@ -137,8 +137,11 @@
       "prefix": "mbs",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "custom-webpack.config.js"
+            },
             "outputPath": "dist/admin-dashboard",
             "index": "projects/admin-dashboard/src/index.html",
             "main": "projects/admin-dashboard/src/main.ts",
@@ -182,6 +185,16 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "staging": {
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false
             },
             "development": {
               "fileReplacements": [
