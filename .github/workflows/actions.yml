@@ -34,7 +34,7 @@ jobs:
       # - run: npm run test
       # - run: npm run lint
       # - run: npm run e2e
-      - run: npm run build:dashboard:production
+      - run: npm run build:dashboard:develop
 
       - uses: actions/upload-artifact@v1
         with:
