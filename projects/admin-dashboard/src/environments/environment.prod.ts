@@ -1,8 +1,7 @@
 export const environment = {
   production: true,
-  firebaseConfig : {},
+  firebaseConfig: JSON.stringify(process.env.FIREBASE_CONFIG_PRD),
   mapsUrl: 'https://maps.googleapis.com/maps/api/geocode/json',
-  mapsKey: '',
-  apiUrl: 'https://machbarschaft-api-develop-lofrxpalia-ew.a.run.app/'
+  mapsKey: JSON.stringify(process.env.MAPS_API_KEY),
+  apiUrl: 'https://api.machbarschaft.jetzt/',
 };
-

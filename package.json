@@ -32,7 +32,10 @@
     "build:style": "ng build style-lib",
     "liteserver:dashboard": "lite-server --baseDir=\"dist/admin-dashboard\"",
     "liteserver:app": "lite-server --baseDir=\"dist/dashboard\"",
-    "firebase:deploy:dashboard": "firebase deploy"
+    "deploy:prepare:sta": "firebase target:apply hosting sta ${FIREBASE_TARGET_STA}",
+    "deploy:prepare:prd": "firebase target:apply hosting prd ${FIREBASE_TARGET_PRD}",
+    "deploy:ci:sta": "firebase deploy --only hosting:sta --token $FIREBASE_TOKEN_STA",
+    "deploy:ci:prd": "firebase deploy --only hosting:prd --token $FIREBASE_TOKEN_PRD"
   },
   "private": true,
   "browser": {

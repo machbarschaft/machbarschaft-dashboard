@@ -1,0 +1,106 @@
+name: Test, build and release
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+
+  main:
+    name: Test & Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - run: npm ci
+      # - run: npm run test
+      # - run: npm run lint
+      # - run: npm run e2e
+      - run: npm run build:dashboard:production
+
+      - uses: actions/upload-artifact@v1
+        with:
+          name: dist/admin-dashboard
+          path: dist/admin-dashboard
+
+
+  release:
+    name: Release
+    needs: main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: npm ci
+
+      - if: github.ref == 'refs/heads/master'
+        run: npx -p @semantic-release/changelog -p @semantic-release/git -p semantic-release semantic-release
+
+      - run: git describe --tags
+
+
+  deploy:
+    name: Deploy
+    needs: main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@master
+        with:
+          name: dist/admin-dashboard
+          path: dist/admin-dashboard
+
+      - run: npm ci
+      - run: npm i firebase-tools
+
+      - if: github.ref == 'refs/heads/master'
+        run: npm run deploy:prepare:prd
+        env:
+          FIREBASE_TARGET: ${{ secrets.FIREBASE_TARGET_PRD }}
+
+      - if: github.ref == 'refs/heads/master'
+        run: npm run deploy:ci:prd
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_PRD }}
+
+      - if: github.ref != 'refs/heads/master'
+        run: npm run deploy:prepare:sta
+        env:
+          FIREBASE_TARGET: ${{ secrets.FIREBASE_TARGET_STA }}
+
+      - if: github.ref != 'refs/heads/master'
+        run: npm run deploy:ci:sta
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_STA }}
+
+
+  main-pr:
+    name: Create PR
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: pull-request
+        uses: repo-sync/pull-request@v2
+        with:
+          destination_branch: "master"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
