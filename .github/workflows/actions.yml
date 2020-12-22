@@ -70,27 +70,28 @@ jobs:
           path: dist/admin-dashboard
 
       - run: npm ci
-      - run: npm i firebase-tools
 
-      - if: github.ref == 'refs/heads/master'
-        run: npm run deploy:prepare:prd
-        env:
-          FIREBASE_TARGET: ${{ secrets.FIREBASE_TARGET_PRD }}
+      - name: Prepare Cloud Build
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          service_account_key: ${{ secrets.GCLOUD_AUTH }}
 
-      - if: github.ref == 'refs/heads/master'
-        run: npm run deploy:ci:prd
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_PRD }}
+      - name: Cloud Run Deployment
+        run: |
+          gcloud config set project ${PROJECT_ID}
 
-      - if: github.ref != 'refs/heads/master'
-        run: npm run deploy:prepare:sta
-        env:
-          FIREBASE_TARGET: ${{ secrets.FIREBASE_TARGET_STA }}
+          gcloud builds submit \
+            --config=cloudbuild.yaml \
+            --substitutions ^--^_FIREBASE_API_KEY=${FIREBASE_API_KEY}--_MAPS_API_KEY=${MAPS_API_KEY}--_API_URL_SUB=${API_URL_SUB}
 
-      - if: github.ref != 'refs/heads/master'
-        run: npm run deploy:ci:sta
+          gcloud run deploy machbarschaft-dashboard-sta \
+            --image gcr.io/${PROJECT_ID}/machbarschaft-dashboard:latest \
+            --region europe-west1 \
+            --platform managed
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN_STA }}
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY_STA }}
+          MAPS_API_KEY: ${{ secrets.google_maps_api_key }}
+
 
 
   main-pr:
