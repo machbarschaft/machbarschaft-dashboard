@@ -8,6 +8,7 @@ on:
 
 jobs:
 
+
   main:
     name: Test & Build
     runs-on: ubuntu-latest
@@ -31,15 +32,14 @@ jobs:
             ${{ runner.os }}-
 
       - run: npm ci
+
       # - run: npm run test
       # - run: npm run lint
       # - run: npm run e2e
-      - run: npm run build:dashboard:develop
 
-      - uses: actions/upload-artifact@v1
-        with:
-          name: dist/admin-dashboard
-          path: dist/admin-dashboard
+      # - run: npm run build:dashboard:develop
+
+      - run: npm run build:dashboard:production
 
 
   release:
@@ -64,13 +64,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: actions/download-artifact@master
-        with:
-          name: dist/admin-dashboard
-          path: dist/admin-dashboard
-
-      - run: npm ci
-
       - name: Prepare Cloud Build
         uses: google-github-actions/setup-gcloud@master
         with:
@@ -82,7 +75,7 @@ jobs:
 
           gcloud builds submit \
             --config=cloudbuild.yaml \
-            --substitutions ^--^_FIREBASE_API_KEY=${FIREBASE_API_KEY}--_MAPS_API_KEY=${MAPS_API_KEY}--_API_URL_SUB=${API_URL_SUB}
+            --substitutions ^--^_FIREBASE_API_KEY=${FIREBASE_API_KEY}--_MAPS_API_KEY=${MAPS_API_KEY}--_API_URL_SUB="api-sta"
 
           gcloud run deploy machbarschaft-dashboard-sta \
             --image gcr.io/${PROJECT_ID}/machbarschaft-dashboard:latest \
@@ -90,8 +83,7 @@ jobs:
             --platform managed
         env:
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY_STA }}
-          MAPS_API_KEY: ${{ secrets.google_maps_api_key }}
-
+          MAPS_API_KEY: ${{ secrets.MAPS_API_KEY }}
 
 
   main-pr:
