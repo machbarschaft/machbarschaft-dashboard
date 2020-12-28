@@ -1,8 +1,10 @@
 export const environment = {
   production: true,
-  firebaseConfig : {},
+  firebaseConfig: {
+    apiKey: process.env.FIREBASE_API_KEY,
+    authDomain: `${process.env.PROJECT_ID}.firebaseapp.com`,
+  },
   mapsUrl: 'https://maps.googleapis.com/maps/api/geocode/json',
-  mapsKey: '',
-  apiUrl: 'https://service-api-ng.nightly.staging.colivery.app/'
+  mapsKey: process.env.MAPS_API_KEY,
+  apiUrl: `https://${process.env.API_URL_SUB}.machbarschaft.jetzt`,
 };
-

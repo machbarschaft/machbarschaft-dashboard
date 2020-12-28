@@ -1,26 +1,32 @@
 <div class="row">
   <div class="col-lg-4 col-sm-12 col-md-12 mx-lg-auto">
     <h1>{{ 'login.login-header' | translate }}</h1>
-    <form class="my-5" [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+    <form class="my-5" [formGroup]="loginForm" (ngSubmit)="onFormSubmit()" >
       <div class="form-group mb-3">
         <label class="d-block pb-2 font-weight-bold">{{ 'login.username' | translate }}</label>
-        <input class="form-control" type="email" formControlName="email" name="user"
+        <input class="form-control" type="email" formControlName="email"
                [placeholder]="'login.email' | translate" required>
-        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="emailError">
+        <small class="d-block text-red font-size-xs"
+               *ngIf="(submitted || getAbstractControl('email').dirty) && getAbstractControl('email').invalid">
           {{ 'login.error-email' | translate }}
         </small>
       </div>
       <div class="form-group mb-3">
         <label class="d-block pb-2 font-weight-bold">{{ 'login.password' | translate }}</label>
-        <input class="form-control" type="password" formControlName="password" name="password"
+        <input class="form-control" type="password" formControlName="password"
                [placeholder]="'login.password' | translate" required>
-        <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="passwordError">
+        <small class="d-block text-red font-size-xs"
+               *ngIf="(submitted || getAbstractControl('password').dirty) && getAbstractControl('password').invalid">
           {{ 'login.error-password' | translate }}
         </small>
       </div>
-      <ng-container *ngIf="loginError || noInternetConnection">
+      <ng-container *ngIf="loginError">
         <small class="d-block text-red font-size-xs">
-          {{ (loginError ? 'login.error-username-or-password' : 'common.error.no-internet-connection') | translate }}
+          <ng-container [ngSwitch]="loginError">
+            <span *ngSwitchCase="'UNAUTHORIZED'">{{ 'login.error-unauthorized' | translate }}</span>
+            <span *ngSwitchCase="'NO_INTERNET_CONNECTION'">{{ 'common.error.no-internet-connection' | translate }}</span>
+            <span *ngSwitchCase="'INVALID_USER_PASSWORD'">{{ 'login.error-username-or-password' | translate }}</span>
+          </ng-container>
         </small>
       </ng-container>
       <div class="my-3 text-center">
@@ -32,15 +38,5 @@
         </button>
       </div>
     </form>
-    <div class="my-3">
-      <span class="d-block mb-2 text-center">
-        {{ 'login.register-text' | translate }}
-      </span>
-      <div class="text-center">
-        <button [routerLink]="['/registration']" type="button" button-primary class="w-100">
-          {{ 'login.register' | translate }}
-        </button>
-      </div>
-    </div>
   </div>
 </div>

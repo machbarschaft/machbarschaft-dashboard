@@ -24,11 +24,10 @@ export class HelpRequestService {
   }
 
   updateHelpRequestStatus(uuid: string, status: REQUEST_STATUS): Observable<HelpRequest> {
-    return this.httpClient.put<HelpRequest>(`v1/help-request/${uuid}`, { status });
+    return this.httpClient.put<HelpRequest>(`v1/help-request/${uuid}/status`, { status });
   }
 
-  // url has to be defined
-  updateHelpRequest(helpRequest: HelpRequest): Observable<HelpRequest> {
-    return this.httpClient.put<HelpRequest>(``, helpRequest);
+  updateHelpRequest(uuid: string, helpRequest: HelpRequest): Observable<HelpRequest> {
+    return this.httpClient.put<HelpRequest>(`v1/help-request/${uuid}`, helpRequest);
   }
 }

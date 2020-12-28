@@ -17,6 +17,7 @@
   "login.error-password": "Password has to be at least 8 characters.",
   "login.reset-password": "forgot password",
   "login.error-username-or-password": "Username or password is wrong.",
+  "login.error-unauthorized": "You're either not authorized or your login is expired.",
   "login.login": "sign in",
   "login.register-text": "I do not have an account yet and would like to sign up.",
   "login.register": "sign up",
@@ -46,6 +47,7 @@
   "help-request.error.no-help-seeker": "Please enter a help seeker.",
   "help-request.error.no-phone": "Please enter a phone number.",
   "help-request.success.creation": "Help request created successfully.",
+  "help-request.success.update": "Help request updated successfully.",
   "common.HOTLINE": "hot-line",
   "common.APP": "app",
   "common.ADMIN": "admin",
@@ -91,5 +93,6 @@
   "roles.title": "Add Administrator",
   "footer.legal-notice": "Legal notice",
   "footer.privacy-policy": "Privacy policy",
-  "footer.contact": "Contact"
+  "footer.contact": "Contact",
+  "admin.added": "The user has been assigned admin rights"
 }

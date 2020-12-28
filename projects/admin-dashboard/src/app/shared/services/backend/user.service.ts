@@ -14,8 +14,8 @@ export class UserService {
     return this.httpClient.post<User>('v1/user/', user);
   }
 
-  makeUserToAdmin(userId: string): Observable<any>{
-    return this.httpClient.patch(`v1/admin/users/${userId}`, {role: 'admin'});
+  makeUserToAdmin(email: string): Observable<any>{
+    return this.httpClient.put(`v1/admin/users/${email}`, {});
   }
 
   updateUser(user: User): Observable<User> {

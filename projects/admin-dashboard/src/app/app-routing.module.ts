@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AuthenticationGuard} from './shared/guards/authentication-guard';
+import {environment} from '../environments/environment';
 
 const routes: Routes = [
   {
@@ -22,10 +23,6 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then(module => module.LoginModule)
   },
   {
-    path: 'registration',
-    loadChildren: () => import('./registration/registration.module').then(module => module.RegistrationModule)
-  },
-  {
     path: 'reset-password',
     loadChildren: () => import('./reset-password/reset-password.module').then(module => module.ResetPasswordModule)
   },
@@ -39,6 +36,13 @@ const routes: Routes = [
     canActivate: [ AuthenticationGuard ]
   }
 ];
+
+if (!environment.production) {
+  routes.push({
+    path: 'registration',
+    loadChildren: () => import('./registration/registration.module').then(module => module.RegistrationModule)
+  })
+}
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

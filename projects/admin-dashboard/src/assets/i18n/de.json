@@ -17,6 +17,7 @@
   "login.error-password": "Das Passwort muss mindestens aus 8 Zeichen bestehen.",
   "login.reset-password": "Passwort vergessen",
   "login.error-username-or-password": "Der eingegebene Benutzername oder das Passwort sind falsch.",
+  "login.error-unauthorized": "Sie haben entweder keine Berechtigung oder Ihre Anmeldung ist abgelaufen.",
   "login.login": "Anmelden",
   "login.register-text": "Ich habe noch keinen Account und möchte mich gerne registrieren.",
   "login.register": "Registrieren",
@@ -46,6 +47,7 @@
   "help-request.error.no-help-seeker": "Bitte geben Sie einen Hilfesuchenden ein.",
   "help-request.error.no-phone": "Bitte geben Sie eine Telefonnummer ein.",
   "help-request.success.creation": "Das Hilfegesuch wurde erfolgreich angelegt.",
+  "help-request.success.update": "Das Hilfegesuch wurde erfolgreich gespeichert.",
   "common.HOTLINE": "Hotline",
   "common.APP": "App",
   "common.ADMIN": "Admin",
@@ -91,5 +93,6 @@
   "roles.title": "Administrator hinzufügen",
   "footer.legal-notice": "Impressum",
   "footer.privacy-policy": "Datenschutz",
-  "footer.contact": "Kontakt"
+  "footer.contact": "Kontakt",
+  "admin.added": "Dem Nutzer wurden Adminrechte zugeteilt"
 }

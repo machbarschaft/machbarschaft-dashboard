@@ -1,4 +1,3 @@
-import {SodiumCryptoService} from './sodium-crypto.service';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -15,14 +14,13 @@ export class AuthService {
 
   constructor(private firebaseAuth: AngularFireAuth,
               private router: Router,
-              private sodium: SodiumCryptoService,
               private storageService: StorageService,
               private authenticationGuardService: AuthenticationGuardService) {
   }
 
   login$(email: string, password: string): Observable<AuthResponse> {
     const subject$ = new ReplaySubject<AuthResponse>(1);
-    this.firebaseAuth.signInWithEmailAndPassword(email, this.sodium.hash(password))
+    this.firebaseAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         const refreshToken = result.user.refreshToken;
         const authToken = result.user['xa'];
@@ -56,7 +54,7 @@ export class AuthService {
   }
 
   async register(email: string, password: string): Promise<any> {
-    return this.firebaseAuth.createUserWithEmailAndPassword(email, this.sodium.hash(password));
+    return this.firebaseAuth.createUserWithEmailAndPassword(email, password);
   }
 
   getToken(): Observable<string> {

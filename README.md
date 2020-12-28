@@ -32,19 +32,22 @@ Firebase deployment
 
 `npm run firebase:deploy:dashboard`
 
-Note: before firebase deployment files from build have to be copied to directory public in root. If this directory is not existing, you have to create it with
-
-`mkdir public`
-
-Windows:
-
-`xcopy dist\admin-dashboard\** public\ /s /e /Y`
-
-Linux:
-
-`cp dist/admin-dashboard/** public -r`
-
 Further information will be added soon
+
+### Register an admin user
+
+The registation route is disabled in production mode.
+For development, the route is exposed as:
+
+    http://localhost:4200/registration
+
+Create yourself a user with email `hallo@machbarschaft.jetzt`.
+
+### Set in PostgreSQL to role ADMIN
+
+Manually connect to the database and run:
+`UPDATE public.user SET role = 'ADMIN' where email = 'hallo@machbarschaft.jetzt'`
+to give the user created above a priviledged mode.
 
 ### Project structure
 
