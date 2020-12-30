@@ -91,8 +91,9 @@
   "reset.password.Error.invalidPassword": "Das Passwort muss mindestends aus 6 Zeichen bestehen",
   "reset.password.Error.invalidCode": "Der Link ist nicht mehr gültig",
   "roles.title": "Administrator hinzufügen",
+  "roles.error.user-not-found": "Der Benutzer {{mail}} wurde nicht gefunden.",
+  "roles.message.added": "Dem Benutzer {{mail}} wurden Adminrechte zugeteilt.",
   "footer.legal-notice": "Impressum",
   "footer.privacy-policy": "Datenschutz",
-  "footer.contact": "Kontakt",
-  "admin.added": "Dem Nutzer wurden Adminrechte zugeteilt"
+  "footer.contact": "Kontakt"
 }

@@ -5,22 +5,28 @@
 
   <label class="d-block pb-2 font-weight-bold">{{ 'login.email' | translate }}</label>
 
-  <form class="my-5" [formGroup]="addAminForm" (ngSubmit)="addAmin()">
-    <input class="form-control" type="email" formControlName="email" name="user" required>
+  <form class="my-5" [formGroup]="addAdminForm" (ngSubmit)="addAdmin()">
+    <input class="form-control" (ngModelChange)="failure = null" type="email" formControlName="email" name="user" required>
     <small class="form-text text-muted invalid-feedback d-block text-red font-size-xs" *ngIf="emailError">
     {{ 'login.error-email' | translate }}
   </small>
     <br>
-    <button (click) = "addAmin()" button-primary class="w-100">
+    <button (click) = "addAdmin()" button-primary class="w-100">
       {{ 'roles.title' | translate }}
     </button>
    </form>
 
-
+    <ng-container *ngIf="failure">
+      <div class="col-lg-12 col-sm-12 pb-2">
+        <small class="d-block text-red font-size-xs">
+          {{ failure === 'not found' ? ('roles.error.user-not-found' | translate: { mail: addAdminForm.get('email').value }) : ('common.error.no-internet-connection' | translate) }}
+        </small>
+      </div>
+    </ng-container>
    <ng-container *ngIf="success">
     <div class="col-lg-12 col-sm-12 pb-2">
       <small class="d-block text-green font-size-xs">
-        {{ 'admin.added' | translate }}
+        {{ 'roles.message.added' | translate: { mail: addedUser } }}
       </small>
     </div>
   </ng-container>
